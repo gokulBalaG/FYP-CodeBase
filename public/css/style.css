@@ -11,7 +11,6 @@ body {
 
 .log-in {
   right: 200px;
-  
 }
 
 .sign-up {
@@ -35,9 +34,8 @@ body {
 }
 
 .nav-item {
-  padding-left:70px;
-  padding-right:70px;
-
+  padding-left: 70px;
+  padding-right: 70px;
 }
 
 /* welcome text section 2 */
@@ -47,7 +45,7 @@ body {
   padding-top: 5%;
   background: url(../images/header.jpg) no-repeat;
   background-size: 100%;
-  height: 500px;
+  height: 600px;
 }
 
 .welcome-text {
@@ -62,7 +60,7 @@ body {
   /* height: 300px; */
   text-align: center;
   margin: 5%;
-  padding:50px;
+  padding: 50px;
 }
 
 .ease-card {
@@ -77,10 +75,8 @@ body {
 }
 
 .ease-span-icon:hover {
-  color: #7c7cce;
+  color: #4242f0;
 }
-
-
 
 /* .ease-desc{
   padding-right:20px;
