@@ -1,5 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
+
 body {
   background-color: #f5f5f5;
+  font-family: "Montserrat", sans-serif;
 }
 
 /* header section 1 */
@@ -20,7 +23,7 @@ body {
 #header {
   position: relative;
   padding: 2.7rem;
-  background-color: #dae0e2;
+  background-color: #84dbf8;
   height: 180px;
 }
 
@@ -37,6 +40,7 @@ body {
   padding-left: 70px;
   padding-right: 70px;
 }
+/* header section 1 */
 
 /* welcome text section 2 */
 .welcome {
@@ -53,6 +57,7 @@ body {
   font-size: 4rem;
   text-align: center;
 }
+/* welcome text section 2 */
 
 /* ease of use section 3 */
 #ease-of-use {
@@ -71,7 +76,7 @@ body {
 
 .ease-span-icon {
   font-size: 5rem;
-  color: #add8e6;
+  color: #75c9e6;
 }
 
 .ease-span-icon:hover {
@@ -83,11 +88,14 @@ body {
   padding-left: 20px;
 } */
 
+/* ease of use section 3 */
+
 /* features section 4 */
 #features {
   padding: 3%;
   background-color: #dae0e2;
   text-align: center;
+  padding-bottom: 10%;
 }
 
 .features-heading {
@@ -98,7 +106,7 @@ body {
 
 .features-desc {
   font-size: 1.2rem;
-  margin-bottom: 10%;
+  margin-bottom: 6%;
 }
 
 .features-row {
@@ -113,6 +121,34 @@ body {
   padding: 0 5% 0 5%;
 }
 
+.card-title {
+  font-weight: 600;
+}
+.card-text {
+  color: #000000;
+}
+
+/* features section 4 */
+
+/* snapshots section 5 */
+#snapshots {
+  text-align: center;
+  background-color: #39a147;
+  color: #fff;
+  padding: 10% 0 10% 0;
+}
+
+.snapshot-text {
+  font-size: 3rem;
+  padding: 0 14% 0 14%;
+}
+
+.user-img {
+  border-radius: 100%;
+  width: 8%;
+  margin: 20px;
+}
+
 /* snapshots section 5 */
 
 /* footer section n */
@@ -122,3 +158,10 @@ body {
   text-align: center;
   height: 200px;
 }
+
+.footer-text {
+  padding: 7% 0 0 0;
+  font-size: 1.2rem;
+}
+
+/* footer section n */
