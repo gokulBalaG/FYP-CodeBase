@@ -1,0 +1,178 @@
+<%- include('partials/header'); -%>
+
+<!---------------- Header -- section-1 ---------------->
+
+<section id="header">
+  <div class="container-fluid">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <a href="/" class="navbar-brand">
+        <img src="images/logo.png" alt="project logo" class="logo" />
+      </a>
+
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#menu-collapse"
+        aria-controls="menu-collapse"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="menu-collapse">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a href="#ease-of-use" class="nav-link">Why Smart Agricare?</a>
+          </li>
+          <li class="nav-item">
+            <a href="#features" class="nav-link">Features</a>
+          </li>
+          <li class="nav-item">
+            <a href="#footer" class="nav-link">Reachout to us!</a>
+          </li>
+        </ul>
+
+        <button type="submit" class="btn btn-dark log-in">Log in</button>
+        <button type="submit" class="btn btn-dark sign-up">Sign up</button>
+
+      </div>
+    </nav>
+  </div>
+</section>
+
+<!---------------- Header -- section-1 ---------------->
+
+
+<!-------------- Welcome text -- section-2------------->
+
+<section id="welcome">
+  <div class="container-fluid welcome">
+    <h1 class="welcome-text">We celebrate the joy of agriculture!</h1>
+  </div>
+</section>
+
+<!-------------- Welcome text -- section-2------------->
+
+
+<!---------- Ease of use etc -- section - 3 ----------->
+
+<section id="ease-of-use">
+  <div class="container-fluid row">
+
+    <% icons.forEach(icon => { %>
+     
+      <div class="col-lg-4 ease-card">
+        <span class="ease-span-icon">
+          <i class="fas <%= icon.iconName %> "></i>
+        </span>
+        <h3 class="ease-header"> <%= icon.header %> </h3>
+        <p class="ease-desc">
+          <%= icon.description %> 
+        </p>
+      </div>
+
+    <% }); %>
+
+  </div>
+</section>
+
+<!---------- Ease of use etc -- section - 3 ----------->
+
+
+<!--------------- Features -- section-4 --------------->
+
+<section id="features">
+  <p class="features-heading">Features provided</p>
+
+  <p class="features-desc">
+    OMG! We provide a lot of services that you can use to make the best use
+    of our resources.
+  </p>
+
+  <div class="container-fluid row features-row">
+
+    <% features.forEach(feature => { %>
+     
+      <div class="col-lg-4 features-card">
+
+        <!-- img source to be updated -->
+        <img src="images/field-layout.png" class="card-img-top" alt="field layout image" />
+        <div class="card-body">
+          <h5 class="card-title"> <%= feature.featureName %>  </h5>
+          <p class="card-text">
+            <%= feature.description %> 
+          </p>
+          <a href="#" class="btn btn-primary">Check it out!</a>
+        </div>
+      </div>
+
+    <% }); %>
+
+  </div>
+</section>
+
+<!--------------- Features -- section-4 --------------->
+
+
+<!-------------- Snapshots -- section - 5 ------------->
+<section id="snapshots">
+  <div
+    id="carouselExampleInterval"
+    class="carousel slide"
+    data-bs-ride="carousel"
+  >
+    <div class="carousel-inner">
+      
+      <% userReviews.forEach((userReview, i) => { %>
+
+        <!-- first review has active class and interval of 10s -->
+       <% if (i === 0) { %>
+        <div class="carousel-item active"       data-bs-interval="10000">
+
+       <% } else { %>
+        <div class="carousel-item" data-bs-interval="2000">
+        <% } %>
+
+          <h2 class="snapshot-text">
+            <%= userReview.review %> 
+          </h2>
+          <img
+            src="<%= userReview.userImgSrc %>"
+            class="user-img"
+            alt="user description of product"
+          />
+          <em class="snapshot-user-name"><%= userReview.header %> </em>
+        </div>
+
+      <% }); %>
+    </div>
+
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#carouselExampleInterval"
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#carouselExampleInterval"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</section>
+
+<!-------------- Snapshots -- section - 5 ------------->
+
+
+<%- include('partials/footer'); -%>

@@ -1,11 +1,37 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap");
+
+:root {
+  /* font weights */
+  --fw-300: 300;
+  --fw-400: 400;
+  --fw-500: 500;
+  --fw-600: 600;
+
+  /* colors */
+  --white: #ffffff;
+  --black: #000000;
+
+  --navbar-color: #84dbf8;
+  --bg-color: #f5f5f5;
+
+  /* ease of use span icon */
+  --icon-color: #75c9e6;
+  --icon-color-hover: #4242f0;
+
+  /* features */
+  --features-bg-color: #dae0e2;
+
+  /* snapshots */
+  --snapshot-bg-color: #39a147;
+}
 
 body {
-  background-color: #f5f5f5;
   font-family: "Montserrat", sans-serif;
+  background-color: var(--bg-color);
 }
 
 /* header section 1 */
+
 /* log-in & sign-up --> buttons */
 .log-in,
 .sign-up {
@@ -13,7 +39,7 @@ body {
 }
 
 .log-in {
-  right: 90px;
+  right: 110px;
 }
 
 .sign-up {
@@ -23,7 +49,7 @@ body {
 #header {
   position: relative;
   padding: 2.5rem;
-  background-color: #84dbf8;
+  background-color: var(--navbar-color);
   height: 180px;
 }
 
@@ -33,12 +59,12 @@ body {
 
 .navbar {
   font-size: 1.2rem;
-  font-weight: 400;
 }
 
 .nav-item {
-  padding-left: 70px;
-  padding-right: 70px;
+  font-weight: var(--fw-500);
+  padding-left: 50px;
+  padding-right: 50px;
 }
 /* header section 1 */
 
@@ -56,12 +82,13 @@ body {
   padding-top: 6%;
   font-size: 4rem;
   text-align: center;
+  font-weight: var(--fw-600);
 }
 /* welcome text section 2 */
 
 /* ease of use section 3 */
 #ease-of-use {
-  background-color: #f5f5f5;
+  background-color: var(--bg-color);
   /* height: 300px; */
   text-align: center;
   margin: 5%;
@@ -69,18 +96,18 @@ body {
 }
 
 .ease-card {
-  background-color: #f5f5f5;
+  background-color: var(--bg-color);
   text-align: center;
   padding: 10% 3% 10% 3%;
 }
 
 .ease-span-icon {
   font-size: 5rem;
-  color: #75c9e6;
+  color: var(--icon-color);
 }
 
 .ease-span-icon:hover {
-  color: #4242f0;
+  color: var(--icon-color-hover);
 }
 
 /* .ease-desc{
@@ -93,7 +120,7 @@ body {
 /* features section 4 */
 #features {
   padding: 3%;
-  background-color: #dae0e2;
+  background-color: var(--features-bg-color);
   text-align: center;
   padding-bottom: 10%;
 }
@@ -101,7 +128,7 @@ body {
 .features-heading {
   font-size: 3rem;
   padding-top: 4%;
-  font-weight: 600;
+  font-weight: var(--fw-600);
 }
 
 .features-desc {
@@ -115,17 +142,18 @@ body {
 }
 
 .features-card {
-  background-color: #dae0e2;
+  background-color: var(--features-bg-color);
   border: none;
   text-align: center;
   padding: 0 5% 0 5%;
 }
 
 .card-title {
-  font-weight: 600;
+  font-weight: var(--fw-600);
 }
+
 .card-text {
-  color: #000000;
+  color: var(--black);
 }
 
 /* features section 4 */
@@ -133,8 +161,8 @@ body {
 /* snapshots section 5 */
 #snapshots {
   text-align: center;
-  background-color: #39a147;
-  color: #fff;
+  background-color: var(--snapshot-bg-color);
+  color: var(--white);
   padding: 10% 0 10% 0;
 }
 
@@ -154,7 +182,7 @@ body {
 /* footer section n */
 #footer {
   margin: 3%;
-  color: #000;
+  color: var(--black);
   text-align: center;
   height: 200px;
 }
