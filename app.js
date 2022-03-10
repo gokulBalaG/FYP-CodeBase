@@ -10,8 +10,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 // / - HOME ROUTE
+
+const { features, icons, userReviews } = require("./data.js");
+
 app.get("/", (req, res) => {
-  res.render("index");
+  res.render("index", {
+    features: features,
+    icons: icons,
+    userReviews: userReviews,
+  });
 });
 
 app.listen(PORT, () => {
