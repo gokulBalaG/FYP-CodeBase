@@ -1,13 +1,14 @@
 <%- include('partials/header'); -%>
 
-<!---------------- Header -- section-1 ---------------->
+<!---------------- NAVBAR -- section-1 ---------------->
 
-<section id="header">
+<section id="navbar">
   <div class="container-fluid">
-    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light">
+
       <a href="/" class="navbar-brand">
         <img src="images/logo.png" alt="project logo" class="logo" />
+        <!-- Smart Agricare -->
       </a>
 
       <button
@@ -23,54 +24,83 @@
       </button>
 
       <div class="collapse navbar-collapse" id="menu-collapse">
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ml-auto nav-items">
           <li class="nav-item">
-            <a href="#ease-of-use" class="nav-link">Why Smart Agricare?</a>
+            <a href="#features" class="nav-link nav_link">Why Smart Agricare?</a>
+            <!-- links to features -->
           </li>
           <li class="nav-item">
-            <a href="#features" class="nav-link">Features</a>
+            <a href="#products" class="nav-link nav_link">Products</a>
+            <!-- links to products -->
           </li>
           <li class="nav-item">
-            <a href="#footer" class="nav-link">Reachout to us!</a>
+            <a href="#footer" class="nav-link nav_link">Contact us</a>
+            <!-- links to contact info -->
           </li>
         </ul>
 
-        <button type="submit" class="btn btn-dark log-in">Log in</button>
-        <button type="submit" class="btn btn-dark sign-up">Sign up</button>
+        <div class="in-btns">
+          <a class="nav-link in-btn" href="#">
+            <button type="button" class="btn btn-dark log-in">Log in</button>
+          </a>
+  
+          <a class="nav-link in-btn" href="#">
+            <button type="submit" class="btn btn-dark sign-up">Sign up</button>
+          </a>
+        </div>
 
       </div>
     </nav>
   </div>
 </section>
 
-<!---------------- Header -- section-1 ---------------->
+<!---------------- NAVBAR -- section-1 ---------------->
 
 
-<!-------------- Welcome text -- section-2------------->
+<!-------------- WELCOME -- section-2------------->
 
-<section id="welcome">
-  <div class="container-fluid welcome">
-    <h1 class="welcome-text">We celebrate the joy of agriculture!</h1>
+<section class="welcome" id="welcome">
+
+  <div class="container-fluid welcome-container">
+
+    <div class="welcome-container-left">
+      <h1 class="welcome-text">We <span class="highlight"> celebrate</span> the joy of <span class="highlight"> agriculture!</span>       
+      </h1>
+      <br>
+      
+      <h4 class="welcome-desc">Lol gotta add something here. Tag line</h4>
+      <br>
+      
+      <button class="btn btn-light down-arrow">Learn more &DownArrow;</button>
+    </div>
+
+    <img class="welcome-image" src="images/plant.png" alt="plant image">
+    
   </div>
+
 </section>
 
-<!-------------- Welcome text -- section-2------------->
+<!-------------- WELCOME -- section-2------------->
 
+<hr>
 
-<!---------- Ease of use etc -- section - 3 ----------->
+<!---------- FEATURES -- section - 3 ----------->
 
-<section id="ease-of-use">
+<section class="section" id="features">
   <div class="container-fluid row">
 
-    <% icons.forEach(icon => { %>
+    <h2 class="section-header">FEATURES</h2>
+    <h3 class="section-desc">We provide this bro</h3>
+
+    <% featureIcons.forEach(featureIcon => { %>
      
-      <div class="col-lg-4 ease-card">
-        <span class="ease-span-icon">
-          <i class="fas <%= icon.iconName %> "></i>
+      <div class="col-lg-4 feature-card">
+        <span class="feature-span-icon">
+          <i class="fas <%= featureIcon.iconName %>"></i>
         </span>
-        <h3 class="ease-header"> <%= icon.header %> </h3>
-        <p class="ease-desc">
-          <%= icon.description %> 
+        <h3 class="feature-header"> <%= featureIcon.header %> </h3>
+        <p class="feature-desc">
+          <%= featureIcon.description %> 
         </p>
       </div>
 
@@ -79,33 +109,32 @@
   </div>
 </section>
 
-<!---------- Ease of use etc -- section - 3 ----------->
+<!---------- FEATURES -- section - 3 ----------->
 
+<hr>
 
-<!--------------- Features -- section-4 --------------->
+<!--------------- PRODUCTS -- section-4 --------------->
 
-<section id="features">
-  <p class="features-heading">Features provided</p>
+<section class="section" id="products">
 
-  <p class="features-desc">
-    OMG! We provide a lot of services that you can use to make the best use
-    of our resources.
-  </p>
+  <h2 class="section-header">PRODUCTS</h2>
+  <h3 class="section-desc">OMG! We provide a lot of services that you can use to make the best use
+  of our resources.</h3>
 
-  <div class="container-fluid row features-row">
+  <div class="container-fluid row product-row">
 
-    <% features.forEach(feature => { %>
+    <% products.forEach(product => { %>
      
-      <div class="col-lg-4 features-card">
+      <div class="col-lg-4 product-card">
 
         <!-- img source to be updated -->
         <img src="images/field-layout.png" class="card-img-top" alt="field layout image" />
         <div class="card-body">
-          <h5 class="card-title"> <%= feature.featureName %>  </h5>
+          <h5 class="card-title"> <%= product.name %>  </h5>
           <p class="card-text">
-            <%= feature.description %> 
+            <%= product.description %> 
           </p>
-          <a href="#" class="btn btn-primary">Check it out!</a>
+          <a href="#" class="btn btn-primary btn-card">Check it out!</a>
         </div>
       </div>
 
@@ -114,65 +143,7 @@
   </div>
 </section>
 
-<!--------------- Features -- section-4 --------------->
-
-
-<!-------------- Snapshots -- section - 5 ------------->
-<section id="snapshots">
-  <div
-    id="carouselExampleInterval"
-    class="carousel slide"
-    data-bs-ride="carousel"
-  >
-    <div class="carousel-inner">
-      
-      <% userReviews.forEach((userReview, i) => { %>
-
-        <!-- first review has active class and interval of 10s -->
-       <% if (i === 0) { %>
-        <div class="carousel-item active"       data-bs-interval="10000">
-
-       <% } else { %>
-        <div class="carousel-item" data-bs-interval="2000">
-        <% } %>
-
-          <h2 class="snapshot-text">
-            <%= userReview.review %> 
-          </h2>
-          <img
-            src="<%= userReview.userImgSrc %>"
-            class="user-img"
-            alt="user description of product"
-          />
-          <em class="snapshot-user-name"><%= userReview.header %> </em>
-        </div>
-
-      <% }); %>
-    </div>
-
-    <button
-      class="carousel-control-prev"
-      type="button"
-      data-bs-target="#carouselExampleInterval"
-      data-bs-slide="prev"
-    >
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-
-    <button
-      class="carousel-control-next"
-      type="button"
-      data-bs-target="#carouselExampleInterval"
-      data-bs-slide="next"
-    >
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-</section>
-
-<!-------------- Snapshots -- section - 5 ------------->
+<!--------------- PRODUCTS -- section-4 --------------->
 
 
 <%- include('partials/footer'); -%>

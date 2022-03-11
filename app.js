@@ -11,13 +11,12 @@ app.use(express.static("public"));
 
 // / - HOME ROUTE
 
-const { features, icons, userReviews } = require("./data.js");
+const { products, featureIcons } = require("./data.js");
 
 app.get("/", (req, res) => {
   res.render("index", {
-    features: features,
-    icons: icons,
-    userReviews: userReviews,
+    products,
+    featureIcons,
   });
 });
 
