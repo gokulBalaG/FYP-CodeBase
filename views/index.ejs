@@ -35,19 +35,17 @@
           </li>
           <li class="nav-item">
             <a href="#footer" class="nav-link nav_link">About us</a>
-            <!-- links to contact info -->
+            <!-- links to footer -->
           </li>
         </ul>
 
         <div class="in-btns">
-          <a class="nav-link in-btn" href="#">
-            <button type="button" class="btn btn-dark log-in" data-bs-toggle="modal" data-bs-target="#modal">
-              Log in
-            </button>
+          <a class="nav-link in-btn" href="/login">
+            <button type="button" class="btn btn-dark log-in">Log in</button>
           </a>
   
-          <a class="nav-link in-btn" href="/signup">
-            <button type="submit" class="btn btn-dark sign-up">Sign up</button>
+          <a class="nav-link in-btn" href="/register">
+            <button type="button" class="btn btn-dark sign-up">Register</button>
           </a>
         </div>
 
@@ -73,7 +71,9 @@
       <h4 class="welcome-desc">Lol gotta add something here. Tag line</h4>
       <br>
       
-      <button class="btn btn-light down-arrow">Learn more &DownArrow;</button>
+      <a href="#features">
+        <button class="btn btn-light down-arrow">Learn more &DownArrow;</button>
+      </a>
     </div>
 
     <img class="welcome-image" src="images/plant.png" alt="plant image">
@@ -136,7 +136,7 @@
           <p class="card-text">
             <%= product.description %> 
           </p>
-          <a href="#" class="btn btn-primary btn-card">Check it out!</a>
+          <!-- <a href="#" class="btn btn-primary btn-card">Check it out!</a> -->
         </div>
       </div>
 
@@ -153,8 +153,8 @@
   <div class="open-account">
     <h3 class="footer-tag">The best way to cultivate is here!</h3>
 
-    <a class="in-btn" href="/signup">
-      <button type="button" class="btn btn-dark btn-footer">Sign up now!</button>
+    <a class="in-btn" href="/register">
+      <button type="button" class="btn btn-dark btn-footer">Register now!</button>
     </a>
     
   </div>
@@ -163,49 +163,5 @@
 </section>
 
 <!-------------- FOOTER_BANNER section 5 -------------->
-
-<!-- LOGIN MODAL -->
-
-<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Log in</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-
-      <div class="modal-body">
-
-        <form action="/home" method="post">
-          <div class="row mb-3">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
-            <div class="col-sm-10">
-              <input type="email" name="email" class="form-control" id="inputEmail3">
-            </div>
-          </div>
-
-          <div class="row mb-3">
-            <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
-            <div class="col-sm-10">
-              <input type="password" name="password" class="form-control" id="inputPassword3">
-            </div>
-          </div>
-
-          <button type="submit" class="btn btn-dark">Log in</button>
-        </form>
-
-      </div>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<!-- LOGIN MODAL -->
-
 
 <%- include('partials/footer'); -%>

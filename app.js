@@ -9,10 +9,9 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-// / - HOME ROUTE
-
 const { products, featureIcons } = require("./data.js");
 
+// HOME ROUTE
 app.get("/", (req, res) => {
   res.render("index", {
     products,
@@ -20,21 +19,14 @@ app.get("/", (req, res) => {
   });
 });
 
-// SIGNUP ROUTE
-
-app.get("/signup", (req, res) => {
-  res.render("signup");
+// LOGIN ROUTE
+app.get("/login", (req, res) => {
+  res.render("login");
 });
 
-// HOME ROUTE AFTER LOGIN
-
-app.post("/home", (req, res) => {
-  const email = req.body.email;
-  const password = req.body.password;
-
-  console.log(email, password);
-
-  res.render("home");
+// REGISTER ROUTE
+app.get("/register", (req, res) => {
+  res.render("register");
 });
 
 app.listen(PORT, () => {

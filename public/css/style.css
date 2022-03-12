@@ -148,7 +148,7 @@ body {
 .section-desc {
   margin: 0 10% 6% 10%;
   text-align: left;
-  font-size: 2.2rem;
+  font-size: 2rem;
   font-weight: var(--fw-500);
 }
 
@@ -258,7 +258,7 @@ body {
 
 .about-text {
   margin: 0 5% 0 5%;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 .footer-text {
