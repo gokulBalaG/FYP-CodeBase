@@ -24,9 +24,25 @@ app.get("/login", (req, res) => {
   res.render("login");
 });
 
+app.post("/login", (req, res) => {
+  const [email, password] = [req.body.email, req.body.password];
+
+  console.log(email, password);
+
+  res.redirect("/");
+});
+
 // REGISTER ROUTE
 app.get("/register", (req, res) => {
   res.render("register");
+});
+
+app.post("/register", (req, res) => {
+  const [email, password] = [req.body.email, req.body.password];
+
+  console.log(email, password);
+
+  res.redirect("/");
 });
 
 app.listen(PORT, () => {

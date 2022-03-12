@@ -267,3 +267,15 @@ body {
 }
 
 /* footer section */
+
+/* LOGIN & REGISTER PAGE */
+
+.login-section, .register-section {
+  margin: 0 6% 8% 6%;
+}
+
+.form-field {
+  margin: 0 0 2% 0;
+}
+
+/* LOGIN & REGISTER PAGE */
