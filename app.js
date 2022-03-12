@@ -20,6 +20,23 @@ app.get("/", (req, res) => {
   });
 });
 
+// SIGNUP ROUTE
+
+app.get("/signup", (req, res) => {
+  res.render("signup");
+});
+
+// HOME ROUTE AFTER LOGIN
+
+app.post("/home", (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+
+  console.log(email, password);
+
+  res.render("home");
+});
+
 app.listen(PORT, () => {
   console.log(`Server is runnning on port ${PORT}!`);
 });

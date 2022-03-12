@@ -57,6 +57,7 @@ body {
   border: none;
   color: var(--black);
   border-radius: 20px;
+  font-weight: var(--fw-500);
 }
 
 .in-btns {
@@ -202,19 +203,31 @@ body {
 }
 
 .btn-card:hover {
-  background-color: var(--accent-color);
+  background-color: var(--color-hover);
   border: none;
+  color: var(--white);
 }
 
 /* PRODUCTS section 4 */
 
-/* footer section n */
-#footer {
+/* FOOTER_BANNER section 5  */
+
+.footer-banner {
   margin: 0;
-  padding: 8% 0 4% 0;
+  padding: 6% 0 3% 0;
   color: var(--white);
-  text-align: center;
   background-color: var(--color-hover);
+}
+
+/* FOOTER_BANNER section 5  */
+
+/* footer section */
+
+#footer {
+  background-color: var(--color-hover);
+  color: var(--white);
+  margin: 0;
+  padding-top: 0;
 }
 
 .open-account {
@@ -233,7 +246,7 @@ body {
   border-radius: 500px;
 }
 
-.btn-footer:hover{
+.btn-footer:hover {
   background-color: var(--white);
   color: var(--black);
 }
@@ -243,4 +256,14 @@ body {
   margin: 3%;
 }
 
-/* footer section n */
+.about-text {
+  margin: 0 5% 0 5%;
+  font-size: 1.2rem;
+}
+
+.footer-text {
+  margin-top: 2%;
+  font-size: 0.9rem;
+}
+
+/* footer section */
