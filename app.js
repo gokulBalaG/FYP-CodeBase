@@ -9,7 +9,7 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-const { products, featureIcons } = require("./data.js");
+const { products, featureIcons, homeProducts } = require("./data.js");
 
 // HOME ROUTE
 app.get("/", (req, res) => {
@@ -29,7 +29,7 @@ app.post("/login", (req, res) => {
 
   console.log(email, password);
 
-  res.redirect("/");
+  res.redirect("/home");
 });
 
 // REGISTER ROUTE
@@ -43,6 +43,10 @@ app.post("/register", (req, res) => {
   console.log(email, password);
 
   res.redirect("/");
+});
+
+app.get("/home", (req, res) => {
+  res.render("home", { homeProducts });
 });
 
 app.listen(PORT, () => {

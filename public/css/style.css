@@ -270,7 +270,8 @@ body {
 
 /* LOGIN & REGISTER PAGE */
 
-.login-section, .register-section {
+.login-section,
+.register-section {
   margin: 0 6% 8% 6%;
 }
 
@@ -282,4 +283,39 @@ body {
   margin: 0 0 2% 0;
 }
 
+.tagline-div {
+  margin: 2% 0 0 0;
+}
+
 /* LOGIN & REGISTER PAGE */
+
+/* HOME PAGE */
+
+.header-home {
+  margin: 3%;
+  text-align: center;
+  font-size: 3.5rem;
+}
+
+.product-div {
+  display: block;
+  border-bottom: 9rem solid var(--accent-color);
+  border-right: 9rem solid transparent;
+  height: 0;
+  width: 55%;
+  margin: 5% 0 5% 0;
+}
+
+.product-div-right {
+  border-right: none;
+  border-left: 9rem solid transparent;
+  border-bottom: 9rem solid var(--accent-color);
+  margin-left: auto;
+}
+
+.product-title,
+.product-desc {
+  margin-left: 4%;
+}
+
+/* HOME PAGE */
