@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap");
 
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+
 :root {
   /* font weights */
   --fw-300: 300;
@@ -292,13 +294,20 @@ body {
 /* HOME PAGE */
 
 .header-home {
+  font-family: 'Satisfy', cursive;
   margin: 3%;
   text-align: center;
-  font-size: 3.5rem;
+  font-size: 6rem;
+}
+
+.product-link-div {
+  text-decoration: none;
+  color: var(--black);
 }
 
 .product-div {
-  display: block;
+  /* display: inline; */
+  clear: both;
   border-bottom: 9rem solid var(--accent-color);
   border-right: 9rem solid transparent;
   height: 0;
@@ -319,3 +328,14 @@ body {
 }
 
 /* HOME PAGE */
+
+/* PRODUCT PAGES */
+
+.header-product {
+  font-family: 'Satisfy', cursive;
+  margin: 3%;
+  text-align: center;
+  font-size: 4rem;
+}
+
+/* PRODUCT PAGES */

@@ -10,12 +10,12 @@
 
     <% homeProducts.forEach((product, i) => { %>
 
-     <% if (i % 2 === 0) { %>
-        <div class="product-div product-div-left">
-     <% } else { %>
+    <% if (i % 2 === 0) { %>
+        <div class="product-div">
+    <% } else { %>
         <div class="product-div product-div-right">
-     <% } %>
-            <h1 class="product-title">
+    <% } %>
+            <h1 class="product-title" routeName="<%= product.routeName %>">
                 <%= product.title %> 
             </h1>
             <p class="product-desc">
@@ -23,6 +23,7 @@
             </p>
         </div>
     <% }); %>
+
 </div>
 
 <%- include('partials/footer') %>
