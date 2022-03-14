@@ -1,5 +1,9 @@
 <%- include('partials/header'); -%>
 
+  <title>Smart Agricare</title>
+</head>
+<body>
+
 <!---------------- NAVBAR -- section-1 ---------------->
 
 <section id="navbar">
@@ -34,18 +38,18 @@
             <!-- links to products -->
           </li>
           <li class="nav-item">
-            <a href="#footer" class="nav-link nav_link">Contact us</a>
-            <!-- links to contact info -->
+            <a href="#footer" class="nav-link nav_link">About us</a>
+            <!-- links to footer -->
           </li>
         </ul>
 
         <div class="in-btns">
-          <a class="nav-link in-btn" href="#">
+          <a class="nav-link in-btn" href="/login">
             <button type="button" class="btn btn-dark log-in">Log in</button>
           </a>
   
-          <a class="nav-link in-btn" href="#">
-            <button type="submit" class="btn btn-dark sign-up">Sign up</button>
+          <a class="nav-link in-btn" href="/register">
+            <button type="button" class="btn btn-dark sign-up">Register</button>
           </a>
         </div>
 
@@ -71,7 +75,9 @@
       <h4 class="welcome-desc">Lol gotta add something here. Tag line</h4>
       <br>
       
-      <button class="btn btn-light down-arrow">Learn more &DownArrow;</button>
+      <a href="#features">
+        <button class="btn btn-light down-arrow">Learn more &DownArrow;</button>
+      </a>
     </div>
 
     <img class="welcome-image" src="images/plant.png" alt="plant image">
@@ -134,7 +140,7 @@
           <p class="card-text">
             <%= product.description %> 
           </p>
-          <a href="#" class="btn btn-primary btn-card">Check it out!</a>
+          <!-- <a href="#" class="btn btn-primary btn-card">Check it out!</a> -->
         </div>
       </div>
 
@@ -145,5 +151,21 @@
 
 <!--------------- PRODUCTS -- section-4 --------------->
 
+<!-------------- FOOTER_BANNER section 5 -------------->
+
+<section class="section footer-banner">
+  <div class="open-account">
+    <h3 class="footer-tag">The best way to cultivate is here!</h3>
+
+    <a class="in-btn" href="/register">
+      <button type="button" class="btn btn-dark btn-footer">Register now!</button>
+    </a>
+    
+  </div>
+  
+  <hr>
+</section>
+
+<!-------------- FOOTER_BANNER section 5 -------------->
 
 <%- include('partials/footer'); -%>

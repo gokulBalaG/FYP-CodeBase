@@ -1,5 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap");
 
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+
 :root {
   /* font weights */
   --fw-300: 300;
@@ -57,6 +59,7 @@ body {
   border: none;
   color: var(--black);
   border-radius: 20px;
+  font-weight: var(--fw-500);
 }
 
 .in-btns {
@@ -147,7 +150,7 @@ body {
 .section-desc {
   margin: 0 10% 6% 10%;
   text-align: left;
-  font-size: 2.2rem;
+  font-size: 2rem;
   font-weight: var(--fw-500);
 }
 
@@ -202,19 +205,31 @@ body {
 }
 
 .btn-card:hover {
-  background-color: var(--accent-color);
+  background-color: var(--color-hover);
   border: none;
+  color: var(--white);
 }
 
 /* PRODUCTS section 4 */
 
-/* footer section n */
-#footer {
+/* FOOTER_BANNER section 5  */
+
+.footer-banner {
   margin: 0;
-  padding: 8% 0 4% 0;
+  padding: 6% 0 3% 0;
   color: var(--white);
-  text-align: center;
   background-color: var(--color-hover);
+}
+
+/* FOOTER_BANNER section 5  */
+
+/* footer section */
+
+#footer {
+  background-color: var(--color-hover);
+  color: var(--white);
+  margin: 0;
+  padding-top: 0;
 }
 
 .open-account {
@@ -233,7 +248,7 @@ body {
   border-radius: 500px;
 }
 
-.btn-footer:hover{
+.btn-footer:hover {
   background-color: var(--white);
   color: var(--black);
 }
@@ -243,4 +258,84 @@ body {
   margin: 3%;
 }
 
-/* footer section n */
+.about-text {
+  margin: 0 5% 0 5%;
+  font-size: 1.1rem;
+}
+
+.footer-text {
+  margin-top: 2%;
+  font-size: 0.9rem;
+}
+
+/* footer section */
+
+/* LOGIN & REGISTER PAGE */
+
+.login-section,
+.register-section {
+  margin: 0 6% 8% 6%;
+}
+
+.form {
+  margin: 2% 0 0 0;
+}
+
+.form-field {
+  margin: 0 0 2% 0;
+}
+
+.tagline-div {
+  margin: 2% 0 0 0;
+}
+
+/* LOGIN & REGISTER PAGE */
+
+/* HOME PAGE */
+
+.header-home {
+  font-family: 'Satisfy', cursive;
+  margin: 3%;
+  text-align: center;
+  font-size: 6rem;
+}
+
+.product-link-div {
+  text-decoration: none;
+  color: var(--black);
+}
+
+.product-div {
+  /* display: inline; */
+  clear: both;
+  border-bottom: 9rem solid var(--accent-color);
+  border-right: 9rem solid transparent;
+  height: 0;
+  width: 55%;
+  margin: 5% 0 5% 0;
+}
+
+.product-div-right {
+  border-right: none;
+  border-left: 9rem solid transparent;
+  border-bottom: 9rem solid var(--accent-color);
+  margin-left: auto;
+}
+
+.product-title,
+.product-desc {
+  margin-left: 4%;
+}
+
+/* HOME PAGE */
+
+/* PRODUCT PAGES */
+
+.header-product {
+  font-family: 'Satisfy', cursive;
+  margin: 3%;
+  text-align: center;
+  font-size: 4rem;
+}
+
+/* PRODUCT PAGES */

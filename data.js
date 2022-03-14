@@ -49,3 +49,29 @@ exports.featureIcons = [
     "fa-heart"
   ),
 ];
+
+class HomeProduct {
+  constructor(title, description, routeName) {
+    this.title = title;
+    this.description = description;
+    this.routeName = routeName;
+  }
+}
+
+exports.homeProducts = [
+  new HomeProduct(
+    "Precision Irrigation",
+    "+ click here to explore the automated irrigation system.",
+    "precisionIrrigation"
+  ),
+  new HomeProduct(
+    "Crop Suggestion",
+    "+ click here to find out the best crop to grow on your land.",
+    "cropSuggestion"
+  ),
+  new HomeProduct(
+    "Fertilizer Suggestion",
+    "+ click here to find out the fertilizer / manure required for your field.",
+    "fertilizerSuggestion"
+  ),
+];
