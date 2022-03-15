@@ -1,5 +1,7 @@
 // TEMPORARY DATA
 
+// INDEX
+
 class Product {
   constructor(name, description, link = "", imgSrc = "") {
     this.name = name;
@@ -50,6 +52,10 @@ exports.featureIcons = [
   ),
 ];
 
+// INDEX
+
+// HOME
+
 class HomeProduct {
   constructor(title, description, routeName) {
     this.title = title;
@@ -62,16 +68,70 @@ exports.homeProducts = [
   new HomeProduct(
     "Precision Irrigation",
     "+ click here to explore the automated irrigation system.",
-    "precisionIrrigation"
+    "precision-irrigation"
   ),
   new HomeProduct(
     "Crop Suggestion",
     "+ click here to find out the best crop to grow on your land.",
-    "cropSuggestion"
+    "crop-suggestion"
   ),
   new HomeProduct(
     "Fertilizer Suggestion",
     "+ click here to find out the fertilizer / manure required for your field.",
-    "fertilizerSuggestion"
+    "fertilizer-suggestion"
   ),
 ];
+
+// HOME
+
+// FERTILIZER SUGGESTION
+
+class Feature {
+  constructor(title, subtitle, description) {
+    this.title = title;
+    this.subtitle = subtitle;
+    this.description = description;
+  }
+}
+
+exports.fsFeatures = [
+  new Feature(
+    "Pesticide Suggestion",
+    "We got pesticide suggestion for you",
+    "loream ipsum morec tiu huesdi irlim paren tickmae guik latam dij def gre guti"
+  ),
+  new Feature(
+    "Growth enhancement fertilizers",
+    "We got Growth enhancement fertilizer suggestions for you",
+    "loream ipsum morec tiu huesdi irlim paren tickmae guik latam dij def gre guti"
+  ),
+  new Feature(
+    "Topical solutions",
+    "We got topical solutions for you",
+    "loream ipsum morec tiu huesdi irlim paren tickmae guik latam dij def gre guti"
+  ),
+];
+
+// FERTILIZER SUGGESTION
+
+// CROP SUGGESTION
+
+exports.csFeatures = [
+  new Feature(
+    "Based on Geographical Location",
+    "Get crops based on geo-location",
+    "loream ipsum morec tiu huesdi irlim paren tickmae guik latam dij def gre guti"
+  ),
+  new Feature(
+    "Explore crops",
+    "Explore crops bro!",
+    "loream ipsum morec tiu huesdi irlim paren tickmae guik latam dij def gre guti"
+  ),
+  new Feature(
+    "Based on Soil condition",
+    "Get crops based on soil condition",
+    "loream ipsum morec tiu huesdi irlim paren tickmae guik latam dij def gre guti"
+  ),
+];
+
+// CROP SUGGESTION

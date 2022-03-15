@@ -11,17 +11,17 @@
     <% homeProducts.forEach((product, i) => { %>
 
     <% if (i % 2 === 0) { %>
-        <div class="product-div">
+        <div class="product-div product-div-left">
     <% } else { %>
         <div class="product-div product-div-right">
-    <% } %>
-            <h1 class="product-title" routeName="<%= product.routeName %>">
-                <%= product.title %> 
-            </h1>
-            <p class="product-desc">
-                <%= product.description %> 
-            </p>
-        </div>
+        <% } %>
+        <h1 class="product-title" routeName="<%= product.routeName %>">
+            <%= product.title %> 
+        </h1>
+        <p class="product-desc">
+            <%= product.description %> 
+        </p>
+    </div>
     <% }); %>
 
 </div>

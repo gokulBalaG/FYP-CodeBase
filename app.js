@@ -9,9 +9,15 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-const { products, featureIcons, homeProducts } = require("./data.js");
+const {
+  products,
+  featureIcons,
+  homeProducts,
+  fsFeatures,
+  csFeatures,
+} = require("./data.js");
 
-// 
+//
 //
 
 // HOME ROUTE
@@ -66,24 +72,24 @@ app.get("/home", (req, res) => {
 //
 
 // PRECISION IRRIGATION (AFTER AUTH)
-app.get("/precisionIrrigation", (req, res) => {
-  res.render("precisionIrrigation");
+app.get("/precision-irrigation", (req, res) => {
+  res.render("precision-irrigation");
 });
 
 //
 //
 
 // CROP SUGGESTION (AFTER AUTH)
-app.get("/cropSuggestion", (req, res) => {
-  res.render("cropSuggestion");
+app.get("/crop-suggestion", (req, res) => {
+  res.render("crop-suggestion", { csFeatures });
 });
 
 //
 //
 
 // FERTILIZER SUGGESTION (AFTER AUTH)
-app.get("/fertilizerSuggestion", (req, res) => {
-  res.render("fertilizerSuggestion");
+app.get("/fertilizer-suggestion", (req, res) => {
+  res.render("fertilizer-suggestion", { fsFeatures });
 });
 
 //

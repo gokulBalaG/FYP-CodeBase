@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap");
 
-@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
 
 :root {
   /* font weights */
@@ -294,7 +294,7 @@ body {
 /* HOME PAGE */
 
 .header-home {
-  font-family: 'Satisfy', cursive;
+  font-family: "Satisfy", cursive;
   margin: 3%;
   text-align: center;
   font-size: 6rem;
@@ -311,8 +311,10 @@ body {
   border-bottom: 9rem solid var(--accent-color);
   border-right: 9rem solid transparent;
   height: 0;
-  width: 55%;
+  width: 75%;
   margin: 5% 0 5% 0;
+
+  transition-duration: 0.5s;
 }
 
 .product-div-right {
@@ -320,6 +322,16 @@ body {
   border-left: 9rem solid transparent;
   border-bottom: 9rem solid var(--accent-color);
   margin-left: auto;
+}
+
+.product-div-left:hover {
+  cursor: pointer;
+  transform: translateX(30px);
+}
+
+.product-div-right:hover {
+  cursor: pointer;
+  transform: translateX(-30px);
 }
 
 .product-title,
@@ -332,10 +344,29 @@ body {
 /* PRODUCT PAGES */
 
 .header-product {
-  font-family: 'Satisfy', cursive;
+  font-family: "Satisfy", cursive;
   margin: 3%;
   text-align: center;
   font-size: 4rem;
 }
 
 /* PRODUCT PAGES */
+
+/* fertilizer sugg */
+
+.container-main {
+  margin: 5%;
+}
+
+.fs-feature-card {
+  margin: 2%;
+  transition: transform 0.2s;
+
+}
+
+.fs-feature-card:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+/* fertilizer sugg */

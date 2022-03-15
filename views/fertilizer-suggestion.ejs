@@ -1,0 +1,23 @@
+<%- include('partials/header') %>
+
+<title>Smart Agricare | Fertilizer Suggestion</title>
+</head>
+<body>
+
+<h1 class="header-product header-product-fs">Fertilizer Suggestion</h1>
+
+<div class="row container-main">
+
+    <% fsFeatures.forEach(feature => { %>
+        <div class="card col fs-feature-card">
+            <div class="card-body">
+              <h5 class="card-title"><%= feature.title %> </h5>
+              <h6 class="card-subtitle mb-2 text-muted"><%= feature.subtitle %></h6>
+              <p class="card-text"><%= feature.description %></p>
+            </div>
+        </div>
+    <% }); %>
+
+</div>
+
+<%- include('partials/footer') %>

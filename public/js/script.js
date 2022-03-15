@@ -1,5 +1,6 @@
 "use strict";
 
+// for HOME route
 const productDivs = document.querySelectorAll(".product-div");
 
 productDivs.forEach((pd) => {
@@ -9,3 +10,5 @@ productDivs.forEach((pd) => {
     window.location.href = `/${route}`;
   });
 });
+
+// for HOME route
