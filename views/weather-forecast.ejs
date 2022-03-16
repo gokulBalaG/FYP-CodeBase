@@ -1,0 +1,24 @@
+<%- include('partials/header') %>
+
+<title>Smart Agricare | Weather forecast</title>
+</head>
+<body>
+
+<div class="container weather-forecast-main">
+
+    <div class="weather-condition-div <%= weatherParams.unhide %> ">
+        <h1>Temperature: <span class="highlight"><%= weatherParams.temp %></span>  degrees Celcius.</h1>
+
+        <p>The weather is currently: <span class="highlight"><%= weatherParams.desc %></span> </p>
+        <p>The sky looks like: </p>
+        <img src="<%= weatherParams.imgURL %>" alt="weather-icon">
+    </div>
+
+    <form action="/weather-forecast" method="post">
+        <input class="input-latlng hidden" name="latlng">
+        <button class="btn-get-weather" type="submit">Get Weather</button>
+    </form>
+</div>
+
+
+<%- include('partials/footer') %>

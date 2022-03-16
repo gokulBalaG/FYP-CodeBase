@@ -1,9 +1,12 @@
+require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
+const https = require("https");
 
 const app = express();
 const PORT = 3000;
+const apiKey = process.env.API_KEY;
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -16,6 +19,7 @@ const {
   fsFeatures,
   csFeatures,
 } = require("./data.js");
+const req = require("express/lib/request");
 
 //
 //
@@ -90,6 +94,72 @@ app.get("/crop-suggestion", (req, res) => {
 // FERTILIZER SUGGESTION (AFTER AUTH)
 app.get("/fertilizer-suggestion", (req, res) => {
   res.render("fertilizer-suggestion", { fsFeatures });
+});
+
+//
+//
+
+// WEATHER FORECAST
+let weatherParams = { temp: "", desc: "", imgURL: "", unhide: "hidden" };
+
+app.get("/weather-forecast", (req, res) => {
+  res.render("weather-forecast", { weatherParams });
+});
+
+app.post("/weather-forecast", (req, res) => {
+  const [lat, lng] = req.body.latlng.split(",");
+
+  const URL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${apiKey}&units=metric`;
+
+  https.get(URL, (response) => {
+    response.on("data", (data) => {
+      const weatherData = JSON.parse(data);
+
+      const [temp, desc, icon] = [
+        weatherData.main.temp,
+        weatherData.weather[0].description,
+        weatherData.weather[0].icon,
+      ];
+
+      const imgURL = `https://openweathermap.org/img/wn/${icon}@2x.png`;
+
+      let unhide = "";
+      weatherParams = {
+        temp,
+        desc,
+        imgURL,
+        unhide,
+      };
+
+      unhide = 'hidden';
+
+      res.redirect("/weather-forecast");
+    });
+  });
+});
+
+//
+//
+
+// VIEW LAND
+app.get("/view-land", (req, res) => {
+  res.render("view-land");
+});
+
+//
+//
+
+// HARDWARE STATUS
+app.get("/hardware-stat", (req, res) => {
+  res.render("hardware-stat");
+});
+
+//
+//
+
+// CROP DETAILS
+app.get("/crop-details", (req, res) => {
+  res.render("crop-details");
 });
 
 //
