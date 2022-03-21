@@ -6,12 +6,12 @@ const https = require("https");
 
 const app = express();
 const PORT = 3000;
-const apiKey = process.env.API_KEY;
+const weatherAPIKey = process.env.WEATHER_API_KEY;
 
 app.set("view engine", "ejs");
 
 // set multiple view paths for express
-app.set('views', [__dirname + '/views', __dirname + '/views/auth']);
+app.set("views", [__dirname + "/views", __dirname + "/views/auth"]);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
@@ -102,16 +102,24 @@ app.get("/fertilizer-suggestion", (req, res) => {
 //
 
 // WEATHER FORECAST
-let weatherParams = { temp: "", desc: "", imgURL: "", unhide: "hidden" };
 
 app.get("/weather-forecast", (req, res) => {
-  res.render("auth/weather-forecast", { weatherParams });
+  res.render("auth/weather-forecast");
 });
 
-app.post("/weather-forecast", (req, res) => {
-  const [lat, lng] = req.body.latlng.split(",");
+let weatherParams = {};
 
-  const URL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lng}&appid=${apiKey}&units=metric`;
+app.post("/weather-forecast", (req, res) => {
+
+  let URL = `https://api.openweathermap.org/data/2.5/weather?units=metric&appid=${weatherAPIKey}`;
+
+  if (req.body.latlng) {
+    const [lat, lng] = req.body.latlng.split(",");
+    URL += `&lat=${lat}&lon=${lng}`;
+  } else if (req.body.cityName !== "") {
+    const cityName = req.body.cityName;
+    URL += `&q=${cityName}`;
+  }
 
   https.get(URL, (response) => {
     response.on("data", (data) => {
@@ -125,19 +133,19 @@ app.post("/weather-forecast", (req, res) => {
 
       const imgURL = `https://openweathermap.org/img/wn/${icon}@2x.png`;
 
-      let unhide = "";
       weatherParams = {
         temp,
         desc,
         imgURL,
-        unhide,
       };
 
-      unhide = 'hidden';
-
-      res.redirect("/weather-forecast");
+      res.redirect("/weather-forecast-result");
     });
   });
+});
+
+app.get("/weather-forecast-result", (req, res) => {
+  res.render("auth/weather-forecast-result", { weatherParams });
 });
 
 //

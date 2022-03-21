@@ -27,25 +27,33 @@ const getLocation = function () {
   });
 };
 
-window.addEventListener("load", async (e) => {
-  try {
-    const coords = await getLocation();
+// const btnGetWeather = document.querySelector(".btn-get-weather");
+const inputCityName = document.querySelector("#input-city-name");
 
-    const [lat, lng] = [coords.coords.latitude, coords.coords.longitude];
+const checkboxGetLocation = document.querySelector("#input-location-access");
 
-    const inputLatLng = document.querySelector(".input-latlng");
+// clear checkbox on city name input
+inputCityName &&
+  inputCityName.addEventListener("change", (e) => {
+    if (this.value !== "") checkboxGetLocation.checked = false;
+  });
 
-    if (inputLatLng) inputLatLng.value = `${lat},${lng}`;
-  } catch (e) {
-    console.log(e, "Could not get location.");
-  }
-});
+// get location on checkbox "checked" and clear input city name field
+checkboxGetLocation &&
+  checkboxGetLocation.addEventListener("change", async (e) => {
+    if (e.target.checked) {
+      if (inputCityName.value !== "") inputCityName.value = "";
 
-// document.querySelector('.btn-get-weather').addEventListener('click', e=> {
-//   const wcDiv = document.querySelector('.weather-condition-div');
+      try {
+        const coords = await getLocation();
 
-//   if (wcDiv.classList.contains('hidden')) wcDiv.classList.remove('hidden')
+        const [lat, lng] = [coords.coords.latitude, coords.coords.longitude];
 
-// });
+        checkboxGetLocation.value = `${lat},${lng}`;
+      } catch (e) {
+        console.log(e, "Could not get location.");
+      }
+    }
+  });
 
 // for weather forecast

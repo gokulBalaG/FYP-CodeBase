@@ -398,10 +398,11 @@ body {
 
 /* Weather forecast */
 
-.hidden {
-  display: none;
+.btn-get-weather {
+  display: block;
 }
 
 .weather-forecast-main {
   margin: 5%;
+  height: 300px;
 }
