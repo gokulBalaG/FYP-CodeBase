@@ -9,6 +9,9 @@ const PORT = 3000;
 const apiKey = process.env.API_KEY;
 
 app.set("view engine", "ejs");
+
+// set multiple view paths for express
+app.set('views', [__dirname + '/views', __dirname + '/views/auth']);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
@@ -19,7 +22,6 @@ const {
   fsFeatures,
   csFeatures,
 } = require("./data.js");
-const req = require("express/lib/request");
 
 //
 //
@@ -69,7 +71,7 @@ app.post("/register", (req, res) => {
 
 // HOME ROUTE (AFTER AUTH)
 app.get("/home", (req, res) => {
-  res.render("home", { homeProducts });
+  res.render("auth/home", { homeProducts });
 });
 
 //
@@ -77,7 +79,7 @@ app.get("/home", (req, res) => {
 
 // PRECISION IRRIGATION (AFTER AUTH)
 app.get("/precision-irrigation", (req, res) => {
-  res.render("precision-irrigation");
+  res.render("auth/precision-irrigation");
 });
 
 //
@@ -85,7 +87,7 @@ app.get("/precision-irrigation", (req, res) => {
 
 // CROP SUGGESTION (AFTER AUTH)
 app.get("/crop-suggestion", (req, res) => {
-  res.render("crop-suggestion", { csFeatures });
+  res.render("auth/crop-suggestion", { csFeatures });
 });
 
 //
@@ -93,7 +95,7 @@ app.get("/crop-suggestion", (req, res) => {
 
 // FERTILIZER SUGGESTION (AFTER AUTH)
 app.get("/fertilizer-suggestion", (req, res) => {
-  res.render("fertilizer-suggestion", { fsFeatures });
+  res.render("auth/fertilizer-suggestion", { fsFeatures });
 });
 
 //
@@ -103,7 +105,7 @@ app.get("/fertilizer-suggestion", (req, res) => {
 let weatherParams = { temp: "", desc: "", imgURL: "", unhide: "hidden" };
 
 app.get("/weather-forecast", (req, res) => {
-  res.render("weather-forecast", { weatherParams });
+  res.render("auth/weather-forecast", { weatherParams });
 });
 
 app.post("/weather-forecast", (req, res) => {
@@ -143,7 +145,7 @@ app.post("/weather-forecast", (req, res) => {
 
 // VIEW LAND
 app.get("/view-land", (req, res) => {
-  res.render("view-land");
+  res.render("auth/view-land");
 });
 
 //
@@ -151,7 +153,7 @@ app.get("/view-land", (req, res) => {
 
 // HARDWARE STATUS
 app.get("/hardware-stat", (req, res) => {
-  res.render("hardware-stat");
+  res.render("auth/hardware-stat");
 });
 
 //
@@ -159,7 +161,7 @@ app.get("/hardware-stat", (req, res) => {
 
 // CROP DETAILS
 app.get("/crop-details", (req, res) => {
-  res.render("crop-details");
+  res.render("auth/crop-details");
 });
 
 //
