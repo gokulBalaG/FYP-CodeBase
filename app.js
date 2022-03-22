@@ -12,8 +12,16 @@ app.set("view engine", "ejs");
 
 // set multiple view paths for express
 app.set("views", [__dirname + "/views", __dirname + "/views/auth"]);
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
+
+// render static files when base route (after domain name or localhost) is other than "/"
+// here serving the static files when the base route is "/products"
+
+app.use("/products", express.static("public"));
+app.use("/current-stat", express.static("public"));
+
 
 const {
   products,
@@ -78,39 +86,38 @@ app.get("/home", (req, res) => {
 //
 
 // PRECISION IRRIGATION (AFTER AUTH)
-app.get("/precision-irrigation", (req, res) => {
-  res.render("auth/precision-irrigation");
+app.get("/products/precision-irrigation", (req, res) => {
+  res.render("auth/products/precision-irrigation");
 });
 
 //
 //
 
 // CROP SUGGESTION (AFTER AUTH)
-app.get("/crop-suggestion", (req, res) => {
-  res.render("auth/crop-suggestion", { csFeatures });
+app.get("/products/crop-suggestion", (req, res) => {
+  res.render("auth/products/crop-suggestion", { csFeatures });
 });
 
 //
 //
 
 // FERTILIZER SUGGESTION (AFTER AUTH)
-app.get("/fertilizer-suggestion", (req, res) => {
-  res.render("auth/fertilizer-suggestion", { fsFeatures });
+app.get("/products/fertilizer-suggestion", (req, res) => {
+  res.render("auth/products/fertilizer-suggestion", { fsFeatures });
 });
 
 //
 //
 
-// WEATHER FORECAST
-
-app.get("/weather-forecast", (req, res) => {
-  res.render("auth/weather-forecast");
-});
+// WEATHER FORECAST (AFTER AUTH)
 
 let weatherParams = {};
 
-app.post("/weather-forecast", (req, res) => {
+app.get("/current-stat/weather-forecast", (req, res) => {
+  res.render("auth/current-stat/weather-forecast");
+});
 
+app.post("/current-stat/weather-forecast", (req, res) => {
   let URL = `https://api.openweathermap.org/data/2.5/weather?units=metric&appid=${weatherAPIKey}`;
 
   if (req.body.latlng) {
@@ -139,37 +146,29 @@ app.post("/weather-forecast", (req, res) => {
         imgURL,
       };
 
-      res.redirect("/weather-forecast-result");
+      res.redirect("/current-stat/weather-forecast-result");
     });
   });
 });
 
-app.get("/weather-forecast-result", (req, res) => {
-  res.render("auth/weather-forecast-result", { weatherParams });
+app.get("/current-stat/weather-forecast-result", (req, res) => {
+  res.render("auth/current-stat/weather-forecast-result", { weatherParams });
 });
 
 //
 //
 
-// VIEW LAND
-app.get("/view-land", (req, res) => {
-  res.render("auth/view-land");
+// VIEW LAND (AFTER AUTH)
+app.get("/current-stat/view-land", (req, res) => {
+  res.render("auth/current-stat/view-land");
 });
 
 //
 //
 
-// HARDWARE STATUS
-app.get("/hardware-stat", (req, res) => {
-  res.render("auth/hardware-stat");
-});
-
-//
-//
-
-// CROP DETAILS
-app.get("/crop-details", (req, res) => {
-  res.render("auth/crop-details");
+// CROP DETAILS (AFTER AUTH)
+app.get("/current-stat/crop-details", (req, res) => {
+  res.render("auth/current-stat/crop-details");
 });
 
 //

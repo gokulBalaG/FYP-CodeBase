@@ -2,17 +2,18 @@
 
 // for HOME route
 
-if (window.location.href === "/home") {
-  const productDivs = document.querySelectorAll(".product-div");
+const productDivs = document.querySelectorAll(".product-div");
 
+productDivs &&
   productDivs.forEach((pd) => {
     pd.addEventListener("click", (e) => {
       const route = pd.children[0].getAttribute("routeName");
 
+      console.log(route);
+
       window.location.href = `/${route}`;
     });
   });
-}
 
 // for HOME route
 
