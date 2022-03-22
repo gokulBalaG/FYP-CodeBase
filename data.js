@@ -68,17 +68,17 @@ exports.homeProducts = [
   new HomeProduct(
     "Precision Irrigation",
     "+ click here to explore the automated irrigation system.",
-    "precision-irrigation"
+    "products/precision-irrigation"
   ),
   new HomeProduct(
     "Crop Suggestion",
     "+ click here to find out the best crop to grow on your land.",
-    "crop-suggestion"
+    "products/crop-suggestion"
   ),
   new HomeProduct(
     "Fertilizer Suggestion",
     "+ click here to find out the fertilizer / manure required for your field.",
-    "fertilizer-suggestion"
+    "products/fertilizer-suggestion"
   ),
 ];
 
