@@ -1,19 +1,21 @@
 <%- include('partials/header') %>
 
+<link rel="stylesheet" href="css/home.css" />
+
 <title>Smart Agricare | Home</title>
 </head>
 <body>
 
-<h1 class="header-home">Home</h1>
+<h1 class="header-home-h1">Home</h1>
 
 <div class="main">
 
-    <div class="current-stats">
-        <a href="/current-stat/weather-forecast" class="current-details-link">Weather forecast</a>
+    <div class="current-stat-link-div">
+        <a href="/current-stat/weather-forecast" class="current-stat-link">Weather forecast</a>
     
-        <a href="/current-stat/view-land" class="current-details-link">View land status</a>
+        <a href="/current-stat/view-land" class="current-stat-link">View land status</a>
     
-        <a href="/current-stat/crop-details" class="current-details-link">Crop Details</a>
+        <a href="/current-stat/crop-details" class="current-stat-link">Crop Details</a>
     </div>
 
     <% homeProducts.forEach((product, i) => { %>

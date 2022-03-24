@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
+
+:root {
+  /* font weights */
+  --fw-300: 300;
+  --fw-400: 400;
+  --fw-500: 500;
+  --fw-600: 600;
+
+  /* colors */
+  --bg-color: #f3f3f3;
+  --accent-color: #5ec576;
+  --color-hover: #1c1f23;
+
+  --white: #ffffff;
+  --black: #000000;
+  --gray: #444444;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: var(--bg-color);
+}
+
+.btn {
+  background-color: var(--accent-color);
+  border: none;
+  color: var(--black);
+  border-radius: 20px;
+  font-weight: var(--fw-500);
+}
+
+/* footer section */
+
+#footer {
+  text-align: center;
+  background-color: var(--color-hover);
+  color: var(--white);
+  margin: 0;
+  padding: 0 0 4% 0;
+}
+
+.footer-logo {
+  border-radius: 200px;
+  text-align: center;
+  margin: 3%;
+}
+
+.footer-about-text {
+  margin: 0 5% 0 5%;
+  font-size: 1.1rem;
+}
+
+.footer-text {
+  margin-top: 2%;
+  font-size: 0.9rem;
+}
+
+/* footer section */
+
+/* navbar.ejs */
+.navbar-auth {
+  margin: 0 auto 20px auto;
+  padding: 0px 4% 0px 4%;
+  background-color: var(--bg-color);
+  height: 100px;
+}
+/* navbar.ejs */
