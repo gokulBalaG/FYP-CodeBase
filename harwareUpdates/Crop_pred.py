@@ -2,6 +2,8 @@
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
+import pyfirmata
+import time
 
 #Reading the csv file
 data = pd.read_csv('cpdata.csv')
@@ -43,12 +45,19 @@ firebase = firebase.FirebaseApplication('https://cropit-eb156.firebaseio.com/')
 tp = firebase.get('/Realtime',None)'''
 #tp is a record containing 5 param - air humidity, air temp, soil humidity, soil pH and rainfall
 #instead of fire base, we need to take it from sensor.
+board = pyfirmata.Arduino('COM4')
 
-ah = tp['Air Humidity']#Analog read
-atemp = tp['Air Temp']#Analog read
-shum = tp['Soil Humidity']#Analog read
-pH = tp['Soil pH']#Analog read
-rain = tp['Rainfall']#Analog read
+ah = board.get_pin('a:0:i')
+atemp = board.get_pin('a:1:i')
+shum = board.get_pin('a:2:i')
+pH = board.get_pin('a:3:i')
+rain  = board.get_pin('a:4:i')
+
+#ah - Air Humidity
+#atemp - Air Temp
+#shum - Soil Humidity
+#pH  - Soil pH
+#rain - Rainfall
 
 
 l=[]
