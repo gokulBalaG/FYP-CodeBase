@@ -1,15 +1,19 @@
 <%- include('partials/header') %>
 
+<link rel="stylesheet" href="css/products.css" />
+
 <title>Smart Agricare | Crop Suggestion</title>
 </head>
 <body>
 
-<h1 class="header-product">Crop Suggestion</h1>
+<%- include('auth/partials/navbar') %>
+
+<h1 class="product-header">Crop Suggestion</h1>
 
 <div class="row container-main">
 
     <% csFeatures.forEach(feature => { %>
-        <div class="card col fs-feature-card">
+        <div class="card col feature-card">
             <div class="card-body">
               <h5 class="card-title"><%= feature.title %> </h5>
               <h6 class="card-subtitle mb-2 text-muted"><%= feature.subtitle %></h6>
@@ -21,3 +25,6 @@
 </div>
 
 <%- include('partials/footer') %>
+
+</body>
+</html>

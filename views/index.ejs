@@ -1,18 +1,19 @@
 <%- include('partials/header'); -%>
 
+  <link rel="stylesheet" href="css/index.css" />
+
   <title>Smart Agricare</title>
 </head>
 <body>
 
 <!---------------- NAVBAR -- section-1 ---------------->
 
-<section id="navbar">
+<section id="section-navbar">
   <div class="container-fluid">
     <nav class="navbar navbar-expand-lg navbar-light">
 
       <a href="/" class="navbar-brand">
-        <img src="images/logo.png" alt="project logo" class="logo" />
-        <!-- Smart Agricare -->
+        <img src="images/logo.png" alt="brand logo" class="navbar-logo logo" />
       </a>
 
       <button
@@ -28,28 +29,28 @@
       </button>
 
       <div class="collapse navbar-collapse" id="menu-collapse">
-        <ul class="navbar-nav ml-auto nav-items">
+        <ul class="navbar-nav ml-auto ul-nav-items">
           <li class="nav-item">
-            <a href="#features" class="nav-link nav_link">Why Smart Agricare?</a>
+            <a href="#features" class="nav-link li-nav-link">Why Smart Agricare?</a>
             <!-- links to features -->
           </li>
           <li class="nav-item">
-            <a href="#products" class="nav-link nav_link">Products</a>
+            <a href="#products" class="nav-link li-nav-link">Products</a>
             <!-- links to products -->
           </li>
           <li class="nav-item">
-            <a href="#footer" class="nav-link nav_link">About us</a>
+            <a href="#footer" class="nav-link li-nav-link">About us</a>
             <!-- links to footer -->
           </li>
         </ul>
 
-        <div class="in-btns">
-          <a class="nav-link in-btn" href="/login">
-            <button type="button" class="btn btn-dark log-in">Log in</button>
+        <div class="navbar-btns-right-div">
+          <a class="nav-link navbar-btn-right" href="/login">
+            <button type="button" class="btn btn-dark">Log in</button>
           </a>
   
-          <a class="nav-link in-btn" href="/register">
-            <button type="button" class="btn btn-dark sign-up">Register</button>
+          <a class="nav-link navbar-btn-right" href="/register">
+            <button type="button" class="btn btn-dark">Register</button>
           </a>
         </div>
 
@@ -61,26 +62,26 @@
 <!---------------- NAVBAR -- section-1 ---------------->
 
 
-<!-------------- WELCOME -- section-2------------->
+<!-------------- WELCOME -- section-2 ------------->
 
-<section class="welcome" id="welcome">
+<section class="section-welcome" id="section-welcome">
 
-  <div class="container-fluid welcome-container">
+  <div class="container-fluid welcome-div">
 
-    <div class="welcome-container-left">
-      <h1 class="welcome-text">We <span class="highlight"> celebrate</span> the joy of <span class="highlight"> agriculture!</span>       
+    <div class="welcome-div-left">
+      <h1 class="welcome-text-h1">We <span class="highlight"> celebrate</span> the joy of <span class="highlight"> agriculture!</span>       
       </h1>
       <br>
       
-      <h4 class="welcome-desc">Lol gotta add something here. Tag line</h4>
+      <h4 class="welcome-desc-h4">Lol gotta add something here. Tag line</h4>
       <br>
       
       <a href="#features">
-        <button class="btn btn-light down-arrow">Learn more &DownArrow;</button>
+        <button class="btn btn-light btn-down-arrow">Learn more &DownArrow;</button>
       </a>
     </div>
 
-    <img class="welcome-image" src="images/plant.png" alt="plant image">
+    <img class="welcome-section-img" src="images/plant.png" alt="plant image">
     
   </div>
 
@@ -104,8 +105,8 @@
         <span class="feature-span-icon">
           <i class="fas <%= featureIcon.iconName %>"></i>
         </span>
-        <h3 class="feature-header"> <%= featureIcon.header %> </h3>
-        <p class="feature-desc">
+        <h3> <%= featureIcon.header %> </h3>
+        <p>
           <%= featureIcon.description %> 
         </p>
       </div>
@@ -127,7 +128,7 @@
   <h3 class="section-desc">OMG! We provide a lot of services that you can use to make the best use
   of our resources.</h3>
 
-  <div class="container-fluid row product-row">
+  <div class="container-fluid row products-row">
 
     <% products.forEach(product => { %>
      
@@ -135,9 +136,9 @@
 
         <!-- img source to be updated -->
         <img src="images/field-layout.png" class="card-img-top" alt="field layout image" />
-        <div class="card-body">
-          <h5 class="card-title"> <%= product.name %>  </h5>
-          <p class="card-text">
+        <div class="card-body product-card-body">
+          <h5 class="card-title product-card-title"> <%= product.name %>  </h5>
+          <p class="card-text product-card-text">
             <%= product.description %> 
           </p>
           <!-- <a href="#" class="btn btn-primary btn-card">Check it out!</a> -->
@@ -154,11 +155,11 @@
 <!-------------- FOOTER_BANNER section 5 -------------->
 
 <section class="section footer-banner">
-  <div class="open-account">
+  <div class="open-account-div">
     <h3 class="footer-tag">The best way to cultivate is here!</h3>
 
     <a class="in-btn" href="/register">
-      <button type="button" class="btn btn-dark btn-footer">Register now!</button>
+      <button type="button" class="btn btn-dark btn-footer-banner">Register now!</button>
     </a>
     
   </div>
@@ -169,3 +170,6 @@
 <!-------------- FOOTER_BANNER section 5 -------------->
 
 <%- include('partials/footer'); -%>
+
+</body>
+</html>

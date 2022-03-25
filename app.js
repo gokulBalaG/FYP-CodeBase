@@ -17,11 +17,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 // render static files when base route (after domain name or localhost) is other than "/"
-// here serving the static files when the base route is "/products"
+// app.use("/", express.static("public")) // this is by default
+// app.use(express.static("public")); // or this
 
+// here serving the static files when the base route is "/products" & "/current-stat"
 app.use("/products", express.static("public"));
 app.use("/current-stat", express.static("public"));
-
 
 const {
   products,
@@ -169,6 +170,15 @@ app.get("/current-stat/view-land", (req, res) => {
 // CROP DETAILS (AFTER AUTH)
 app.get("/current-stat/crop-details", (req, res) => {
   res.render("auth/current-stat/crop-details");
+});
+
+//
+//
+
+// Settings page
+
+app.get("/settings", (req, res) => {
+  res.render("auth/settings");
 });
 
 //
