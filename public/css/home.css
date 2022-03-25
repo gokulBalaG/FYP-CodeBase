@@ -42,6 +42,7 @@
   height: 0;
   width: 75%;
   margin: 5% 0 5% 0;
+  text-align: center;
 
   transition-duration: 0.5s;
 }
@@ -67,3 +68,15 @@
 .product-desc {
   margin-left: 4%;
 }
+
+
+/* navbar.ejs */
+
+.navbar-auth {
+  margin: 0 auto 0 auto;
+  padding: 0px 4% 0px 4%;
+  background-color: var(--bg-color);
+  height: 100px;
+}
+
+/* navbar.ejs */

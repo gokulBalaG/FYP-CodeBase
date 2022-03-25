@@ -37,6 +37,10 @@ body {
   font-weight: var(--fw-500);
 }
 
+.logo {
+  border-radius: 200px;
+}
+
 /* footer section */
 
 #footer {
@@ -48,7 +52,6 @@ body {
 }
 
 .footer-logo {
-  border-radius: 200px;
   text-align: center;
   margin: 3%;
 }
@@ -64,12 +67,3 @@ body {
 }
 
 /* footer section */
-
-/* navbar.ejs */
-.navbar-auth {
-  margin: 0 auto 20px auto;
-  padding: 0px 4% 0px 4%;
-  background-color: var(--bg-color);
-  height: 100px;
-}
-/* navbar.ejs */
