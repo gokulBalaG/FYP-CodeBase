@@ -5,7 +5,7 @@ const ejs = require("ejs");
 const https = require("https");
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const weatherAPIKey = process.env.WEATHER_API_KEY;
 
 app.set("view engine", "ejs");
