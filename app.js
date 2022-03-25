@@ -30,10 +30,7 @@ const {
   homeProducts,
   fsFeatures,
   csFeatures,
-} = require("./data.js");
-
-//
-//
+} = require("./src/data.js");
 
 // HOME ROUTE
 app.get("/", (req, res) => {
@@ -42,9 +39,6 @@ app.get("/", (req, res) => {
     featureIcons,
   });
 });
-
-//
-//
 
 // LOGIN ROUTE
 app.get("/login", (req, res) => {
@@ -59,9 +53,6 @@ app.post("/login", (req, res) => {
   res.redirect("/home");
 });
 
-//
-//
-
 // REGISTER ROUTE
 app.get("/register", (req, res) => {
   res.render("register");
@@ -75,40 +66,25 @@ app.post("/register", (req, res) => {
   res.redirect("/home");
 });
 
-//
-//
-
 // HOME ROUTE (AFTER AUTH)
 app.get("/home", (req, res) => {
   res.render("auth/home", { homeProducts });
 });
-
-//
-//
 
 // PRECISION IRRIGATION (AFTER AUTH)
 app.get("/products/precision-irrigation", (req, res) => {
   res.render("auth/products/precision-irrigation");
 });
 
-//
-//
-
 // CROP SUGGESTION (AFTER AUTH)
 app.get("/products/crop-suggestion", (req, res) => {
   res.render("auth/products/crop-suggestion", { csFeatures });
 });
 
-//
-//
-
 // FERTILIZER SUGGESTION (AFTER AUTH)
 app.get("/products/fertilizer-suggestion", (req, res) => {
   res.render("auth/products/fertilizer-suggestion", { fsFeatures });
 });
-
-//
-//
 
 // WEATHER FORECAST (AFTER AUTH)
 
@@ -156,33 +132,21 @@ app.get("/current-stat/weather-forecast-result", (req, res) => {
   res.render("auth/current-stat/weather-forecast-result", { weatherParams });
 });
 
-//
-//
-
 // VIEW LAND (AFTER AUTH)
 app.get("/current-stat/view-land", (req, res) => {
   res.render("auth/current-stat/view-land");
 });
-
-//
-//
 
 // CROP DETAILS (AFTER AUTH)
 app.get("/current-stat/crop-details", (req, res) => {
   res.render("auth/current-stat/crop-details");
 });
 
-//
-//
-
 // Settings page
 
 app.get("/settings", (req, res) => {
   res.render("auth/settings");
 });
-
-//
-//
 
 // SERVER RUNNING
 app.listen(PORT, () => {
