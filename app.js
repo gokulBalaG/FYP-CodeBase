@@ -175,6 +175,15 @@ app.get("/current-stat/crop-details", (req, res) => {
 //
 //
 
+// Settings page
+
+app.get("/settings", (req, res) => {
+  res.render("auth/settings");
+});
+
+//
+//
+
 // SERVER RUNNING
 app.listen(PORT, () => {
   console.log(`Server is runnning on port ${PORT}!`);
