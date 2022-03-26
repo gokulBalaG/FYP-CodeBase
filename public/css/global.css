@@ -41,6 +41,10 @@ body {
   border-radius: 200px;
 }
 
+.highlight {
+  background-color: var(--accent-color);
+}
+
 /* footer section */
 
 #footer {

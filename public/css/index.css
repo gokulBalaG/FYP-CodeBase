@@ -51,10 +51,6 @@
   color: var(--gray);
 }
 
-.highlight {
-  background-color: var(--accent-color);
-}
-
 .welcome-desc-h4 {
   color: var(--gray);
   font-size: 1.4rem;
