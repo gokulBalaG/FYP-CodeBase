@@ -71,3 +71,28 @@ body {
 }
 
 /* footer section */
+
+/* auth navbar - navbar.ejs */
+
+.navbar-auth {
+  margin: 0 auto 0 auto;
+  padding: 0px 4% 0px 4%;
+  background-color: var(--bg-color);
+  height: 100px;
+}
+
+.li-nav-link {
+  font-weight: var(--fw-500);
+  margin-right: 20px;
+  color: var(--black);
+}
+
+.dropdown-bg {
+  background-color: var(--bg-color);
+  border-radius: 0;
+  /* border-top: none; */
+}
+
+.dropdown-toggle-username {
+  font-weight: var(--fw-500);
+}
