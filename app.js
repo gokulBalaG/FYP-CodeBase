@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
+const { routes } = require("./src/routes.js");
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -12,93 +13,36 @@ app.set("views", [__dirname + "/views", __dirname + "/views/auth"]);
 app.use("/products", express.static("public"));
 app.use("/current-stat", express.static("public"));
 
-const {
-  products,
-  featureIcons,
-  homeProducts,
-  fsFeatures,
-  csFeatures,
-} = require("./src/data.js");
+// Routes
 
-const { getWeather } = require("./src/exports.js");
+app.get("/", routes.getIndexRoute);
 
-// INDEX ROUTE
-app.get("/", (req, res) => {
-  res.render("index", {
-    products,
-    featureIcons,
-  });
-});
+app.get("/login", routes.getLoginRoute);
+app.post("/login", routes.postLoginRoute);
 
-// LOGIN ROUTE
-app.get("/login", (req, res) => {
-  res.render("login");
-});
+app.get("/register", routes.getRegisterRoute);
+app.post("/register", routes.postRegisterRoute);
 
-app.post("/login", (req, res) => {
-  const [email, password] = [req.body.email.trim(), req.body.password.trim()];
+// After authentication
 
-  console.log(email, password);
+app.get("/home", routes.getHomeRoute);
 
-  res.redirect("/home");
-});
+app.get("/products/precision-irrigation", routes.getPIRoute);
 
-// REGISTER ROUTE
-app.get("/register", (req, res) => {
-  res.render("register");
-});
+app.get("/products/crop-suggestion", routes.getCSRoute);
 
-app.post("/register", (req, res) => {
-  const [email, password] = [req.body.email.trim(), req.body.password.trim()];
+app.get("/products/fertilizer-suggestion", routes.getFSRoute);
 
-  console.log(email, password);
+app.get("/current-stat/weather-forecast", routes.getWeatherForecastRoute);
 
-  res.redirect("/home");
-});
+app.post("/current-stat/weather-forecast", routes.postWeatherForecastRoute);
 
-// HOME ROUTE (AFTER AUTH)
-app.get("/home", (req, res) => {
-  res.render("auth/home", { homeProducts });
-});
+app.get("/current-stat/view-land", routes.getViewLandRoute);
 
-// PRECISION IRRIGATION (AFTER AUTH)
-app.get("/products/precision-irrigation", (req, res) => {
-  res.render("auth/products/precision-irrigation");
-});
+app.get("/current-stat/crop-details", routes.getCropDetailsRoute);
 
-// CROP SUGGESTION (AFTER AUTH)
-app.get("/products/crop-suggestion", (req, res) => {
-  res.render("auth/products/crop-suggestion", { csFeatures });
-});
+app.get("/settings", routes.settingsRoute);
 
-// FERTILIZER SUGGESTION (AFTER AUTH)
-app.get("/products/fertilizer-suggestion", (req, res) => {
-  res.render("auth/products/fertilizer-suggestion", { fsFeatures });
-});
-
-// WEATHER FORECAST (AFTER AUTH)
-app.get("/current-stat/weather-forecast", (req, res) => {
-  res.render("auth/current-stat/weather-forecast");
-});
-
-app.post("/current-stat/weather-forecast", getWeather);
-
-// VIEW LAND (AFTER AUTH)
-app.get("/current-stat/view-land", (req, res) => {
-  res.render("auth/current-stat/view-land");
-});
-
-// CROP DETAILS (AFTER AUTH)
-app.get("/current-stat/crop-details", (req, res) => {
-  res.render("auth/current-stat/crop-details");
-});
-
-// SETTINGS PAGE (AFTER AUTH)
-app.get("/settings", (req, res) => {
-  res.render("auth/settings");
-});
-
-// SERVER RUNNING
 app.listen(PORT, () => {
   console.log(`Server is runnning on port ${PORT}!`);
 });

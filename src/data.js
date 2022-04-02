@@ -1,13 +1,32 @@
 // TEMPORARY DATA
 
-// INDEX
-
 class Product {
   constructor(name, description, link = "", imgSrc = "") {
     this.name = name;
     this.description = description;
     this.link = link;
     this.imgSrc = imgSrc;
+  }
+}
+class FeatureIcon {
+  constructor(header, description, iconName) {
+    this.header = header;
+    this.description = description;
+    this.iconName = iconName;
+  }
+}
+class HomeProduct {
+  constructor(title, description, routeName) {
+    this.title = title;
+    this.description = description;
+    this.routeName = routeName;
+  }
+}
+class Feature {
+  constructor(title, subtitle, description) {
+    this.title = title;
+    this.subtitle = subtitle;
+    this.description = description;
   }
 }
 
@@ -25,14 +44,6 @@ exports.products = [
     "And again guess what!? It's an intelligent system that can suggest you with the type of fertilizers to be used on your field just so you know... to maximize your yield."
   ),
 ];
-
-class FeatureIcon {
-  constructor(header, description, iconName) {
-    this.header = header;
-    this.description = description;
-    this.iconName = iconName;
-  }
-}
 
 exports.featureIcons = [
   new FeatureIcon(
@@ -52,18 +63,6 @@ exports.featureIcons = [
   ),
 ];
 
-// INDEX
-
-// HOME
-
-class HomeProduct {
-  constructor(title, description, routeName) {
-    this.title = title;
-    this.description = description;
-    this.routeName = routeName;
-  }
-}
-
 exports.homeProducts = [
   new HomeProduct(
     "Precision Irrigation",
@@ -81,18 +80,6 @@ exports.homeProducts = [
     "products/fertilizer-suggestion"
   ),
 ];
-
-// HOME
-
-// FERTILIZER SUGGESTION
-
-class Feature {
-  constructor(title, subtitle, description) {
-    this.title = title;
-    this.subtitle = subtitle;
-    this.description = description;
-  }
-}
 
 exports.fsFeatures = [
   new Feature(
@@ -112,10 +99,6 @@ exports.fsFeatures = [
   ),
 ];
 
-// FERTILIZER SUGGESTION
-
-// CROP SUGGESTION
-
 exports.csFeatures = [
   new Feature(
     "Based on Geographical Location",
@@ -133,5 +116,3 @@ exports.csFeatures = [
     "loream ipsum morec tiu huesdi irlim paren tickmae guik latam dij def gre guti"
   ),
 ];
-
-// CROP SUGGESTION
