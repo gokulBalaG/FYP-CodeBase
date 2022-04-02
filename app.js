@@ -1,6 +1,5 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const ejs = require("ejs");
 const { routes } = require("./src/routes.js");
 
 const PORT = process.env.PORT || 3000;
@@ -17,13 +16,15 @@ app.use("/current-stat", express.static("public"));
 
 app.get("/", routes.getIndexRoute);
 
-app.get("/login", routes.getLoginRoute);
-app.post("/login", routes.postLoginRoute);
+app.route("/login")
+  .get(routes.getLoginRoute)
+  .post(routes.postLoginRoute);
 
-app.get("/register", routes.getRegisterRoute);
-app.post("/register", routes.postRegisterRoute);
+app.route("/register")
+  .get(routes.getRegisterRoute)
+  .post(routes.postRegisterRoute);
 
-// After authentication
+// Routes after authentication
 
 app.get("/home", routes.getHomeRoute);
 
@@ -33,9 +34,7 @@ app.get("/products/crop-suggestion", routes.getCSRoute);
 
 app.get("/products/fertilizer-suggestion", routes.getFSRoute);
 
-app.get("/current-stat/weather-forecast", routes.getWeatherForecastRoute);
-
-app.post("/current-stat/weather-forecast", routes.postWeatherForecastRoute);
+app.get("/current-stat/weather-forecast", routes.getWFRoute);
 
 app.get("/current-stat/view-land", routes.getViewLandRoute);
 

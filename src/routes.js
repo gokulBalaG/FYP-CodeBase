@@ -1,6 +1,7 @@
 require("dotenv").config();
 const https = require("https");
 const weatherAPIKey = process.env.WEATHER_API_KEY;
+const { WEATHER_API_URL, WEATHER_API_IMG_URL } = require("./config.js");
 
 const {
   products,
@@ -68,45 +69,44 @@ const getFSRoute = function (req, res) {
   res.render("auth/products/fertilizer-suggestion", { fsFeatures });
 };
 
-// GET "/current-stat/weather-forecast"
-const getWeatherForecastRoute = function (req, res) {
-  res.render("auth/current-stat/weather-forecast");
-};
+// GET & POST "/current-stat/weather-forecast"
+const getWFRoute = function (req, res) {
+  if (req.query.cityName || req.query.latlng) {
+    let URL = WEATHER_API_URL + `&appid=${weatherAPIKey}`;
 
-// POST "/current-stat/weather-forecast"
-const postWeatherForecastRoute = function (req, res) {
-  let URL = `https://api.openweathermap.org/data/2.5/weather?units=metric&appid=${weatherAPIKey}`;
+    if (req.query.cityName !== "") {
+      const cityName = req.query.cityName.trim();
+      URL += `&q=${cityName}`;
+    } else if (req.query.latlng) {
+      const [lat, lng] = req.query.latlng.split(" ");
+      URL += `&lat=${lat}&lon=${lng}`;
+    }
 
-  if (req.body.cityName !== "") {
-    const cityName = req.body.cityName.trim();
-    URL += `&q=${cityName}`;
-  } else if (req.body.latlng) {
-    const [lat, lng] = req.body.latlng.split(",");
-    URL += `&lat=${lat}&lon=${lng}`;
-  }
+    https.get(URL, (response) => {
+      response.on("data", (data) => {
+        const weatherData = JSON.parse(data);
+        const [temp, desc, icon] = [
+          weatherData.main.temp,
+          weatherData.weather[0].description,
+          weatherData.weather[0].icon,
+        ];
 
-  https.get(URL, (response) => {
-    response.on("data", (data) => {
-      const weatherData = JSON.parse(data);
-      const [temp, desc, icon] = [
-        weatherData.main.temp,
-        weatherData.weather[0].description,
-        weatherData.weather[0].icon,
-      ];
+        const imgURL = WEATHER_API_IMG_URL + `${icon}@2x.png`;
 
-      const imgURL = `https://openweathermap.org/img/wn/${icon}@2x.png`;
+        const weatherParams = {
+          temp,
+          desc,
+          imgURL,
+        };
 
-      const weatherParams = {
-        temp,
-        desc,
-        imgURL,
-      };
-
-      res.render("auth/current-stat/weather-forecast-result", {
-        weatherParams,
+        res.render("auth/current-stat/weather-forecast-result", {
+          weatherParams,
+        });
       });
     });
-  });
+  } else {
+    res.render("auth/current-stat/weather-forecast");
+  }
 };
 
 // GET "/current-stat/view-land"
@@ -139,8 +139,7 @@ exports.routes = {
   getCSRoute,
   getFSRoute,
 
-  getWeatherForecastRoute,
-  postWeatherForecastRoute,
+  getWFRoute,
 
   getViewLandRoute,
   getCropDetailsRoute,

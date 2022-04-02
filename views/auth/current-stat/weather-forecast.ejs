@@ -12,12 +12,14 @@
 
     <h1>Get weather</h1>
 
-    <form action="/current-stat/weather-forecast" method="post">
+    <form action="/current-stat/weather-forecast" method="get">
 
         <div class="mb-3 col-6">
             <label for="input-city-name" class="form-label">Enter city name: </label>
 
-            <input type="text" class="form-control" id="input-city-name"         placeholder="Enter your city name" 
+            <input type="text" class="form-control" 
+            id="input-city-name"         
+            placeholder="Enter your city name" 
             autofocus
             name="cityName">
           </div>

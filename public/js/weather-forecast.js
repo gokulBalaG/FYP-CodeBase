@@ -33,7 +33,7 @@ checkboxGetLocation.addEventListener("change", async (e) => {
       const coords = await getLocation();
       const [lat, lng] = [coords.coords.latitude, coords.coords.longitude];
 
-      checkboxGetLocation.value = `${lat},${lng}`;
+      checkboxGetLocation.value = `${lat} ${lng}`;
     } catch (e) {
       console.log(e, "Could not get location.");
     }
