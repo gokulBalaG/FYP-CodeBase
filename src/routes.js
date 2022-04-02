@@ -1,7 +1,7 @@
-require("dotenv").config();
-const https = require("https");
-const weatherAPIKey = process.env.WEATHER_API_KEY;
-const { WEATHER_API_URL, WEATHER_API_IMG_URL } = require("./config.js");
+require('dotenv').config();
+const https = require('https');
+const { run } = require('./database.js');
+const { WEATHER_API_URL, WEATHER_API_IMG_URL } = require('./config.js');
 
 const {
   products,
@@ -9,81 +9,81 @@ const {
   homeProducts,
   fsFeatures,
   csFeatures,
-} = require("./data.js");
+} = require('./data.js');
 
 // Route functions
 
 // GET "/"
-const getIndexRoute = function (req, res) {
-  res.render("index", {
+const getIndex = function (req, res) {
+  res.render('index', {
     products,
     featureIcons,
   });
 };
 
 // GET "/login"
-const getLoginRoute = function (req, res) {
-  res.render("login");
+const getLogin = function (req, res) {
+  res.render('login');
 };
 
 // POST "/login"
-const postLoginRoute = function (req, res) {
+const postLogin = function (req, res) {
   const [email, password] = [req.body.email.trim(), req.body.password.trim()];
 
   console.log(email, password);
 
-  res.redirect("/home");
+  res.redirect('/home');
 };
 
 // GET "/register"
-const getRegisterRoute = function (req, res) {
-  res.render("register");
+const getRegister = function (req, res) {
+  res.render('register');
 };
 
 // POST "/register"
-const postRegisterRoute = function (req, res) {
+const postRegister = function (req, res) {
   const [email, password] = [req.body.email.trim(), req.body.password.trim()];
 
   console.log(email, password);
 
-  res.redirect("/home");
+  res.redirect('/home');
 };
 
 // GET "/home"
-const getHomeRoute = function (req, res) {
-  res.render("auth/home", { homeProducts });
+const getHome = function (req, res) {
+  res.render('auth/home', { homeProducts });
 };
 
 // GET "/products/precision-irrigation"
-const getPIRoute = function (req, res) {
-  res.render("auth/products/precision-irrigation");
+const getPI = function (req, res) {
+  res.render('auth/products/precision-irrigation');
 };
 
 // GET "/products/crop-suggestion"
-const getCSRoute = function (req, res) {
-  res.render("auth/products/crop-suggestion", { csFeatures });
+const getCS = function (req, res) {
+  res.render('auth/products/crop-suggestion', { csFeatures });
 };
 
 // GET "/products/fertilizer-suggestion"
-const getFSRoute = function (req, res) {
-  res.render("auth/products/fertilizer-suggestion", { fsFeatures });
+const getFS = function (req, res) {
+  res.render('auth/products/fertilizer-suggestion', { fsFeatures });
 };
 
 // GET & POST "/current-stat/weather-forecast"
-const getWFRoute = function (req, res) {
+const getWF = function (req, res) {
   if (req.query.cityName || req.query.latlng) {
-    let URL = WEATHER_API_URL + `&appid=${weatherAPIKey}`;
+    let URL = WEATHER_API_URL;
 
-    if (req.query.cityName !== "") {
+    if (req.query.cityName !== '') {
       const cityName = req.query.cityName.trim();
       URL += `&q=${cityName}`;
     } else if (req.query.latlng) {
-      const [lat, lng] = req.query.latlng.split(" ");
+      const [lat, lng] = req.query.latlng.split(' ');
       URL += `&lat=${lat}&lon=${lng}`;
     }
 
-    https.get(URL, (response) => {
-      response.on("data", (data) => {
+    https.get(URL, response => {
+      response.on('data', data => {
         const weatherData = JSON.parse(data);
         const [temp, desc, icon] = [
           weatherData.main.temp,
@@ -92,57 +92,65 @@ const getWFRoute = function (req, res) {
         ];
 
         const imgURL = WEATHER_API_IMG_URL + `${icon}@2x.png`;
-
         const weatherParams = {
           temp,
           desc,
           imgURL,
         };
 
-        res.render("auth/current-stat/weather-forecast-result", {
+        res.render('auth/current-stat/weather-forecast-result', {
           weatherParams,
         });
       });
     });
   } else {
-    res.render("auth/current-stat/weather-forecast");
+    res.render('auth/current-stat/weather-forecast');
   }
 };
 
 // GET "/current-stat/view-land"
-const getViewLandRoute = function (req, res) {
-  res.render("auth/current-stat/view-land");
+const getViewLand = function (req, res) {
+  res.render('auth/current-stat/view-land');
 };
 
 // GET "/current-stat/crop-details"
-const getCropDetailsRoute = function (req, res) {
-  res.render("auth/current-stat/crop-details");
+const getCropDetails = async function (req, res) {
+  const values = await run().catch(console.dir);
+
+  res.render('auth/current-stat/crop-details', { values });
 };
 
 // GET "/settings"
-const settingsRoute = function (req, res) {
-  res.render("auth/settings");
+const settings = function (req, res) {
+  res.render('auth/settings');
+};
+
+// GET "/all"
+const all = function (req, res) {
+  res.status(404).send('<h1>Broooooo! Page not found</h1>');
 };
 
 exports.routes = {
-  getIndexRoute,
+  getIndex,
 
-  getLoginRoute,
-  postLoginRoute,
+  getLogin,
+  postLogin,
 
-  getRegisterRoute,
-  postRegisterRoute,
+  getRegister,
+  postRegister,
 
-  getHomeRoute,
+  getHome,
 
-  getPIRoute,
-  getCSRoute,
-  getFSRoute,
+  getPI,
+  getCS,
+  getFS,
 
-  getWFRoute,
+  getWF,
 
-  getViewLandRoute,
-  getCropDetailsRoute,
+  getViewLand,
+  getCropDetails,
 
-  settingsRoute,
+  settings,
+
+  all,
 };
