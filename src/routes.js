@@ -1,6 +1,5 @@
-require('dotenv').config();
 const https = require('https');
-const { run } = require('./database.js');
+const { User, SensorsCurrData } = require('./model.js');
 const { WEATHER_API_URL, WEATHER_API_IMG_URL } = require('./config.js');
 
 const {
@@ -115,9 +114,15 @@ const getViewLand = function (req, res) {
 
 // GET "/current-stat/crop-details"
 const getCropDetails = async function (req, res) {
-  const values = await run().catch(console.dir);
+  SensorsCurrData.find((err, values) => {
+    if (err) throw err;
+    else {
+      values = values[0];
+      console.log(values);
 
-  res.render('auth/current-stat/crop-details', { values });
+      res.render('auth/current-stat/crop-details', { values });
+    }
+  });
 };
 
 // GET "/settings"

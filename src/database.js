@@ -1,37 +1,20 @@
+const mongoose = require('mongoose');
 const { DB_URL } = require('./config.js');
-const { MongoClient } = require('mongodb');
 
-const client = new MongoClient(DB_URL);
-const dbName = 'sensor_data';
-const collectionName = 'sensor_records';
+mongoose.connect(DB_URL, {
+  useNewUrlParser: true,
+});
 
-exports.run = async function () {
-  try {
-    await client.connect();
+const conn = mongoose.connection;
 
-    console.log('Connected correctly to server');
+conn.on('connected', function () {
+  console.log('database is connected successfully');
+});
 
-    const db = client.db(dbName);
-    const collection = db.collection(collectionName);
+conn.on('disconnected', function () {
+  console.log('database is disconnected successfully');
+});
 
-    // let personDocument = {
-    //   name: { first: "Alan", last: "Turing" },
-    //   birth: new Date(1912, 5, 23), // May 23, 1912
-    //   death: new Date(1954, 5, 7), // May 7, 1954
-    //   contribs: ["Turing machine", "Turing test", "Turingery"],
-    //   views: 1250000,
-    // };
+conn.on('error', console.error.bind(console, 'connection error:'));
 
-    // const p = await collection.insertOne(personDocument);
-
-    const myDoc = await collection.findOne();
-    console.log(myDoc);
-    console.log('Doc fetched');
-
-    return myDoc;
-  } catch (err) {
-    console.log(err.stack);
-  } finally {
-    await client.close();
-  }
-};
+module.exports = conn;
