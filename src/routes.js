@@ -1,4 +1,5 @@
 const https = require('https');
+const passport = require('passport');
 const { User, SensorsCurrData } = require('./model.js');
 const { WEATHER_API_URL, WEATHER_API_IMG_URL } = require('./config.js');
 
@@ -22,112 +23,161 @@ const getIndex = function (req, res) {
 
 // GET "/login"
 const getLogin = function (req, res) {
-  res.render('login');
+  if (req.isAuthenticated()) res.redirect('/home');
+  else res.render('login');
 };
 
 // POST "/login"
 const postLogin = function (req, res) {
-  const [email, password] = [req.body.email.trim(), req.body.password.trim()];
+  const user = new User({
+    username: req.body.username,
+    password: req.body.password,
+  });
 
-  console.log(email, password);
-
-  res.redirect('/home');
+  req.login(user, function (err) {
+    if (err) {
+      console.log(err);
+    } else {
+      passport.authenticate('local')(req, res, function () {
+        res.redirect('/home');
+      });
+    }
+  });
 };
 
 // GET "/register"
 const getRegister = function (req, res) {
-  res.render('register');
+  if (req.isAuthenticated()) res.redirect('/home');
+  else res.render('register');
 };
 
 // POST "/register"
 const postRegister = function (req, res) {
-  const [email, password] = [req.body.email.trim(), req.body.password.trim()];
-
-  console.log(email, password);
-
-  res.redirect('/home');
+  User.register(
+    { username: req.body.username },
+    req.body.password,
+    function (err, user) {
+      if (err) {
+        console.log(err);
+        res.redirect('/register');
+      } else {
+        passport.authenticate('local')(req, res, function () {
+          res.redirect('/home');
+        });
+      }
+    }
+  );
 };
 
 // GET "/home"
 const getHome = function (req, res) {
-  res.render('auth/home', { homeProducts });
+  if (req.isAuthenticated()) res.render('auth/home', { homeProducts });
+  else res.redirect('/login');
 };
 
+// TODO add auth check
 // GET "/products/precision-irrigation"
 const getPI = function (req, res) {
-  res.render('auth/products/precision-irrigation');
+  if (req.isAuthenticated()) res.render('auth/products/precision-irrigation');
+  else res.redirect('/login');
 };
 
 // GET "/products/crop-suggestion"
 const getCS = function (req, res) {
-  res.render('auth/products/crop-suggestion', { csFeatures });
+  if (req.isAuthenticated())
+    res.render('auth/products/crop-suggestion', { csFeatures });
+  else res.redirect('/login');
 };
 
 // GET "/products/fertilizer-suggestion"
 const getFS = function (req, res) {
-  res.render('auth/products/fertilizer-suggestion', { fsFeatures });
+  if (req.isAuthenticated())
+    res.render('auth/products/fertilizer-suggestion', { fsFeatures });
+  else res.redirect('/login');
 };
 
 // GET & POST "/current-stat/weather-forecast"
 const getWF = function (req, res) {
-  if (req.query.cityName || req.query.latlng) {
-    let URL = WEATHER_API_URL;
 
-    if (req.query.cityName !== '') {
-      const cityName = req.query.cityName.trim();
-      URL += `&q=${cityName}`;
-    } else if (req.query.latlng) {
-      const [lat, lng] = req.query.latlng.split(' ');
-      URL += `&lat=${lat}&lon=${lng}`;
-    }
+  // if authenticated,
+  if (req.isAuthenticated()) {
+    
+    // check if there exist inputs, if yes then handle requests
+    if (req.query.cityName || req.query.latlng) {
+      let URL = WEATHER_API_URL;
 
-    https.get(URL, response => {
-      response.on('data', data => {
-        const weatherData = JSON.parse(data);
-        const [temp, desc, icon] = [
-          weatherData.main.temp,
-          weatherData.weather[0].description,
-          weatherData.weather[0].icon,
-        ];
+      if (req.query.cityName !== '') {
+        const cityName = req.query.cityName.trim();
+        URL += `&q=${cityName}`;
+      } else if (req.query.latlng) {
+        const [lat, lng] = req.query.latlng.split(' ');
+        URL += `&lat=${lat}&lon=${lng}`;
+      }
 
-        const imgURL = WEATHER_API_IMG_URL + `${icon}@2x.png`;
-        const weatherParams = {
-          temp,
-          desc,
-          imgURL,
-        };
+      https.get(URL, response => {
+        response.on('data', data => {
+          const weatherData = JSON.parse(data);
+          const [temp, desc, icon] = [
+            weatherData.main.temp,
+            weatherData.weather[0].description,
+            weatherData.weather[0].icon,
+          ];
 
-        res.render('auth/current-stat/weather-forecast-result', {
-          weatherParams,
+          const imgURL = WEATHER_API_IMG_URL + `${icon}@2x.png`;
+          const weatherParams = {
+            temp,
+            desc,
+            imgURL,
+          };
+
+          res.render('auth/current-stat/weather-forecast-result', {
+            weatherParams,
+          });
         });
       });
-    });
+
+      // else render page normally
+    } else {
+      res.render('auth/current-stat/weather-forecast');
+    }
+
+    // if no auth
   } else {
-    res.render('auth/current-stat/weather-forecast');
+    res.redirect('/login');
   }
 };
 
 // GET "/current-stat/view-land"
 const getViewLand = function (req, res) {
-  res.render('auth/current-stat/view-land');
+  if (req.isAuthenticated()) res.render('auth/current-stat/view-land');
+  else res.redirect('/login');
 };
 
 // GET "/current-stat/crop-details"
 const getCropDetails = async function (req, res) {
-  SensorsCurrData.find((err, values) => {
-    if (err) throw err;
-    else {
-      values = values[0];
-      console.log(values);
+  if (req.isAuthenticated()) {
+    SensorsCurrData.find((err, values) => {
+      if (err) throw err;
+      else {
+        values = values[0];
+        console.log(values);
 
-      res.render('auth/current-stat/crop-details', { values });
-    }
-  });
+        res.render('auth/current-stat/crop-details', { values });
+      }
+    });
+  } else res.redirect('/login');
 };
 
 // GET "/settings"
 const settings = function (req, res) {
-  res.render('auth/settings');
+  if (req.isAuthenticated()) res.render('auth/settings');
+  else res.redirect('/login');
+};
+
+// GET "/logout"
+const logout = function (req, res) {
+  req.logout();
+  res.redirect('/');
 };
 
 // GET "/all"
@@ -156,6 +206,7 @@ exports.routes = {
   getCropDetails,
 
   settings,
+  logout,
 
   all,
 };
