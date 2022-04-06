@@ -1,6 +1,7 @@
 const https = require('https');
 const passport = require('passport');
-const { User, SensorsCurrData } = require('./model.js');
+const { User, UserData, SensorsCurrData } = require('./model.js');
+const { helpers } = require('./utils.js');
 const { WEATHER_API_URL, WEATHER_API_IMG_URL } = require('./config.js');
 
 const {
@@ -61,6 +62,15 @@ const postRegister = function (req, res) {
         console.log(err);
         res.redirect('/register');
       } else {
+        // store userdata
+        const userData = new UserData({
+          email: req.body.username,
+          name: req.body.name,
+          phone: req.body.phone,
+        });
+
+        userData.save();
+
         passport.authenticate('local')(req, res, function () {
           res.redirect('/home');
         });
@@ -69,39 +79,52 @@ const postRegister = function (req, res) {
   );
 };
 
+// AFTER AUTH
+
 // GET "/home"
 const getHome = function (req, res) {
-  if (req.isAuthenticated()) res.render('auth/home', { homeProducts });
-  else res.redirect('/login');
+  helpers.checkIfAuthThenRenderOrRedirect(
+    req,
+    res,
+    'auth/home',
+    [['homeProducts', homeProducts]],
+    '/login'
+  );
 };
 
-// TODO add auth check
 // GET "/products/precision-irrigation"
 const getPI = function (req, res) {
-  if (req.isAuthenticated()) res.render('auth/products/precision-irrigation');
-  else res.redirect('/login');
+  helpers.checkIfAuthThenRenderOrRedirect(
+    req,
+    res,
+    'auth/products/precision-irrigation'
+  );
 };
 
 // GET "/products/crop-suggestion"
 const getCS = function (req, res) {
-  if (req.isAuthenticated())
-    res.render('auth/products/crop-suggestion', { csFeatures });
-  else res.redirect('/login');
+  helpers.checkIfAuthThenRenderOrRedirect(
+    req,
+    res,
+    'auth/products/crop-suggestion',
+    [['csFeatures', csFeatures]]
+  );
 };
 
 // GET "/products/fertilizer-suggestion"
 const getFS = function (req, res) {
-  if (req.isAuthenticated())
-    res.render('auth/products/fertilizer-suggestion', { fsFeatures });
-  else res.redirect('/login');
+  helpers.checkIfAuthThenRenderOrRedirect(
+    req,
+    res,
+    'auth/products/fertilizer-suggestion',
+    [['fsFeatures', fsFeatures]]
+  );
 };
 
 // GET & POST "/current-stat/weather-forecast"
 const getWF = function (req, res) {
-
   // if authenticated,
   if (req.isAuthenticated()) {
-    
     // check if there exist inputs, if yes then handle requests
     if (req.query.cityName || req.query.latlng) {
       let URL = WEATHER_API_URL;
@@ -130,15 +153,30 @@ const getWF = function (req, res) {
             imgURL,
           };
 
-          res.render('auth/current-stat/weather-forecast-result', {
-            weatherParams,
-          });
+          // TODO refactor unnecessary checks here //
+
+          // res.render('auth/current-stat/weather-forecast-result', {
+          //   weatherParams,
+          // });
+
+          helpers.checkIfAuthThenRenderOrRedirect(
+            req,
+            res,
+            'auth/current-stat/weather-forecast-result',
+            [['weatherParams', weatherParams]]
+          );
+
         });
       });
 
       // else render page normally
     } else {
-      res.render('auth/current-stat/weather-forecast');
+      // res.render('auth/current-stat/weather-forecast');
+      helpers.checkIfAuthThenRenderOrRedirect(
+        req,
+        res,
+        'auth/current-stat/weather-forecast'
+      );
     }
 
     // if no auth
@@ -149,8 +187,11 @@ const getWF = function (req, res) {
 
 // GET "/current-stat/view-land"
 const getViewLand = function (req, res) {
-  if (req.isAuthenticated()) res.render('auth/current-stat/view-land');
-  else res.redirect('/login');
+  helpers.checkIfAuthThenRenderOrRedirect(
+    req,
+    res,
+    'auth/current-stat/view-land'
+  );
 };
 
 // GET "/current-stat/crop-details"
@@ -162,7 +203,13 @@ const getCropDetails = async function (req, res) {
         values = values[0];
         console.log(values);
 
-        res.render('auth/current-stat/crop-details', { values });
+        // TODO skip unnecessary checks //
+        helpers.checkIfAuthThenRenderOrRedirect(
+          req,
+          res,
+          'auth/current-stat/crop-details',
+          [['values', values]]
+        );
       }
     });
   } else res.redirect('/login');
@@ -170,8 +217,7 @@ const getCropDetails = async function (req, res) {
 
 // GET "/settings"
 const settings = function (req, res) {
-  if (req.isAuthenticated()) res.render('auth/settings');
-  else res.redirect('/login');
+  helpers.checkIfAuthThenRenderOrRedirect(req, res, 'auth/settings');
 };
 
 // GET "/logout"
