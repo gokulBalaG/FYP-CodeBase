@@ -153,29 +153,29 @@ const getWF = function (req, res) {
             imgURL,
           };
 
-          // TODO refactor unnecessary checks here //
+          // add objects to render
+          const toRenderObj = helpers.addObjsToRender({}, [
+            ['weatherParams', weatherParams],
+          ]);
 
-          // res.render('auth/current-stat/weather-forecast-result', {
-          //   weatherParams,
-          // });
-
-          helpers.checkIfAuthThenRenderOrRedirect(
+          // add name in navbar and render
+          helpers.addNameAndRender(
             req,
             res,
             'auth/current-stat/weather-forecast-result',
-            [['weatherParams', weatherParams]]
+            toRenderObj
           );
-
         });
       });
 
       // else render page normally
     } else {
-      // res.render('auth/current-stat/weather-forecast');
-      helpers.checkIfAuthThenRenderOrRedirect(
+      // add name in navbar and render
+      helpers.addNameAndRender(
         req,
         res,
-        'auth/current-stat/weather-forecast'
+        'auth/current-stat/weather-forecast',
+        {}
       );
     }
 
@@ -195,7 +195,7 @@ const getViewLand = function (req, res) {
 };
 
 // GET "/current-stat/crop-details"
-const getCropDetails = async function (req, res) {
+const getCropDetails = function (req, res) {
   if (req.isAuthenticated()) {
     SensorsCurrData.find((err, values) => {
       if (err) throw err;
@@ -203,12 +203,15 @@ const getCropDetails = async function (req, res) {
         values = values[0];
         console.log(values);
 
-        // TODO skip unnecessary checks //
-        helpers.checkIfAuthThenRenderOrRedirect(
+        // add objects to render
+        const toRenderObj = helpers.addObjsToRender({}, [['values', values]]);
+
+        // add name in mavbar and render
+        helpers.addNameAndRender(
           req,
           res,
           'auth/current-stat/crop-details',
-          [['values', values]]
+          toRenderObj
         );
       }
     });
