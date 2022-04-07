@@ -15,9 +15,10 @@
         <div class="card-body">
 
           <form action="/login" method="POST">
+            
             <div class="form-group form-field">
               <label for="email">Email</label>
-              <input type="email" class="form-control" name="email">
+              <input type="email" class="form-control" name="username">
             </div>
 
             <div class="form-group form-field">
@@ -26,6 +27,13 @@
             </div>
 
             <button type="submit" class="btn btn-dark">Login</button>
+
+            <p class="form-btn-separator-text-p">or</p>
+
+            <a href="/register">
+              <button type="button" class="btn btn-dark">Signup</button>
+            </a>
+
           </form>
 
         </div>
