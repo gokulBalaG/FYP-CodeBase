@@ -3,9 +3,9 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const passport = require('passport');
 
-const { EXPRESS_SESSION_SECRET } = require('./src/config.js');
-const { routes } = require('./src/routes.js');
-const { User } = require('./src/model.js');
+const { EXPRESS_SESSION_SECRET } = require('./config/config.js');
+const { routes } = require('./routes/routes.js');
+const { User } = require('./models/model.js');
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -14,11 +14,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.set('views', [__dirname + '/views', __dirname + '/views/auth']);
 
-const [slash, products, currStat] = ['/', '/products', '/current-stat'];
-
-app.use(slash, express.static('public'));
-app.use(products, express.static('public'));
-app.use(currStat, express.static('public'));
+// replacing static urls for css and images with leading "/" like "/css/global.css" removes the issue of having multiple app.use() statements
+app.use(express.static('public'));
 
 // auth part
 
@@ -46,19 +43,19 @@ app.route('/register').get(routes.getRegister).post(routes.postRegister);
 
 // Routes after authentication
 
-app.get('/home', routes.getHome);
+app.get(`/user/home`, routes.getHome);
 
-app.get('/settings', routes.settings);
+app.get(`/user/settings`, routes.settings);
 
-app.get(`${products}/precision-irrigation`, routes.getPI);
-app.get(`${products}/crop-suggestion`, routes.getCS);
-app.get(`${products}/fertilizer-suggestion`, routes.getFS);
+app.get(`/user/products/precision-irrigation`, routes.getPI);
+app.get(`/user/products/crop-suggestion`, routes.getCS);
+app.get(`/user/products/fertilizer-suggestion`, routes.getFS);
 
-app.get(`${currStat}/weather-forecast`, routes.getWF);
-app.get(`${currStat}/view-land`, routes.getViewLand);
-app.get(`${currStat}/crop-details`, routes.getCropDetails);
+app.get(`/user/current-stat/weather-forecast`, routes.getWF);
+app.get(`/user/current-stat/view-land`, routes.getViewLand);
+app.get(`/user/current-stat/crop-details`, routes.getCropDetails);
 
-app.get('/logout', routes.logout);
+app.get(`/user/logout`, routes.logout);
 
 app.all('*', routes.all);
 

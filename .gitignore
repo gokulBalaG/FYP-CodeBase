@@ -1,5 +1,4 @@
 .env
 .prettierrc
 notes.txt
-datasets/
 node_modules/

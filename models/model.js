@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const passportLocalMongoose = require('passport-local-mongoose');
-const dbConn = require('./database.js');
+const dbConn = require('../config/db.js');
 
 // USER COLLECTION (for auth)
 

@@ -1,6 +1,6 @@
 <%- include('partials/header') %>
 
-<link rel="stylesheet" href="css/home.css" />
+<link rel="stylesheet" href="/css/home.css" />
 
 <title>Smart Agricare | Home</title>
 </head>
@@ -13,11 +13,11 @@
 <div class="main">
 
     <div class="current-stat-link-div">
-        <a href="/current-stat/weather-forecast" class="current-stat-link">Weather forecast</a>
+        <a href="/user/current-stat/weather-forecast" class="current-stat-link">Weather forecast</a>
     
-        <a href="/current-stat/view-land" class="current-stat-link">View land status</a>
+        <a href="/user/current-stat/view-land" class="current-stat-link">View land status</a>
     
-        <a href="/current-stat/crop-details" class="current-stat-link">Crop Details</a>
+        <a href="/user/current-stat/crop-details" class="current-stat-link">Crop Details</a>
     </div>
 
     <% homeProducts.forEach((product, i) => { %>
@@ -40,7 +40,7 @@
 
 <%- include('partials/footer') %>
 
-<script src="js/home.js"></script>
+<script src="/js/home.js"></script>
 
 </body>
 </html>

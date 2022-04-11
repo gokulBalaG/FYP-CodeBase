@@ -1,4 +1,4 @@
-const { UserData } = require('./model.js');
+const { UserData } = require('../models/model.js');
 
 // loop through each pair to get name and obj and insert into renderObj
 const addObjsToRender = function (toRenderObj, objsToAddWithName) {

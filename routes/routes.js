@@ -1,8 +1,8 @@
 const https = require('https');
 const passport = require('passport');
-const { User, UserData, SensorsCurrData } = require('./model.js');
-const { helpers } = require('./utils.js');
-const { WEATHER_API_URL, WEATHER_API_IMG_URL } = require('./config.js');
+const { User, UserData, SensorsCurrData } = require('../models/model.js');
+const { helpers } = require('../utils/utils.js');
+const { WEATHER_API_URL, WEATHER_API_IMG_URL } = require('../config/config.js');
 
 const {
   products,
@@ -10,7 +10,7 @@ const {
   homeProducts,
   fsFeatures,
   csFeatures,
-} = require('./data.js');
+} = require('../models/data.js');
 
 // Route functions
 
@@ -24,7 +24,7 @@ const getIndex = function (req, res) {
 
 // GET "/login"
 const getLogin = function (req, res) {
-  if (req.isAuthenticated()) res.redirect('/home');
+  if (req.isAuthenticated()) res.redirect('/user/home');
   else res.render('login');
 };
 
@@ -40,7 +40,7 @@ const postLogin = function (req, res) {
       console.log(err);
     } else {
       passport.authenticate('local')(req, res, function () {
-        res.redirect('/home');
+        res.redirect('/user/home');
       });
     }
   });
@@ -48,7 +48,7 @@ const postLogin = function (req, res) {
 
 // GET "/register"
 const getRegister = function (req, res) {
-  if (req.isAuthenticated()) res.redirect('/home');
+  if (req.isAuthenticated()) res.redirect('/user/home');
   else res.render('register');
 };
 
@@ -72,7 +72,7 @@ const postRegister = function (req, res) {
         userData.save();
 
         passport.authenticate('local')(req, res, function () {
-          res.redirect('/home');
+          res.redirect('/user/home');
         });
       }
     }
@@ -196,6 +196,7 @@ const getViewLand = function (req, res) {
 
 // GET "/current-stat/crop-details"
 const getCropDetails = function (req, res) {
+  console.log(req.URL);
   if (req.isAuthenticated()) {
     SensorsCurrData.find((err, values) => {
       if (err) throw err;
