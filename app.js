@@ -4,20 +4,18 @@ const session = require('express-session');
 const passport = require('passport');
 
 const { EXPRESS_SESSION_SECRET } = require('./config/config.js');
-const { routes } = require('./routes/routes.js');
+const { routes, middlewares } = require('./routes/routes.js');
 const { User } = require('./models/model.js');
 
 const PORT = process.env.PORT || 3000;
 const app = express();
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.set('views', [__dirname + '/views', __dirname + '/views/auth']);
 
-// replacing static urls for css and images with leading "/" like "/css/global.css" removes the issue of having multiple app.use() statements
-app.use(express.static('public'));
-
-// auth part
+// Authentication setup
 
 app.use(
   session({
@@ -33,6 +31,11 @@ passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+// middlewares for "/user" route
+
+app.use('/user', middlewares.authCheck);
+app.use('/user', middlewares.addNameToNav);
+
 // Routes
 
 app.get('/', routes.getIndex);
@@ -41,7 +44,7 @@ app.route('/login').get(routes.getLogin).post(routes.postLogin);
 
 app.route('/register').get(routes.getRegister).post(routes.postRegister);
 
-// Routes after authentication
+// Routes after authentication (leading with "/user")
 
 app.get(`/user/home`, routes.getHome);
 
@@ -59,6 +62,4 @@ app.get(`/user/logout`, routes.logout);
 
 app.all('*', routes.all);
 
-app.listen(PORT, () => {
-  console.log(`Server is runnning on port ${PORT}!`);
-});
+app.listen(PORT, () => console.log(`Server is running on port ${PORT}!`));
