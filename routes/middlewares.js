@@ -1,3 +1,5 @@
+const { UserData } = require('../models/model.js');
+
 const authCheck = function (req, res, next) {
   if (req.isAuthenticated()) next();
   else res.redirect('/login');

@@ -1,6 +1,7 @@
 const passport = require('passport');
 const { products, featureIcons } = require('../models/data.js');
 const { User, UserData } = require('../models/model.js');
+const { PASSWORD_MIN_LEN } = require('../config/config.js');
 
 // Route functions
 
@@ -14,7 +15,8 @@ const getIndex = function (req, res) {
 
 // GET "/login"
 const getLogin = function (req, res) {
-  res.render('login');
+  if (req.isAuthenticated()) res.redirect('/user/home');
+  else res.render('login', { pwMinLen: PASSWORD_MIN_LEN });
 };
 
 // POST "/login"
@@ -28,16 +30,17 @@ const postLogin = function (req, res) {
     if (err) {
       console.log(err);
     } else {
-      passport.authenticate('local')(req, res, function () {
-        res.redirect('/user/home');
-      });
+      passport.authenticate('local')(req, res, () =>
+        res.redirect('/user/home')
+      );
     }
   });
 };
 
 // GET "/register"
 const getRegister = function (req, res) {
-  res.render('register');
+  if (req.isAuthenticated()) res.redirect('/user/home');
+  else res.render('register', { pwMinLen: PASSWORD_MIN_LEN });
 };
 
 // POST "/register"
