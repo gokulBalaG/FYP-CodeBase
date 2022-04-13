@@ -1,4 +1,20 @@
 const { UserData } = require('../models/model.js');
+const { DB_URL } = require('../config/config.js');
+
+const fs = require('fs');
+const logFile = 'routeHits.log';
+
+const logger = function (req, res, next) {
+  if (DB_URL.includes('localhost')) {
+    const toLog = `hit: "${req.url}" at: ${String(Date()).slice(0, 25)}\n`;
+    console.log(toLog.slice(0, -1));
+
+    fs.appendFileSync(logFile, toLog, err => {
+      if (err) throw err;
+    });
+  }
+  next();
+};
 
 const authCheck = function (req, res, next) {
   if (req.isAuthenticated()) next();
@@ -15,6 +31,7 @@ const addNameToNav = function (req, res, next) {
 };
 
 exports.middlewares = {
+  logger,
   authCheck,
   addNameToNav,
 };

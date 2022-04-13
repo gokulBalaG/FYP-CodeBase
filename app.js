@@ -31,8 +31,10 @@ passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-// middlewares for "/user" route
+// middleware for logging
+app.use(middlewares.logger);
 
+// middlewares for "/user" route
 app.use('/user', middlewares.authCheck);
 app.use('/user', middlewares.addNameToNav);
 
@@ -43,6 +45,9 @@ app.get('/', routes.getIndex);
 app.route('/login').get(routes.getLogin).post(routes.postLogin);
 
 app.route('/register').get(routes.getRegister).post(routes.postRegister);
+
+// only requests from client side js
+app.get('/checkIfUsername', routes.checkIfUsername);
 
 // Routes after authentication (leading with "/user")
 
