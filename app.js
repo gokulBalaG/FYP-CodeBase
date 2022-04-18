@@ -1,67 +1,45 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const session = require('express-session');
-const passport = require('passport');
-
-const { EXPRESS_SESSION_SECRET } = require('./src/config.js');
-const { routes } = require('./src/routes.js');
-const { User } = require('./src/model.js');
+const { routes, middlewares } = require('./routes/routes.js');
+const { initApp } = require('./config/initApp.js');
 
 const PORT = process.env.PORT || 3000;
-const app = express();
+const app = initApp(__dirname);
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.set('view engine', 'ejs');
-app.set('views', [__dirname + '/views', __dirname + '/views/auth']);
+app.use(middlewares.logger);
 
-const [slash, products, currStat] = ['/', '/products', '/current-stat'];
-
-app.use(slash, express.static('public'));
-app.use(products, express.static('public'));
-app.use(currStat, express.static('public'));
-
-// auth part
-
-app.use(
-  session({
-    secret: EXPRESS_SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
-  })
-);
-
-app.use(passport.initialize());
-app.use(passport.session());
-passport.use(User.createStrategy());
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+// middlewares for "/user" route
+app.use('/user', middlewares.authCheck);
+app.use('/user', middlewares.addNameToNav);
 
 // Routes
 
 app.get('/', routes.getIndex);
 
-app.route('/login').get(routes.getLogin).post(routes.postLogin);
+app
+  .route('/login')
+  .get(routes.getLogin)
+  .post(middlewares.authenticateLogin, routes.postLogin);
 
 app.route('/register').get(routes.getRegister).post(routes.postRegister);
 
-// Routes after authentication
+// only requests from client side js
+app.get('/checkIfUsername', routes.checkIfUsername);
 
-app.get('/home', routes.getHome);
+// Routes after authentication (leading with "/user")
 
-app.get('/settings', routes.settings);
+app.get(`/user/home`, routes.getHome);
 
-app.get(`${products}/precision-irrigation`, routes.getPI);
-app.get(`${products}/crop-suggestion`, routes.getCS);
-app.get(`${products}/fertilizer-suggestion`, routes.getFS);
+app.get(`/user/settings`, routes.settings);
 
-app.get(`${currStat}/weather-forecast`, routes.getWF);
-app.get(`${currStat}/view-land`, routes.getViewLand);
-app.get(`${currStat}/crop-details`, routes.getCropDetails);
+app.get(`/user/products/precision-irrigation`, routes.getPI);
+app.get(`/user/products/crop-suggestion`, routes.getCS);
+app.get(`/user/products/fertilizer-suggestion`, routes.getFS);
 
-app.get('/logout', routes.logout);
+app.get(`/user/current-stat/weather-forecast`, routes.getWF);
+app.get(`/user/current-stat/view-land`, routes.getViewLand);
+app.get(`/user/current-stat/crop-details`, routes.getCropDetails);
+
+app.get(`/user/logout`, routes.logout);
 
 app.all('*', routes.all);
 
-app.listen(PORT, () => {
-  console.log(`Server is runnning on port ${PORT}!`);
-});
+app.listen(PORT, () => console.log(`Server is running on port ${PORT}!`));
