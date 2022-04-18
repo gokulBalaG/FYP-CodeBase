@@ -1,37 +1,9 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const session = require('express-session');
-const passport = require('passport');
-
-const { EXPRESS_SESSION_SECRET } = require('./config/config.js');
 const { routes, middlewares } = require('./routes/routes.js');
-const { User } = require('./models/model.js');
+const { initApp } = require('./config/initApp.js');
 
 const PORT = process.env.PORT || 3000;
-const app = express();
+const app = initApp(__dirname);
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static('public'));
-app.set('view engine', 'ejs');
-app.set('views', [__dirname + '/views', __dirname + '/views/auth']);
-
-// Authentication setup
-
-app.use(
-  session({
-    secret: EXPRESS_SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
-  })
-);
-
-app.use(passport.initialize());
-app.use(passport.session());
-passport.use(User.createStrategy());
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
-
-// middleware for logging
 app.use(middlewares.logger);
 
 // middlewares for "/user" route
@@ -42,7 +14,10 @@ app.use('/user', middlewares.addNameToNav);
 
 app.get('/', routes.getIndex);
 
-app.route('/login').get(routes.getLogin).post(routes.postLogin);
+app
+  .route('/login')
+  .get(routes.getLogin)
+  .post(middlewares.authenticateLogin, routes.postLogin);
 
 app.route('/register').get(routes.getRegister).post(routes.postRegister);
 

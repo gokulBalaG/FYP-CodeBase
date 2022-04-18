@@ -1,5 +1,7 @@
 const { UserData } = require('../models/model.js');
 const { DB_URL } = require('../config/config.js');
+const passport = require('passport');
+
 
 const fs = require('fs');
 const logFile = 'routeHits.log';
@@ -30,8 +32,15 @@ const addNameToNav = function (req, res, next) {
   });
 };
 
+const authenticateLogin = passport.authenticate('local', {
+  // failure redirect to this route to render error on page
+  failureRedirect: '/login?success=false',
+  failureMessage: true,
+})
+
 exports.middlewares = {
   logger,
   authCheck,
   addNameToNav,
+  authenticateLogin
 };

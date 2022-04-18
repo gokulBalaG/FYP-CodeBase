@@ -26,4 +26,23 @@
 
 .error-text {
   color: #ff0000;
+  display: inline;
+}
+
+.error-on-submit {
+  display: inline-block;
+  padding: 5px 10px 5px 10px;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+  background-color: var(--bg-color);
+  margin-bottom: 10px;
+}
+
+.span-close-btn {
+  color: #808080;
+  margin-left: 10px;
+}
+
+.span-close-btn:hover {
+  cursor: pointer;
 }

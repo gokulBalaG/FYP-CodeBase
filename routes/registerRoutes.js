@@ -8,26 +8,6 @@ const getRegister = function (req, res) {
   else res.render('register', { pwMinLen: PASSWORD_MIN_LEN });
 };
 
-// only accessed by code
-// GET "/checkIfUsername?username=<anything>"
-const checkIfUsername = function (req, res) {
-  const incomingUsername = req.query.username.trim();
-
-  UserData.findOne({ email: incomingUsername }, function (err, foundUser) {
-    if (err) console.log(err);
-
-    if (foundUser) {
-      return res.status(200).json({
-        userExists: true,
-      });
-    } else {
-      return res.status(200).json({
-        userExists: false,
-      });
-    }
-  });
-};
-
 // POST "/register"
 const postRegister = function (req, res) {
   User.register(
@@ -57,5 +37,4 @@ const postRegister = function (req, res) {
 exports.registerRoutes = {
   getRegister,
   postRegister,
-  checkIfUsername,
 };
