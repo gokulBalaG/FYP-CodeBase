@@ -23,3 +23,9 @@ exports.EXPRESS_SESSION_SECRET = process.env.EXPRESS_SESSION_SECRET;
 exports.PASSWORD_MIN_LEN = 8;
 
 // SENSOR DATA DATETIME FORMAT: "dd-mm-yyyy hh:mm"
+
+// EMAIL STUFF
+
+exports.EMAIL_SERVICE= process.env.EMAIL_SERVICE;
+exports.EMAIL = process.env.EMAIL;
+exports.EMAIL_PW = process.env.EMAIL_PW;

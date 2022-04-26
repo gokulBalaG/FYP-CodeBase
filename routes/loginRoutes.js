@@ -1,6 +1,8 @@
 const passport = require('passport');
 const { User } = require('../models/model.js');
 const { PASSWORD_MIN_LEN } = require('../config/config.js');
+const { sendEmail } = require('../utils/sendEmail.js');
+const { newLoginSubject, newLoginContent } = require('../models/staticData.js');
 
 // GET "/login"
 const getLogin = function (req, res) {
@@ -25,9 +27,18 @@ const postLogin = function (req, res) {
     if (err) {
       console.log(err);
     } else {
-      passport.authenticate('local')(req, res, () =>
-        res.redirect('/user/home')
-      );
+      passport.authenticate('local')(req, res, () => {
+        const date = String(Date());
+        const datePart = date.slice(0, 15);
+        const time = date.slice(16, 24);
+        const dateString = `${datePart} at ${time}`;
+
+        const content = `${newLoginContent} <strong>${dateString}</strong>`;
+
+        // send email on login
+        sendEmail(req.body.username, newLoginSubject, content);
+        res.redirect('/user/home');
+      });
     }
   });
 };

@@ -3,7 +3,7 @@ const { afterAuthRoutes } = require('./afterAuth.js');
 const { registerRoutes } = require('./registerRoutes.js');
 const { loginRoutes } = require('./loginRoutes.js');
 const { getWF } = require('./weatherForecast.js');
-const { checkIfUsername } = require('./utils.js');
+const { checkIfUsername } = require('./helper.js');
 
 exports.routes = {
   ...afterAuthRoutes,
