@@ -26,6 +26,6 @@ exports.PASSWORD_MIN_LEN = 8;
 
 // EMAIL STUFF
 
-exports.EMAIL_SERVICE= process.env.EMAIL_SERVICE;
+exports.EMAIL_SERVICE = process.env.EMAIL_SERVICE;
 exports.EMAIL = process.env.EMAIL;
 exports.EMAIL_PW = process.env.EMAIL_PW;

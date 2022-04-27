@@ -7,13 +7,9 @@ mongoose.connect(DB_URL, {
 
 const conn = mongoose.connection;
 
-conn.on('connected', function () {
-  console.log('Database is connected successfully');
-});
+conn.on('connected', () => console.log('Database connected'));
 
-conn.on('disconnected', function () {
-  console.log('Database is disconnected successfully');
-});
+conn.on('disconnected', () => console.log('Database disconnected'));
 
 conn.on('error', console.error.bind(console, 'Connection error:'));
 

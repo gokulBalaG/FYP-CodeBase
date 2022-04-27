@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const passport = require('passport');
 const { EXPRESS_SESSION_SECRET } = require('./config.js');
-const { User } = require('../models/model.js');
+const { User } = require('../model/model.js');
 
 exports.initApp = function (rootDir) {
   const app = express();

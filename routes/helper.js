@@ -1,4 +1,4 @@
-const { UserData } = require('../models/model.js');
+const { UserDetails } = require('../model/model.js');
 
 // only accessed by code
 // GET "/checkIfUsername?username=<anything>"
@@ -6,7 +6,7 @@ const { UserData } = require('../models/model.js');
 exports.checkIfUsername = function (req, res) {
   const incomingUsername = req.query.username.trim();
 
-  UserData.findOne({ email: incomingUsername }, function (err, foundUser) {
+  UserDetails.findOne({ email: incomingUsername }, function (err, foundUser) {
     if (err) console.log(err);
 
     if (foundUser) {

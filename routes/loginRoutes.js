@@ -1,8 +1,8 @@
 const passport = require('passport');
-const { User } = require('../models/model.js');
 const { PASSWORD_MIN_LEN } = require('../config/config.js');
+const { User } = require('../model/model.js');
 const { sendEmail } = require('../utils/sendEmail.js');
-const { newLoginSubject, newLoginContent } = require('../models/staticData.js');
+const { newLoginSubject, newLoginContent } = require('../config/staticData.js');
 
 // GET "/login"
 const getLogin = function (req, res) {
