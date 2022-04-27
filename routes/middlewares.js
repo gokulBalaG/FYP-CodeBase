@@ -1,6 +1,7 @@
-const { UserData } = require('../models/model.js');
-const { DB_URL } = require('../config/config.js');
 const passport = require('passport');
+
+const { DB_URL } = require('../config/config.js');
+const { UserDetails } = require('../model/model.js');
 
 
 const fs = require('fs');
@@ -24,10 +25,10 @@ const authCheck = function (req, res, next) {
 };
 
 const addNameToNav = function (req, res, next) {
-  UserData.findOne({ email: req.user.username }, function (err, foundUserData) {
+  UserDetails.findOne({ email: req.user.username }, function (err, foundUserDetails) {
     // to pass on params to next middlewares use res.local.<anything> = 'something'
     res.locals.toRenderObj = {};
-    res.locals.toRenderObj['name'] = foundUserData.name;
+    res.locals.toRenderObj['name'] = foundUserDetails.name;
     next();
   });
 };
