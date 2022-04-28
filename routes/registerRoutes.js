@@ -25,6 +25,7 @@ const postRegister = function (req, res) {
           email: req.body.username,
           name: req.body.name,
           phone: req.body.phone,
+          verified: false,
         });
         userDetails.save();
 

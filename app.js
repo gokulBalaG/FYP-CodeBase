@@ -1,45 +1,45 @@
-const { routes, middlewares } = require('./routes/routes.js');
+const { r, mw } = require('./routes/routes.js');
 const { initApp } = require('./config/initApp.js');
 
 const PORT = process.env.PORT || 3000;
 const app = initApp(__dirname);
 
-app.use(middlewares.logger);
+app.use(mw.logger);
 
 // middlewares for "/user" route
-app.use('/user', middlewares.authCheck);
-app.use('/user', middlewares.addNameToNav);
+app.use('/user', mw.authCheck);
+app.use('/user', mw.addNameToNav);
 
 // Routes
 
-app.get('/', routes.getIndex);
+app.get('/', r.getIndex);
 
 app
   .route('/login')
-  .get(routes.getLogin)
-  .post(middlewares.authenticateLogin, routes.postLogin);
+  .get(r.getLogin)
+  .post(mw.authenticateLogin, r.postLogin);
 
-app.route('/register').get(routes.getRegister).post(routes.postRegister);
+app.route('/register').get(r.getRegister).post(r.postRegister);
 
 // only requests from client side js
-app.get('/checkIfUsername', routes.checkIfUsername);
+app.get('/checkIfUsername', r.checkIfUsername);
 
 // Routes after authentication (leading with "/user")
 
-app.get(`/user/home`, routes.getHome);
+app.get(`/user/home`, r.getHome);
 
-app.get(`/user/settings`, routes.settings);
+app.get(`/user/settings`, r.settings);
 
-app.get(`/user/products/precision-irrigation`, routes.getPI);
-app.get(`/user/products/crop-suggestion`, routes.getCS);
-app.get(`/user/products/fertilizer-suggestion`, routes.getFS);
+app.get(`/user/products/precision-irrigation`, r.getPI);
+app.get(`/user/products/crop-suggestion`, r.getCS);
+app.get(`/user/products/fertilizer-suggestion`, r.getFS);
 
-app.get(`/user/current-stat/weather-forecast`, routes.getWF);
-app.get(`/user/current-stat/view-land`, routes.getViewLand);
-app.get(`/user/current-stat/crop-details`, routes.getCropDetails);
+app.get(`/user/current-stat/weather-forecast`, r.getWF);
+app.get(`/user/current-stat/view-land`, r.getViewLand);
+app.get(`/user/current-stat/crop-details`, r.getCropDetails);
 
-app.get(`/user/logout`, routes.logout);
+app.get(`/user/logout`, r.logout);
 
-app.all('*', routes.all);
+app.all('*', r.all);
 
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}!`));

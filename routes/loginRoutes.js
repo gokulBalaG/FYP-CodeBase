@@ -24,19 +24,19 @@ const postLogin = function (req, res) {
   });
 
   req.login(user, function (err) {
-    if (err) {
-      console.log(err);
-    } else {
+    if (err) console.log(err);
+    else {
       passport.authenticate('local')(req, res, () => {
-        const date = String(Date());
-        const datePart = date.slice(0, 15);
-        const time = date.slice(16, 24);
-        const dateString = `${datePart} at ${time}`;
+        // const date = String(Date());
+        // const datePart = date.slice(0, 15);
+        // const time = date.slice(16, 24);
+        // const dateString = `${datePart} at ${time}`;
 
-        const content = `${newLoginContent} <strong>${dateString}</strong>`;
+        // const content = `${newLoginContent} <strong>${dateString}</strong>`;
 
-        // send email on login
-        sendEmail(req.body.username, newLoginSubject, content);
+        // // send email on login - disabled temporarily
+        // sendEmail(req.body.username, newLoginSubject, content);
+
         res.redirect('/user/home');
       });
     }

@@ -1,5 +1,6 @@
 .env
 .prettierrc
 notes.txt
+view-land-plot.png
 routeHits.log
 node_modules/

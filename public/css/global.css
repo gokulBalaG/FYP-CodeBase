@@ -17,6 +17,12 @@
   --white: #ffffff;
   --black: #000000;
   --gray: #444444;
+
+  /* view-land.ejs */
+  --table-border: #ccc;
+  --table-border-bottom: #ddd;
+  --table-nth-child-bg: #f8f8f8;
+  --on-click-color: #d3d3d3;
 }
 
 * {

@@ -1,18 +1,8 @@
 const { homeProducts, fsFeatures, csFeatures } = require('../model/data.js');
-const { SensorData } = require('../model/model.js');
 
 // GET "user/current-stat/crop-details"
 const getCropDetails = function (req, res) {
-  SensorData.find((err, values) => {
-    if (err) throw err;
-    else {
-      values = values[0];
-      console.log(values);
-
-      res.locals.toRenderObj['values'] = values;
-      res.render('auth/current-stat/crop-details', res.locals.toRenderObj);
-    }
-  });
+  res.render('auth/current-stat/crop-details', res.locals.toRenderObj);
 };
 
 // GET "user/home"
@@ -38,11 +28,6 @@ const getFS = function (req, res) {
   res.render('auth/products/fertilizer-suggestion', res.locals.toRenderObj);
 };
 
-// GET "user/current-stat/view-land"
-const getViewLand = function (req, res) {
-  res.render('auth/current-stat/view-land', res.locals.toRenderObj);
-};
-
 // GET "user/settings"
 const settings = function (req, res) {
   res.render('auth/settings', res.locals.toRenderObj);
@@ -65,7 +50,6 @@ exports.afterAuthRoutes = {
   getPI,
   getCS,
   getFS,
-  getViewLand,
   settings,
   logout,
   all,
