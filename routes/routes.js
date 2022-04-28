@@ -4,6 +4,7 @@ const { registerRoutes } = require('./registerRoutes.js');
 const { loginRoutes } = require('./loginRoutes.js');
 const { getWF } = require('./weatherForecast.js');
 const { checkIfUsername } = require('./helper.js');
+const { getViewLand } = require('./viewLand.js');
 
 exports.routes = {
   ...afterAuthRoutes,
@@ -11,6 +12,7 @@ exports.routes = {
   ...loginRoutes,
   getIndex,
   getWF,
+  getViewLand,
 
   checkIfUsername,
 };

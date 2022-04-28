@@ -13,4 +13,6 @@ conn.on('disconnected', () => console.log('Database disconnected'));
 
 conn.on('error', console.error.bind(console, 'Connection error:'));
 
+if (DB_URL.includes('localhost')) console.log('local database');
+
 module.exports = conn;

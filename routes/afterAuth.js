@@ -38,11 +38,6 @@ const getFS = function (req, res) {
   res.render('auth/products/fertilizer-suggestion', res.locals.toRenderObj);
 };
 
-// GET "user/current-stat/view-land"
-const getViewLand = function (req, res) {
-  res.render('auth/current-stat/view-land', res.locals.toRenderObj);
-};
-
 // GET "user/settings"
 const settings = function (req, res) {
   res.render('auth/settings', res.locals.toRenderObj);
@@ -65,7 +60,6 @@ exports.afterAuthRoutes = {
   getPI,
   getCS,
   getFS,
-  getViewLand,
   settings,
   logout,
   all,

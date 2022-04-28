@@ -1,5 +1,6 @@
 .env
 .prettierrc
 notes.txt
+out.png
 routeHits.log
 node_modules/
