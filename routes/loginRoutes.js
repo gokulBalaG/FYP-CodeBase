@@ -24,9 +24,8 @@ const postLogin = function (req, res) {
   });
 
   req.login(user, function (err) {
-    if (err) {
-      console.log(err);
-    } else {
+    if (err) console.log(err);
+    else {
       passport.authenticate('local')(req, res, () => {
         // const date = String(Date());
         // const datePart = date.slice(0, 15);

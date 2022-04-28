@@ -10,7 +10,7 @@
 
 <div class="tab-body">
     <div class="tab-btns-div">
-        <button class="btn-tablink btn-plot">Plot</button>
+        <button class="btn-tablink btn-plot">Chart</button>
         <button class="btn-tablink btn-table">Table</button>
     </div>
 
@@ -22,12 +22,12 @@
         <div class="table-div">
             <table>
             <tr>
-                <% labels.forEach((label) => { %>
-                <th><%= label %></th>
+                <% tableHeaders.forEach((th) => { %>
+                <th><%= th %></th>
                 <% }); %>
             </tr>
 
-            <% docs.forEach((doc) => { %>
+            <% sensorDataDocs.forEach((doc) => { %>
             <tr>
                 <td><%= doc.when %></td>
                 <td><%= doc.rainVal %></td>

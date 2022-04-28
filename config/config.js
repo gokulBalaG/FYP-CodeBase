@@ -36,10 +36,9 @@ exports.EMAIL_SERVICE = process.env.EMAIL_SERVICE;
 exports.EMAIL = process.env.EMAIL;
 exports.EMAIL_PW = process.env.EMAIL_PW;
 
-//
-//
+// 
+// 
 
-// PLOTTING GRAPH
+// PLOT IMAGE URL
 
-exports.PLOTTING_API_USERNAME = process.env.PLOTTING_API_USERNAME;
-exports.PLOTTING_API_KEY = process.env.PLOTTING_API_KEY;
+exports.PLOT_IMG = process.env.PLOT_IMG;

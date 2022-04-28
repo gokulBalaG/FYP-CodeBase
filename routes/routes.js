@@ -6,7 +6,7 @@ const { getWF } = require('./weatherForecast.js');
 const { checkIfUsername } = require('./helper.js');
 const { getViewLand } = require('./viewLand.js');
 
-exports.routes = {
+exports.r = {
   ...afterAuthRoutes,
   ...registerRoutes,
   ...loginRoutes,
@@ -18,4 +18,4 @@ exports.routes = {
 };
 
 const { middlewares } = require('./middlewares.js');
-exports.middlewares = middlewares;
+exports.mw = middlewares;
