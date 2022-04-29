@@ -70,22 +70,23 @@ exports.homeProducts = [
   new HomeProduct(
     'Precision Irrigation',
     '+ click here to explore the automated irrigation system.',
-    'user/home'
-    // '/user/products/precision-irrigation', disabled-link
+    '/user/$/home'
+    // '/user/$/products/precision-irrigation', // disabled-link
   ),
   new HomeProduct(
     'Crop Suggestion',
     '+ click here to find out the best crop to grow on your land.',
-    'user/home'
-    // '/user/products/crop-suggestion', disabled-link
+    '/user/$/home'
+    // '/user/$/products/crop-suggestion', // disabled-link
   ),
   new HomeProduct(
     'Fertilizer Suggestion',
     '+ click here to find out the fertilizer / manure required for your field.',
-    'user/home'
-    // '/user/products/fertilizer-suggestion', disabled-link
+    '/user/$/home'
+    // '/user/$/products/fertilizer-suggestion', // disabled-link
   ),
 ];
+// replacing $ with username
 
 exports.fsFeatures = [
   new Feature(

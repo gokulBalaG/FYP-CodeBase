@@ -3,15 +3,17 @@ const { PASSWORD_MIN_LEN } = require('../config/config.js');
 const { User, UserDetails } = require('../model/model.js');
 const { sendEmail } = require('../utils/sendEmail.js');
 const { welcomeSubject, welcomeContent } = require('../config/staticData.js');
+const { emailToUsername } = require('../utils/utils.js');
 
 // GET "/register"
-const getRegister = function (req, res) {
-  if (req.isAuthenticated()) res.redirect('/user/home');
+exports.getRegister = function (req, res) {
+  if (req.isAuthenticated())
+    res.redirect(`/user/${emailToUsername(req.user.username)}/home`);
   else res.render('register', { pwMinLen: PASSWORD_MIN_LEN });
 };
 
 // POST "/register"
-const postRegister = function (req, res) {
+exports.postRegister = function (req, res) {
   const [email, password, phone] = [
     req.body.username,
     req.body.password,
@@ -24,11 +26,9 @@ const postRegister = function (req, res) {
       res.redirect('/register');
     } else {
       // store user details
-      const until = email.indexOf('@');
-      const username = email.slice(0, until);
 
       const userDetails = new UserDetails({
-        username: username,
+        username: emailToUsername(email),
         email: email,
         phone: phone,
         verified: false,
@@ -38,13 +38,8 @@ const postRegister = function (req, res) {
       passport.authenticate('local')(req, res, () => {
         // send email on signup
         // sendEmail(email, welcomeSubject, welcomeContent);
-        res.redirect('/user/home');
+        res.redirect(`/user/${emailToUsername(req.user.username)}/home`);
       });
     }
   });
-};
-
-exports.registerRoutes = {
-  getRegister,
-  postRegister,
 };

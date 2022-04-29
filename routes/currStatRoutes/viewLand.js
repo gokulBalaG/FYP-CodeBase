@@ -1,6 +1,6 @@
-const { plot, createConfig } = require('../utils/plotGraph.js');
-const { SensorData } = require('../model/sensorData.js');
-const { PLOT_IMG } = require('../config/config.js');
+const { plot, createConfig } = require('../../utils/plotGraph.js');
+const { SensorData } = require('../../model/sensorData.js');
+const { PLOT_IMG } = require('../../config/config.js');
 
 // GET "user/current-stat/view-land"
 

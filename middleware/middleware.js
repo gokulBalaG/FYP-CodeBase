@@ -45,7 +45,7 @@ const verifyLogin = passport.authenticate('local', {
   failureMessage: true,
 });
 
-exports.middlewares = {
+exports.mw = {
   logger,
   authCheck,
   addNameToNav,

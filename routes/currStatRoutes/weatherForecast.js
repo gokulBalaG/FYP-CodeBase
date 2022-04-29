@@ -1,5 +1,8 @@
 const https = require('https');
-const { WEATHER_API_URL, WEATHER_API_IMG_URL } = require('../config/config.js');
+const {
+  WEATHER_API_URL,
+  WEATHER_API_IMG_URL,
+} = require('../../config/config.js');
 
 // GET & POST "user/current-stat/weather-forecast"
 

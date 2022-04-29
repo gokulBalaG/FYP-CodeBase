@@ -36,8 +36,8 @@ exports.EMAIL_SERVICE = process.env.EMAIL_SERVICE;
 exports.EMAIL = process.env.EMAIL;
 exports.EMAIL_PW = process.env.EMAIL_PW;
 
-// 
-// 
+//
+//
 
 // PLOT IMAGE URL
 

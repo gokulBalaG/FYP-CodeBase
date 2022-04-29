@@ -4,7 +4,7 @@ const { UserDetails } = require('../model/model.js');
 // GET "/checkIfUsername?email=<anything>"
 
 exports.checkIfUsername = async function (req, res) {
-  const incomingEmail = req.query.email.trim();
+  const incomingEmail = req.query.email;
 
   const foundUser = await UserDetails.findOne({ email: incomingEmail });
 
