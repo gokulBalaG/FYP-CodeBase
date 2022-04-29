@@ -15,9 +15,9 @@ const dbName = process.env.DB_NAME;
 const dbUsername = process.env.DB_USERNAME;
 const dbPassword = process.env.DB_PASSWORD;
 
-exports.DB_URL = `mongodb+srv://${dbUsername}:${dbPassword}@smart-agricare.8ymza.mongodb.net/${dbName}?retryWrites=true&w=majority`;
+// exports.DB_URL = `mongodb+srv://${dbUsername}:${dbPassword}@smart-agricare.8ymza.mongodb.net/${dbName}?retryWrites=true&w=majority`;
 
-// exports.DB_URL = `mongodb://localhost:27017/${dbName}`;
+exports.DB_URL = `mongodb://localhost:27017/${dbName}`;
 
 //
 //

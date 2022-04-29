@@ -7,22 +7,25 @@ const fs = require('fs');
 const logFile = 'routeHits.log';
 
 const logger = function (req, res, next) {
+  let toLog;
   if (DB_URL.includes('localhost')) {
-    const toLog = `hit: "${req.url}" at: ${String(Date()).slice(0, 25)}\n`;
-    console.log(toLog.slice(0, -1));
-
+    toLog = `hit: "${req.url}" at: ${String(Date()).slice(0, 25)}\n`;
     fs.appendFileSync(logFile, toLog, err => {
       if (err) throw err;
     });
   }
+
+  console.log(toLog.slice(0, -1));
   next();
 };
 
+// "/user/*"
 const authCheck = function (req, res, next) {
   if (req.isAuthenticated()) next();
   else res.redirect('/login');
 };
 
+// "/user/*"
 const addNameToNav = async function (req, res, next) {
   const foundUserDetails = await UserDetails.findOne({
     email: req.user.username,
@@ -32,12 +35,12 @@ const addNameToNav = async function (req, res, next) {
 
   // to pass on params to next middlewares use res.local.<anything> = 'something'
   res.locals.toRenderObj = {};
-  res.locals.toRenderObj['name'] = foundUserDetails.name;
+  res.locals.toRenderObj['username'] = foundUserDetails.username;
   next();
 };
 
-const authenticateLogin = passport.authenticate('local', {
-  // failure redirect to this route to render error on page
+// "login" failure redirect to this route to render error on page
+const verifyLogin = passport.authenticate('local', {
   failureRedirect: '/login?success=false',
   failureMessage: true,
 });
@@ -46,5 +49,5 @@ exports.middlewares = {
   logger,
   authCheck,
   addNameToNav,
-  authenticateLogin,
+  verifyLogin,
 };

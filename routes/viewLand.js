@@ -13,7 +13,7 @@ exports.getViewLand = async function (req, res) {
   const rainVals = []; // rain value (y axis)
   const gasVals = []; // gas value (y axis)
 
-  sensorDataDocs.forEach(doc => {
+  sensorDataDocs.sensorData.forEach(doc => {
     xLabels.push(doc.when);
     rainVals.push(doc.rainVal);
     gasVals.push(doc.gasVal);

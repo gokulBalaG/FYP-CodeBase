@@ -12,31 +12,36 @@ const getRegister = function (req, res) {
 
 // POST "/register"
 const postRegister = function (req, res) {
-  User.register(
-    { username: req.body.username },
+  const [email, password, phone] = [
+    req.body.username,
     req.body.password,
-    function (err, user) {
-      if (err) {
-        console.log(err);
-        res.redirect('/register');
-      } else {
-        // store user details
-        const userDetails = new UserDetails({
-          email: req.body.username,
-          name: req.body.name,
-          phone: req.body.phone,
-          verified: false,
-        });
-        userDetails.save();
+    req.body.phone,
+  ];
 
-        passport.authenticate('local')(req, res, () => {
-          // send email on signup
-          sendEmail(req.body.username, welcomeSubject, welcomeContent);
-          res.redirect('/user/home');
-        });
-      }
+  User.register({ username: email }, password, function (err, user) {
+    if (err) {
+      console.log(err);
+      res.redirect('/register');
+    } else {
+      // store user details
+      const until = email.indexOf('@');
+      const username = email.slice(0, until);
+
+      const userDetails = new UserDetails({
+        username: username,
+        email: email,
+        phone: phone,
+        verified: false,
+      });
+      userDetails.save();
+
+      passport.authenticate('local')(req, res, () => {
+        // send email on signup
+        // sendEmail(email, welcomeSubject, welcomeContent);
+        res.redirect('/user/home');
+      });
     }
-  );
+  });
 };
 
 exports.registerRoutes = {

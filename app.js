@@ -17,7 +17,7 @@ app.get('/', r.getIndex);
 app
   .route('/login')
   .get(r.getLogin)
-  .post(mw.authenticateLogin, r.postLogin);
+  .post(mw.verifyLogin, r.postLogin);
 
 app.route('/register').get(r.getRegister).post(r.postRegister);
 
@@ -28,15 +28,15 @@ app.get('/checkIfUsername', r.checkIfUsername);
 
 app.get(`/user/home`, r.getHome);
 
-app.get(`/user/settings`, r.settings);
+// app.get(`/user/settings`, r.settings);
 
-app.get(`/user/products/precision-irrigation`, r.getPI);
-app.get(`/user/products/crop-suggestion`, r.getCS);
-app.get(`/user/products/fertilizer-suggestion`, r.getFS);
+// app.get(`/user/products/precision-irrigation`, r.getPI);
+// app.get(`/user/products/crop-suggestion`, r.getCS);
+// app.get(`/user/products/fertilizer-suggestion`, r.getFS);
 
 app.get(`/user/current-stat/weather-forecast`, r.getWF);
 app.get(`/user/current-stat/view-land`, r.getViewLand);
-app.get(`/user/current-stat/crop-details`, r.getCropDetails);
+// app.get(`/user/current-stat/crop-details`, r.getCropDetails);
 
 app.get(`/user/logout`, r.logout);
 
