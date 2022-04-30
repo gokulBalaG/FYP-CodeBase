@@ -46,3 +46,7 @@
 .span-close-btn:hover {
   cursor: pointer;
 }
+
+.username-span {
+  font-weight: var(--fw-500);
+}

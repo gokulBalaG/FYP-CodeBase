@@ -6,19 +6,19 @@
 </head>
 <body>
 
-<%- include('auth/partials/navbar') %>
+<%- include('user/partials/navbar') %>
 
 
 <div class="container weather-forecast-main">
 
     <div class="weather-condition-div">
-        <h1>Temperature: <span class="highlight"><%= weatherParams.temp %></span>  degrees Celcius.</h1>
+        <h1>Temperature: <span class="highlight"><%= toRender.weatherParams.temp %></span>  degrees Celcius.</h1>
 
-        <p>The weather is currently: <span class="highlight"><%= weatherParams.desc %></span></p>
+        <p>The weather is currently: <span class="highlight"><%= toRender.weatherParams.desc %></span></p>
 
         <p>The sky looks like: </p>
 
-        <img src="<%= weatherParams.imgURL %>" alt="weather-icon">
+        <img src="<%= toRender.weatherParams.imgURL %>" alt="weather-icon">
         
     </div>
 </div>

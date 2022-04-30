@@ -1,0 +1,57 @@
+<%- include('partials/header') %>
+
+<link rel="stylesheet" href="/css/current-stat.css" />
+
+<title>Smart Agricare | Get your land stats</title>
+</head>
+<body>
+
+<%- include('user/partials/navbar') %>
+
+<% if (toRender.sensorData) { %>
+ 
+    <div class="tab-body">
+        <div class="tab-btns-div">
+            <button class="btn-tablink btn-plot">Chart</button>
+            <button class="btn-tablink btn-table">Table</button>
+        </div>
+    
+        <div class="tab-content plot-tab">
+            <img src="/images/view-land-plot.png" loading="lazy" alt="plot" />
+        </div>
+    
+        <div class="tab-content hidden table-tab">
+            <div class="table-div">
+                <table>
+                    <tr>
+                        <% toRender.tableHeaders.forEach((th) => { %>
+                            <th><%= th %></th>
+                        <% }); %>
+                    </tr>
+        
+                    <% toRender.sensorData.forEach((doc) => { %>
+                        <tr>
+                            <td><%= doc.when %></td>
+                            <td><%= doc.rainVal %></td>
+                            <td><%= doc.gasVal %></td>
+                        </tr>
+                    <% }); %>
+                </table>
+            </div>
+        </div>
+    </div>
+
+<% } else { %>
+
+    <div class="container no-content">
+        <p>Oops! There seems to be no content right now</p>
+    </div>
+    
+<% } %>
+
+<%- include('partials/footer') %>
+
+<script src="/js/toggleTabs.js"></script>
+
+</body>
+</html>

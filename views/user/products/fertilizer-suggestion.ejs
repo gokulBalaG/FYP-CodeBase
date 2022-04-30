@@ -2,17 +2,17 @@
 
 <link rel="stylesheet" href="/css/products.css" />
 
-<title>Smart Agricare | Crop Suggestion</title>
+<title>Smart Agricare | Fertilizer Suggestion</title>
 </head>
 <body>
 
-<%- include('auth/partials/navbar') %>
+<%- include('user/partials/navbar') %>
 
-<h1 class="product-header">Crop Suggestion</h1>
+<h1 class="product-header">Fertilizer Suggestion</h1>
 
 <div class="row container-main">
 
-    <% csFeatures.forEach(feature => { %>
+    <% toRender.fsFeatures.forEach(feature => { %>
         <div class="card col feature-card">
             <div class="card-body">
               <h5 class="card-title"><%= feature.title %> </h5>

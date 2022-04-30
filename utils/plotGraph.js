@@ -7,7 +7,7 @@ const chartJSNodeCanvas = new ChartJSNodeCanvas({
   backgroundColour: '#ffffff',
 });
 
-exports.createConfig = function (xLabels, y1, y1Label, y2, y2Label) {
+exports.createPlotConfig = function (xLabels, y1, y1Label, y2, y2Label) {
   return {
     type: 'line',
     data: {
@@ -34,7 +34,7 @@ exports.createConfig = function (xLabels, y1, y1Label, y2, y2Label) {
   };
 };
 
-exports.plot = async function (configuration, filePath) {
+exports.plotGraph = async function (configuration, filePath) {
   const dataUrl = await chartJSNodeCanvas.renderToDataURL(configuration);
   const base64Image = dataUrl;
 

@@ -4,7 +4,7 @@
 
     <div class="container-fluid">
 
-      <a href="/user/home" class="navbar-brand">
+      <a href="/user/<%= toRender.username %>/home" class="navbar-brand">
         <img src="/images/logo.png" alt="brand logo" class="navbar-logo logo" />
       </a>
 
@@ -26,15 +26,15 @@
           </li> -->
 
           <li class="nav-item">
-            <a class="nav-link li-nav-link" href="/user/products/crop-suggestion">Crop Suggestion</a>
+            <a class="nav-link li-nav-link disabled-link" href="/user/<%= toRender.username %>/products/crop-suggestion">Crop Suggestion</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link li-nav-link" href="/user/products/fertilizer-suggestion">Fertilizer Suggestion</a>
+            <a class="nav-link li-nav-link disabled-link" href="/user/<%= toRender.username %>/products/fertilizer-suggestion">Fertilizer Suggestion</a>
           </li>
           
           <li class="nav-item">
-            <a class="nav-link li-nav-link" href="/user/products/precision-irrigation">Precision Irrigation</a>
+            <a class="nav-link li-nav-link disabled-link" href="/user/<%= toRender.username %>/products/precision-irrigation">Precision Irrigation</a>
           </li>
 
         </ul>
@@ -46,18 +46,18 @@
               href="#" id="navbarDropdown" role="button" 
               data-bs-toggle="dropdown" 
               aria-expanded="false">
-                <%= name %> 
+                <%= toRender.username %> 
               </a>
 
               <ul class="dropdown-menu dropdown-menu-end dropdown-bg" aria-labelledby="navbarDropdown">
                 
-                <li><a class="dropdown-item" href="#">My crops</a></li>
+                <li><a class="dropdown-item disabled-link" href="#">My crops</a></li>
 
-                <li><a class="dropdown-item" href="/user/settings">Settings</a></li>
+                <li><a class="dropdown-item disabled-link" href="/user/<%= toRender.username %>/settings">Settings</a></li>
 
                 <li><hr class="dropdown-divider"></li>
 
-                <li><a class="dropdown-item" href="/user/logout">Logout</a></li>
+                <li><a class="dropdown-item" href="/user/<%= toRender.username %>/logout">Logout</a></li>
 
               </ul>
             </li>

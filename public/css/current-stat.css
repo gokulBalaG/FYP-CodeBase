@@ -30,7 +30,7 @@ tr:nth-child(even) {
 .table-div {
   width: 50%;
   overflow-y: auto;
-  height: 600px;
+  height: 400px;
   margin: 0 auto 0 auto;
 }
 
@@ -83,3 +83,12 @@ table {
 }
 
 /* for get view land page - table and image rendering */
+
+/* view land no content rendering */
+
+.no-content {
+  text-align: center;
+  margin-top: 5%;
+  font-weight: var(--fw-500);
+  height: 200px;
+}

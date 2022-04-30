@@ -9,3 +9,8 @@ exports.getIndex = function (req, res) {
     featureIcons,
   });
 };
+
+// GET "*"
+exports.all = function (req, res) {
+  res.status(404).send('<h1>Broooooo! Page not found</h1>');
+};

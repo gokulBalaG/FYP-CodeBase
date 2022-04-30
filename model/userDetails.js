@@ -3,16 +3,17 @@ const mongoose = require('mongoose');
 // USER DETAILS COLLECTION
 
 const userDetailsSchema = new mongoose.Schema({
+  // email prefix
   email: {
     type: String,
     required: true,
   },
-  name: {
+  username: {
     type: String,
     required: true,
   },
   phone: {
-    type: Number,
+    type: String,
     required: true,
   },
   verified: {

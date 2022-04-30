@@ -19,7 +19,7 @@
             <div class="form-group form-field">
               <label for="email">Email</label>
               <input type="email" 
-              class="form-control username" 
+              class="form-control email" 
               name="username" 
               placeholder="example@email.com"
               title="Please enter a valid email id"
@@ -30,18 +30,6 @@
               <p class="error-text">
                 An account with this email already exists!
               </p>
-            </div>
-          
-            <div class="form-group form-field">
-              <label for="name">Name</label>
-              <input type="text" 
-              class="form-control" 
-              name="name" 
-              placeholder="Name"
-              minlength="5"
-              pattern="[a-zA-Z][a-zA-Z0-9-_]{5,25}"
-              title="Please enter a valid name (minimum 5 characters)"
-              required >
             </div>
 
             <div class="form-group form-field">
@@ -66,6 +54,8 @@
               title="Please enter a valid phone number"
               required >
             </div>
+
+            <p class="username-desc">Your email is your username: <span class="username-span"></span></p>
 
             <button type="submit" class="btn btn-dark btn-register">Register</button>
 

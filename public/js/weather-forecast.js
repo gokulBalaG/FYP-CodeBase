@@ -1,8 +1,6 @@
-"use strict";
-
-const btnGetWeather = document.querySelector(".btn-get-weather");
-const inputCityName = document.querySelector("#input-city-name");
-const checkboxGetLocation = document.querySelector("#input-location-access");
+const btnGetWeather = document.querySelector('.btn-get-weather');
+const inputCityName = document.querySelector('#input-city-name');
+const checkboxGetLocation = document.querySelector('#input-location-access');
 
 const getLocation = function () {
   return new Promise((resolve, reject) => {
@@ -13,8 +11,8 @@ const getLocation = function () {
 btnGetWeather.disabled = true;
 
 // clear checkbox on city name input
-inputCityName.addEventListener("keydown", (e) => {
-  if (this.value !== "") {
+inputCityName.addEventListener('keydown', e => {
+  if (this.value !== '') {
     checkboxGetLocation.checked = false;
     btnGetWeather.disabled = false;
   } else {
@@ -23,10 +21,10 @@ inputCityName.addEventListener("keydown", (e) => {
 });
 
 // get location on checkbox "checked" and clear input city name field
-checkboxGetLocation.addEventListener("change", async (e) => {
+checkboxGetLocation.addEventListener('change', async e => {
   if (e.target.checked) {
-    if (inputCityName.value !== "") inputCityName.value = "";
-    
+    if (inputCityName.value !== '') inputCityName.value = '';
+
     btnGetWeather.disabled = false;
 
     try {
@@ -35,7 +33,7 @@ checkboxGetLocation.addEventListener("change", async (e) => {
 
       checkboxGetLocation.value = `${lat} ${lng}`;
     } catch (e) {
-      console.log(e, "Could not get location.");
+      console.log(e, 'Could not get location.');
     }
   } else btnGetWeather.disabled = true;
 });

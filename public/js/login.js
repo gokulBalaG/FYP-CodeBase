@@ -1,14 +1,13 @@
-const usernameInput = document.querySelector('.username');
+const emailInput = document.querySelector('.email');
 const inpErrDiv = document.querySelector('.error');
 const btnLogin = document.querySelector('.btn-login');
 
 const errOnSubmit = document.querySelector('.error-on-submit');
 const errCloseBtn = document.querySelector('.span-close-btn');
 
-
 // look for un-focus event of user on password field of the form to trigger this func
-usernameInput.addEventListener('blur', async () => {
-  const url = `/checkIfUsername?username=${usernameInput.value}`;
+emailInput.addEventListener('blur', async () => {
+  const url = `/checkIfUsername?email=${emailInput.value}`;
 
   // send a req to the above route with the username to check if it exists
   const res = await fetch(url);
@@ -23,7 +22,8 @@ usernameInput.addEventListener('blur', async () => {
   else btnLogin.disabled = true;
 });
 
-errCloseBtn && errCloseBtn.addEventListener('click', e => {
-  errOnSubmit.style.display = "none";
-  errOnSubmit.classList.add('hidden');
-})
+errCloseBtn &&
+  errCloseBtn.addEventListener('click', e => {
+    errOnSubmit.style.display = 'none';
+    errOnSubmit.classList.add('hidden');
+  });

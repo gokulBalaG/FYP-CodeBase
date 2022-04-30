@@ -102,3 +102,8 @@ body {
 .dropdown-toggle-username {
   font-weight: var(--fw-500);
 }
+
+/* temporary disable links, for pages/links wo content */
+.disabled-link {
+  pointer-events: none;
+}

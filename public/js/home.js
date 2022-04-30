@@ -1,11 +1,11 @@
-"use strict";
+const productDivs = document.querySelectorAll('.product-div');
+const username = document.querySelector('#navbarDropdown');
 
-const productDivs = document.querySelectorAll(".product-div");
+productDivs.forEach(pd => {
+  pd.addEventListener('click', e => {
+    const route = pd.children[0].getAttribute('routeName');
+    const link = route.replace('$', username.textContent.trim());
 
-productDivs.forEach((pd) => {
-  pd.addEventListener("click", (e) => {
-    const route = pd.children[0].getAttribute("routeName");
-
-    window.location.href = `/${route}`;
+    window.location.href = link;
   });
 });
