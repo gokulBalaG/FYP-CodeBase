@@ -1,13 +1,14 @@
 const passport = require('passport');
+const fs = require('fs');
 
 const { DB_URL } = require('../config/config.js');
 const { UserDetails } = require('../model/model.js');
 
-const fs = require('fs');
 const logFile = 'routeHits.log';
 
 const logger = function (req, res, next) {
   let toLog;
+  
   if (DB_URL.includes('localhost')) {
     toLog = `hit: "${req.url}" at: ${String(Date()).slice(0, 25)}\n`;
     fs.appendFileSync(logFile, toLog, err => {
@@ -34,8 +35,8 @@ const addNameToNav = async function (req, res, next) {
   if (!foundUserDetails) return;
 
   // to pass on params to next middlewares use res.local.<anything> = 'something'
-  res.locals.toRenderObj = {};
-  res.locals.toRenderObj['username'] = foundUserDetails.username;
+  res.locals.toRender = {};
+  res.locals.toRender['username'] = foundUserDetails.username;
   next();
 };
 

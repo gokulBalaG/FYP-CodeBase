@@ -13,27 +13,27 @@
 <div class="main">
 
     <div class="current-stat-link-div">
-        <a href="/user/<%= username %>/current-stat/weather-forecast" class="current-stat-link">Weather forecast</a>
+        <a href="/user/<%= toRender.username %>/current-stat/weather-forecast" class="current-stat-link">Weather forecast</a>
     
-        <a href="/user/<%= username %>/current-stat/view-land" class="current-stat-link">View land status</a>
+        <a href="/user/<%= toRender.username %>/current-stat/view-land" class="current-stat-link">View land status</a>
     
-        <a href="/user/<%= username %>/current-stat/crop-details" class="current-stat-link disabled-link">Crop Details</a>
+        <a href="/user/<%= toRender.username %>/current-stat/crop-details" class="current-stat-link disabled-link">Crop Details</a>
     </div>
 
-    <% homeProducts.forEach((product, i) => { %>
+    <% toRender.homeProducts.forEach((product, i) => { %>
 
     <% if (i % 2 === 0) { %>
         <div class="product-div product-div-left">
     <% } else { %>
         <div class="product-div product-div-right">
         <% } %>
-        <h1 class="product-title" routeName="<%= product.routeName %>">
-            <%= product.title %> 
-        </h1>
-        <p class="product-desc">
-            <%= product.description %> 
-        </p>
-    </div>
+            <h1 class="product-title" routeName="<%= product.routeName %>">
+                <%= product.title %> 
+            </h1>
+            <p class="product-desc">
+                <%= product.description %> 
+            </p>
+        </div>
     <% }); %>
 
 </div>

@@ -2,9 +2,8 @@ const { getIndex, all } = require('./index.js');
 const { getLogin, postLogin } = require('./loginRoutes.js');
 const { getRegister, postRegister } = require('./registerRoutes.js');
 
-// utility - api endpoint for registration/login checks
-const { checkIfUsername } = require('./checkIfUsername.js');
-
+// AFTER AUTHENTICATION
+// "/user/<username>/*"
 // user account specific
 const { userRoutes } = require('./userRoutes/userRoutes.js');
 
@@ -16,6 +15,9 @@ const { getWF } = require('./currStatRoutes/weatherForecast.js');
 const { getViewLand } = require('./currStatRoutes/viewLand.js');
 const { getCropDetails } = require('./currStatRoutes/cropDetails.js');
 
+// utility - api endpoint for registration/login checks
+const { checkIfUsername } = require('./checkIfUsername.js');
+
 exports.r = {
   getIndex,
   all,
@@ -25,14 +27,14 @@ exports.r = {
 
   getRegister,
   postRegister,
-
-  checkIfUsername,
-
+  
   ...userRoutes,
-
+  
   ...productRoutes,
-
+  
   getWF,
   getViewLand,
   getCropDetails,
+
+  checkIfUsername,
 };

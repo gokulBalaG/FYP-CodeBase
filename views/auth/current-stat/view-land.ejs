@@ -8,37 +8,46 @@
 
 <%- include('auth/partials/navbar') %>
 
-<div class="tab-body">
-    <div class="tab-btns-div">
-        <button class="btn-tablink btn-plot">Chart</button>
-        <button class="btn-tablink btn-table">Table</button>
-    </div>
-
-    <div class="tab-content plot-tab">
-        <img src="/images/view-land-plot.png" loading="lazy" alt="plot" />
-    </div>
-
-    <div class="tab-content hidden table-tab">
-        <div class="table-div">
-            <table>
-            <tr>
-                <% tableHeaders.forEach((th) => { %>
-                <th><%= th %></th>
-                <% }); %>
-            </tr>
-
-            <% sensorDataDocs.forEach((doc) => { %>
-            <tr>
-                <td><%= doc.when %></td>
-                <td><%= doc.rainVal %></td>
-                <td><%= doc.gasVal %></td>
-            </tr>
-            <% }); %>
-            </table>
-            
+<% if (toRender.sensorData) { %>
+ 
+    <div class="tab-body">
+        <div class="tab-btns-div">
+            <button class="btn-tablink btn-plot">Chart</button>
+            <button class="btn-tablink btn-table">Table</button>
+        </div>
+    
+        <div class="tab-content plot-tab">
+            <img src="/images/view-land-plot.png" loading="lazy" alt="plot" />
+        </div>
+    
+        <div class="tab-content hidden table-tab">
+            <div class="table-div">
+                <table>
+                    <tr>
+                        <% toRender.tableHeaders.forEach((th) => { %>
+                            <th><%= th %></th>
+                        <% }); %>
+                    </tr>
+        
+                    <% toRender.sensorData.forEach((doc) => { %>
+                        <tr>
+                            <td><%= doc.when %></td>
+                            <td><%= doc.rainVal %></td>
+                            <td><%= doc.gasVal %></td>
+                        </tr>
+                    <% }); %>
+                </table>
+            </div>
         </div>
     </div>
-</div>
+
+<% } else { %>
+
+    <div class="no-content">
+        <p>there is no content right now</p>
+    </div>
+    
+<% } %>
 
 <%- include('partials/footer') %>
 

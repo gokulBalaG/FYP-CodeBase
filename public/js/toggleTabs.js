@@ -7,18 +7,20 @@ const tableTab = document.querySelector('.table-tab');
 const onClickColor = '#d3d3d3';
 const unfocusColor = '#f8f8f8';
 
-btnPlot.addEventListener('click', e => {
-  btnPlot.style.backgroundColor = onClickColor;
-  btnTable.style.backgroundColor = unfocusColor;
+btnPlot &&
+  btnPlot.addEventListener('click', e => {
+    btnPlot.style.backgroundColor = onClickColor;
+    btnTable.style.backgroundColor = unfocusColor;
 
-  plotTab.classList.remove('hidden');
-  tableTab.classList.add('hidden');
-});
+    plotTab.classList.remove('hidden');
+    tableTab.classList.add('hidden');
+  });
 
-btnTable.addEventListener('click', e => {
-  btnTable.style.backgroundColor = onClickColor;
-  btnPlot.style.backgroundColor = unfocusColor;
+btnTable &&
+  btnTable.addEventListener('click', e => {
+    btnTable.style.backgroundColor = onClickColor;
+    btnPlot.style.backgroundColor = unfocusColor;
 
-  tableTab.classList.remove('hidden');
-  plotTab.classList.add('hidden');
-});
+    tableTab.classList.remove('hidden');
+    plotTab.classList.add('hidden');
+  });

@@ -35,16 +35,16 @@ exports.getWF = function (req, res) {
           imgURL,
         };
 
-        res.locals.toRenderObj['weatherParams'] = weatherParams;
+        res.locals.toRender['weatherParams'] = weatherParams;
         res.render(
           'auth/current-stat/weather-forecast-result',
-          res.locals.toRenderObj
+          { toRender: res.locals.toRender }
         );
       });
     });
 
     // else render page normally
   } else {
-    res.render('auth/current-stat/weather-forecast', res.locals.toRenderObj);
+    res.render('auth/current-stat/weather-forecast', { toRender: res.locals.toRender });
   }
 };

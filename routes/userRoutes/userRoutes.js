@@ -2,13 +2,13 @@ const { homeProducts } = require('../../model/data.js');
 
 // GET "user/home"
 const getHome = function (req, res) {
-  res.locals.toRenderObj['homeProducts'] = homeProducts;
-  res.render('auth/home', res.locals.toRenderObj);
+  res.locals.toRender['homeProducts'] = homeProducts;
+  res.render('auth/home', { toRender: res.locals.toRender });
 };
 
 // GET "user/settings"
 const settings = function (req, res) {
-  res.render('auth/settings', res.locals.toRenderObj);
+  res.render('auth/settings', { toRender: res.locals.toRender });
 };
 
 // GET "user/logout"

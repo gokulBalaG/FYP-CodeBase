@@ -1,9 +1,9 @@
 const passport = require('passport');
 const { PASSWORD_MIN_LEN } = require('../config/config.js');
-const { User, UserDetails } = require('../model/model.js');
+const { User } = require('../model/model.js');
 const { sendEmail } = require('../utils/sendEmail.js');
 const { welcomeSubject, welcomeContent } = require('../config/staticData.js');
-const { emailToUsername } = require('../utils/utils.js');
+const { emailToUsername, initUserContent } = require('../utils/utils.js');
 
 // GET "/register"
 exports.getRegister = function (req, res) {
@@ -25,18 +25,9 @@ exports.postRegister = function (req, res) {
       console.log(err);
       res.redirect('/register');
     } else {
-      // store user details
-
-      const userDetails = new UserDetails({
-        username: emailToUsername(email),
-        email: email,
-        phone: phone,
-        verified: false,
-      });
-      userDetails.save();
+      initUserContent(email, phone);
 
       passport.authenticate('local')(req, res, () => {
-        // send email on signup
         // sendEmail(email, welcomeSubject, welcomeContent);
         res.redirect(`/user/${emailToUsername(req.user.username)}/home`);
       });

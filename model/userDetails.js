@@ -4,11 +4,11 @@ const mongoose = require('mongoose');
 
 const userDetailsSchema = new mongoose.Schema({
   // email prefix
-  username: {
+  email: {
     type: String,
     required: true,
   },
-  email: {
+  username: {
     type: String,
     required: true,
   },
