@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<%- include('auth/partials/navbar') %>
+<%- include('user/partials/navbar') %>
 
 <% if (toRender.sensorData) { %>
  
@@ -43,8 +43,8 @@
 
 <% } else { %>
 
-    <div class="no-content">
-        <p>there is no content right now</p>
+    <div class="container no-content">
+        <p>Oops! There seems to be no content right now</p>
     </div>
     
 <% } %>

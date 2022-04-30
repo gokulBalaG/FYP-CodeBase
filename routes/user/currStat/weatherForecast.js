@@ -1,15 +1,12 @@
 const https = require('https');
-const {
-  WEATHER_API_URL,
-  WEATHER_API_IMG_URL,
-} = require('../../config/config.js');
+const { config } = require('../../../config/config.js');
 
 // GET & POST "user/current-stat/weather-forecast"
 
 exports.getWF = function (req, res) {
   // check if there exist inputs, if yes then handle requests
   if (req.query.cityName || req.query.latlng) {
-    let URL = WEATHER_API_URL;
+    let URL = config.WEATHER_API_URL;
 
     if (req.query.cityName !== '') {
       const cityName = req.query.cityName.trim();
@@ -28,7 +25,7 @@ exports.getWF = function (req, res) {
           weatherData.weather[0].icon,
         ];
 
-        const imgURL = WEATHER_API_IMG_URL + `${icon}@2x.png`;
+        const imgURL = config.WEATHER_API_IMG_URL + `${icon}@2x.png`;
         const weatherParams = {
           temp,
           desc,
@@ -36,15 +33,16 @@ exports.getWF = function (req, res) {
         };
 
         res.locals.toRender['weatherParams'] = weatherParams;
-        res.render(
-          'auth/current-stat/weather-forecast-result',
-          { toRender: res.locals.toRender }
-        );
+        res.render('user/current-stat/weather-forecast-result', {
+          toRender: res.locals.toRender,
+        });
       });
     });
 
     // else render page normally
   } else {
-    res.render('auth/current-stat/weather-forecast', { toRender: res.locals.toRender });
+    res.render('user/current-stat/weather-forecast', {
+      toRender: res.locals.toRender,
+    });
   }
 };

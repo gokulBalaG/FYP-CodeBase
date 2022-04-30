@@ -1,14 +1,16 @@
-const { plot, createConfig } = require('../../utils/plotGraph.js');
-const { SensorData } = require('../../model/model.js');
-const { PLOT_IMG } = require('../../config/config.js');
+const { utils } = require('../../../utils/utils.js');
+const { model } = require('../../../model/model.js');
+const { config } = require('../../../config/config.js');
 
 // GET "user/current-stat/view-land"
 
 exports.getViewLand = async function (req, res) {
-  const sensorDataDoc = await SensorData.findOne({ email: req.user.username });
+  const sensorDataDoc = await model.SensorData.findOne({
+    email: req.user.username,
+  });
 
   if (sensorDataDoc.sensorData.length === 0)
-    return res.render('auth/current-stat/view-land', {
+    return res.render('user/current-stat/view-land', {
       toRender: res.locals.toRender,
     });
 
@@ -22,7 +24,7 @@ exports.getViewLand = async function (req, res) {
     gasVals.push(doc.gasVal);
   });
 
-  const config = createConfig(
+  const plotConfig = utils.createPlotConfig(
     xLabels,
     rainVals,
     'Rain value',
@@ -30,10 +32,10 @@ exports.getViewLand = async function (req, res) {
     'Gas value'
   );
 
-  plot(config, PLOT_IMG);
+  utils.plotGraph(plotConfig, config.PLOT_IMG);
 
   // for rendering table - labels
   res.locals.toRender['tableHeaders'] = ['Time', 'Rain value', 'Gas value'];
   res.locals.toRender['sensorData'] = sensorDataDoc.sensorData;
-  res.render('auth/current-stat/view-land', { toRender: res.locals.toRender });
+  res.render('user/current-stat/view-land', { toRender: res.locals.toRender });
 };

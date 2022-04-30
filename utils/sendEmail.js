@@ -1,17 +1,17 @@
 const nodemailer = require('nodemailer');
-const { EMAIL_SERVICE, EMAIL, EMAIL_PW } = require('../config/config.js');
+const { config } = require('../config/config.js');
 
 exports.sendEmail = function (toEmail, subject, content) {
   const transporter = nodemailer.createTransport({
-    service: EMAIL_SERVICE,
+    service: config.EMAIL_SERVICE,
     auth: {
-      user: EMAIL,
-      pass: EMAIL_PW,
+      user: config.EMAIL,
+      pass: config.EMAIL_PW,
     },
   });
 
   const mailOptions = {
-    from: EMAIL,
+    from: config.EMAIL,
     to: toEmail,
     subject: subject,
     html: content,

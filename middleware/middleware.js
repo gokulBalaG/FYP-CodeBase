@@ -1,15 +1,13 @@
 const passport = require('passport');
 const fs = require('fs');
-
-const { DB_URL } = require('../config/config.js');
-const { UserDetails } = require('../model/model.js');
-
+const { config } = require('../config/config.js');
+const { model } = require('../model/model.js');
 const logFile = 'routeHits.log';
 
 const logger = function (req, res, next) {
   let toLog;
-  
-  if (DB_URL.includes('localhost')) {
+
+  if (config.DB_URL.includes('localhost')) {
     toLog = `hit: "${req.url}" at: ${String(Date()).slice(0, 25)}\n`;
     fs.appendFileSync(logFile, toLog, err => {
       if (err) throw err;
@@ -28,7 +26,7 @@ const authCheck = function (req, res, next) {
 
 // "/user/*"
 const addNameToNav = async function (req, res, next) {
-  const foundUserDetails = await UserDetails.findOne({
+  const foundUserDetails = await model.UserDetails.findOne({
     email: req.user.username,
   });
 

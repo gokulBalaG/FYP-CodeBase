@@ -1,4 +1,4 @@
-const { UserDetails } = require('../model/model.js');
+const { model } = require('../../model/model.js');
 
 // only accessed by code
 // GET "/checkIfUsername?email=<anything>"
@@ -6,7 +6,7 @@ const { UserDetails } = require('../model/model.js');
 exports.checkIfUsername = async function (req, res) {
   const incomingEmail = req.query.email;
 
-  const foundUser = await UserDetails.findOne({ email: incomingEmail });
+  const foundUser = await model.UserDetails.findOne({ email: incomingEmail });
 
   if (!foundUser)
     return res.status(200).json({

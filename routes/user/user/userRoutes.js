@@ -1,14 +1,14 @@
-const { homeProducts } = require('../../model/data.js');
+const { homeProducts } = require('../../../model/data.js');
 
 // GET "user/home"
 const getHome = function (req, res) {
   res.locals.toRender['homeProducts'] = homeProducts;
-  res.render('auth/home', { toRender: res.locals.toRender });
+  res.render('user/user/home', { toRender: res.locals.toRender });
 };
 
 // GET "user/settings"
 const settings = function (req, res) {
-  res.render('auth/settings', { toRender: res.locals.toRender });
+  res.render('user/user/settings', { toRender: res.locals.toRender });
 };
 
 // GET "user/logout"
