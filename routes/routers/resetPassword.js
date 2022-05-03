@@ -49,7 +49,7 @@ const forgotPwInputEmail = async function (req, res) {
   const link = `${config.BASE_URL}/reset-password/${user._id}/${token.token}`;
 
   const markup = `<p>${config.passwordResetContent}</p>
-    <a href="http://${link}" target="_blank">Click here!</a>`;
+    <a href="${link}" target="_blank">Click here!</a>`;
 
   utils.sendEmail(user.username, config.passwordResetSubject, markup);
 
