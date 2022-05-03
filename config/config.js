@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const BASE_URL = 'localhost:3000';
+const BASE_URL = process.env.BASE_URL;
 
 // WEATHER API
 
@@ -13,9 +13,9 @@ const WEATHER_API_IMG_URL = `https://openweathermap.org/img/wn/`;
 
 // DATABASE
 
-// const DB_URL = process.env.DB_URL;
+const DB_URL = process.env.DB_URL;
 
-const DB_URL = `mongodb://localhost:27017/smartAgricare`;
+// const DB_URL = `mongodb://localhost:27017/smartAgricare`;
 
 //
 //
