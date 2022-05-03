@@ -9,7 +9,7 @@ const ifNoUser = function (res) {
     msg: 'User not found',
   };
 
-  return res.render('reset-pass', { toRender });
+  return res.render('resetPassword', { toRender });
 };
 
 const ifNoToken = function (res) {
@@ -17,7 +17,7 @@ const ifNoToken = function (res) {
     msg: 'Invalid or expired link',
   };
 
-  return res.render('reset-pass', { toRender });
+  return res.render('resetPassword', { toRender });
 };
 
 const forgotPassword = function (req, res) {
@@ -30,7 +30,7 @@ const forgotPassword = function (req, res) {
     btnText: 'Get reset password link',
   };
 
-  res.render('reset-pass', { toRender });
+  res.render('resetPassword', { toRender });
 };
 
 const forgotPwInputEmail = async function (req, res) {
@@ -57,7 +57,7 @@ const forgotPwInputEmail = async function (req, res) {
     msg: 'Password reset link has been sent to your email!',
   };
 
-  res.render('reset-pass', { toRender });
+  res.render('resetPassword', { toRender });
 };
 
 const pwResetLink = async function (req, res) {
@@ -82,7 +82,7 @@ const pwResetLink = async function (req, res) {
     pwMinLen: config.PASSWORD_MIN_LEN,
   };
 
-  res.render('reset-pass', { toRender });
+  res.render('resetPassword', { toRender });
 };
 
 const registerNewPassword = async function (req, res) {

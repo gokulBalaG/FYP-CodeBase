@@ -2,7 +2,7 @@ const { fsFeatures, csFeatures } = require('../../../model/data.js');
 
 // GET "user/products/precision-irrigation"
 const precisionIrrigation = function (req, res) {
-  res.render('user/products/precision-irrigation', {
+  res.render('user/products/precisionIrrigation', {
     toRender: res.locals.toRender,
   });
 };
@@ -11,7 +11,7 @@ const precisionIrrigation = function (req, res) {
 const cropSuggestion = function (req, res) {
   res.locals.toRender['csFeatures'] = csFeatures;
 
-  res.render('user/products/crop-suggestion', {
+  res.render('user/products/cropSuggestion', {
     toRender: res.locals.toRender,
   });
 };
@@ -20,7 +20,7 @@ const cropSuggestion = function (req, res) {
 const fertilizerSuggestion = function (req, res) {
   res.locals.toRender['fsFeatures'] = fsFeatures;
 
-  res.render('user/products/fertilizer-suggestion', {
+  res.render('user/products/fertilizerSuggestion', {
     toRender: res.locals.toRender,
   });
 };

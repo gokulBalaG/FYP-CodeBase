@@ -33,9 +33,9 @@ app.get(`/user/:username/products/precision-irrigation`, r.precisionIrrigation);
 app.get(`/user/:username/products/crop-suggestion`, r.cropSuggestion);
 app.get(`/user/:username/products/fertilizer-suggestion`, r.fertilizerSuggestion);
 
-app.get(`/user/:username/current-stat/weather-forecast`, r.weatherForecast);
-app.get(`/user/:username/current-stat/view-land`, r.viewLand);
-app.get(`/user/:username/current-stat/crop-details`, r.cropDetails);
+app.get(`/user/:username/current-status/weather-forecast`, r.weatherForecast);
+app.get(`/user/:username/current-status/view-land`, r.viewLand);
+app.get(`/user/:username/current-status/crop-details`, r.cropDetails);
 
 app.get(`/user/:username/logout`, r.logout);
 

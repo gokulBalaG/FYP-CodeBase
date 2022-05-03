@@ -8,13 +8,13 @@ const home = function (req, res) {
   res.locals.toRender['homeProducts'] = homeProducts;
   res.locals.toRender[
     'weatherForecastUrl'
-  ] = `/user/${username}/current-stat/weather-forecast`;
+  ] = `/user/${username}/current-status/weather-forecast`;
   res.locals.toRender[
     'viewLandUrl'
-  ] = `/user/${username}/current-stat/view-land`;
+  ] = `/user/${username}/current-status/view-land`;
   res.locals.toRender[
     'cropDetailsUrl'
-  ] = `/user/${username}/current-stat/crop-details`;
+  ] = `/user/${username}/current-status/crop-details`;
 
   res.render('user/user/home', { toRender: res.locals.toRender });
 };
