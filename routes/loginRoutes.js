@@ -4,21 +4,25 @@ const { model } = require('../model/model.js');
 const { utils } = require('../utils/utils.js');
 
 // GET "/login"
-exports.getLogin = function (req, res) {
+exports.login = function (req, res) {
   if (req.isAuthenticated())
     res.redirect(`/user/${utils.emailToUsername(req.user.username)}/home`);
   else {
-    // check if url consists of error msg
-    if (req.query.success)
-      res.render('login', {
-        pwMinLen: config.PASSWORD_MIN_LEN,
-        incorrectPwd: true,
-      });
-    else
-      res.render('login', {
-        pwMinLen: config.PASSWORD_MIN_LEN,
-        incorrectPwd: false,
-      });
+    const toRender = {
+      pwMinLen: config.PASSWORD_MIN_LEN,
+      formUrl: '/login',
+      resetPasswordUrl: '/reset-password',
+      registerUrl: '/register',
+    };
+
+    // check if url consists of ?success=<true|false> (coming from middlewares/verifyLogin -> failure redirect)
+    if (req.query.success) toRender['incorrectPwd'] = true;
+    else toRender['incorrectPwd'] = false;
+
+    // check if url consists of ?signinAgain=<true|false> (coming from resetPassword/registerNewPassword)
+    if (req.query.signinAgain) toRender['signinAgain'] = true;
+
+    res.render('login', { toRender });
   }
 };
 
@@ -34,7 +38,8 @@ exports.postLogin = function (req, res) {
     else {
       passport.authenticate('local')(req, res, () => {
         // // send email on login - disabled temporarily
-        // const content = utils.generateOnLoginEmail();
+        // const content = `${config.newLoginContent} <strong>${utils.generateDateString()}</strong>`;
+
         // utils.sendEmail(req.body.username, config.newLoginSubject, content);
 
         res.redirect(`/user/${utils.emailToUsername(req.body.username)}/home`);

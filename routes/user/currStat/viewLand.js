@@ -2,15 +2,15 @@ const { utils } = require('../../../utils/utils.js');
 const { model } = require('../../../model/model.js');
 const { config } = require('../../../config/config.js');
 
-// GET "user/current-stat/view-land"
+// GET "user/current-status/view-land"
 
-exports.getViewLand = async function (req, res) {
+exports.viewLand = async function (req, res) {
   const sensorDataDoc = await model.SensorData.findOne({
     email: req.user.username,
   });
 
   if (sensorDataDoc.sensorData.length === 0)
-    return res.render('user/current-stat/view-land', {
+    return res.render('user/currentStatus/viewLand', {
       toRender: res.locals.toRender,
     });
 
@@ -37,5 +37,7 @@ exports.getViewLand = async function (req, res) {
   // for rendering table - labels
   res.locals.toRender['tableHeaders'] = ['Time', 'Rain value', 'Gas value'];
   res.locals.toRender['sensorData'] = sensorDataDoc.sensorData;
-  res.render('user/current-stat/view-land', { toRender: res.locals.toRender });
+  res.locals.toRender['imgUrl'] = '/images/view-land-plot.png';
+
+  res.render('user/currentStatus/viewLand', { toRender: res.locals.toRender });
 };

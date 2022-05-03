@@ -1,6 +1,6 @@
 <%- include('partials/header') %>
 
-<link rel="stylesheet" href="/css/login-register.css" />
+<link rel="stylesheet" href="/css/loginRegister.css" />
 
 <title>Smart Agricare | Login</title>
 </head>
@@ -14,12 +14,20 @@
       <div class="card">
         <div class="card-body">
 
-          <form action="/login" method="POST" class="login-form">
+          <form action="<%= toRender.formUrl %>" method="POST" class="login-form">
+
+            <% if (toRender.signinAgain) { %>
+              <div class="form-group form-field">
+                <p class="signin-again-text">
+                  Password reset successful. Please sign in again to continue!
+                </p>
+              </div>
+            <% } %>
             
-            <% if (incorrectPwd) { %>
+            <% if (toRender.incorrectPwd) { %>
               <div class="form-group form-field error-on-submit">
                 <p class="error-text">
-                  Incorrect username and password combination!
+                  Incorrect email and password combination!
                 </p>
                 <span class="span-close-btn">
                   &#10006;
@@ -49,15 +57,21 @@
               class="form-control password" 
               name="password" 
               placeholder="Password" 
-              minlength="<%= pwMinLen %>"
+              minlength="<%= toRender.pwMinLen %>"
               required >
             </div>
+            
+            <div class="form-group form-field">
+              <a class="forgot-pass-text" href="<%= toRender.resetPasswordUrl %>">
+                Forgot your password?
+              </a>
+            </div>
 
-            <button type="submit" class="btn btn-dark btn-login">Login</button>
+            <button type="submit" class="btn btn-dark btn-submit">Login</button>
 
             <p class="form-btn-separator-text-p">or</p>
 
-            <a href="/register">
+            <a href="<%= toRender.registerUrl %>">
               <button type="button" class="btn btn-dark">Signup</button>
             </a>
 

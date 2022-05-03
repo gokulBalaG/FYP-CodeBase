@@ -1,4 +1,5 @@
 const { r } = require('./routes/routes.js');
+const { routers } = require('./routes/routers/routers.js');
 const { mw } = require('./middleware/middleware.js');
 const { initApp } = require('./config/initApp.js');
 
@@ -11,32 +12,35 @@ app.use(mw.logger);
 app.use('/user', mw.authCheck);
 app.use('/user', mw.addNameToNav);
 
+// "/reset-password" router plugin
+app.use('/reset-password', routers.resetPasswordRouter);
+
 // Routes
 
-app.get('/', r.getIndex);
+app.get('/', r.slash);
 
-app.route('/login').get(r.getLogin).post(mw.verifyLogin, r.postLogin);
+app.route('/login').get(r.login).post(mw.verifyLogin, r.postLogin);
 
-app.route('/register').get(r.getRegister).post(r.postRegister);
-
-// only requests from client side js
-app.get('/checkIfUsername', r.checkIfUsername);
+app.route('/register').get(r.register).post(r.postRegister);
 
 // Routes after authentication (leading with "/user")
 
-app.get(`/user/:username/home`, r.getHome);
+app.get(`/user/:username/home`, r.home);
 
 app.get(`/user/:username/settings`, r.settings);
 
-app.get(`/user/:username/products/precision-irrigation`, r.getPI);
-app.get(`/user/:username/products/crop-suggestion`, r.getCS);
-app.get(`/user/:username/products/fertilizer-suggestion`, r.getFS);
+app.get(`/user/:username/products/precision-irrigation`, r.precisionIrrigation);
+app.get(`/user/:username/products/crop-suggestion`, r.cropSuggestion);
+app.get(`/user/:username/products/fertilizer-suggestion`, r.fertilizerSuggestion);
 
-app.get(`/user/:username/current-stat/weather-forecast`, r.getWF);
-app.get(`/user/:username/current-stat/view-land`, r.getViewLand);
-app.get(`/user/:username/current-stat/crop-details`, r.getCropDetails);
+app.get(`/user/:username/current-status/weather-forecast`, r.weatherForecast);
+app.get(`/user/:username/current-status/view-land`, r.viewLand);
+app.get(`/user/:username/current-status/crop-details`, r.cropDetails);
 
 app.get(`/user/:username/logout`, r.logout);
+
+// only requests from client side js
+app.get(`/checkIfUsername`, r.checkIfUsername);
 
 app.all('*', r.all);
 

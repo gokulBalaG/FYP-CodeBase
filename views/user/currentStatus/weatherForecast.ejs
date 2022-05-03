@@ -1,6 +1,6 @@
 <%- include('partials/header') %>
 
-<link rel="stylesheet" href="/css/current-stat.css" />
+<link rel="stylesheet" href="/css/currentStatus.css" />
 
 <title>Smart Agricare | Weather forecast</title>
 </head>
@@ -10,9 +10,24 @@
 
 <div class="container weather-forecast-main">
 
+<% if (toRender.weatherParams) { %>
+    
+    <div class="weather-condition-div">
+        <h1>Temperature: <span class="highlight"><%= toRender.weatherParams.temp %></span>  degrees Celcius.</h1>
+
+        <p>The weather is currently: <span class="highlight"><%= toRender.weatherParams.desc %></span></p>
+
+        <p>The sky looks like: </p>
+
+        <img src="<%= toRender.weatherParams.imgURL %>" alt="weather-icon">
+        
+    </div>
+
+<% } else { %>
+
     <h1>Get weather</h1>
 
-    <form action="/user/<%= toRender.username %>/current-stat/weather-forecast" method="get">
+    <form action="<%= toRender.formUrl %>" method="get">
 
         <div class="mb-3 col-6">
             <label for="input-city-name" class="form-label">Enter city name: </label>
@@ -22,7 +37,7 @@
             placeholder="Enter your city name" 
             autofocus
             name="cityName">
-          </div>
+        </div>
 
         <div class="mb-4 form-check">
             <input class="form-check-input" type="checkbox" value="" name="latlng" id="input-location-access">
@@ -33,12 +48,13 @@
         <button class="btn btn-dark btn-get-weather" type="submit">Get weather</button>
     </form>
 
-</div>
+<% } %>
 
+</div>
 
 <%- include('partials/footer') %>
 
-<script src="/js/weather-forecast.js"></script>
+<script src="/js/weatherForecast.js"></script>
 
 </body>
 </html>

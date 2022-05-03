@@ -4,10 +4,18 @@ const { model } = require('../model/model.js');
 const { utils } = require('../utils/utils.js');
 
 // GET "/register"
-exports.getRegister = function (req, res) {
+exports.register = function (req, res) {
   if (req.isAuthenticated())
     res.redirect(`/user/${utils.emailToUsername(req.user.username)}/home`);
-  else res.render('register', { pwMinLen: config.PASSWORD_MIN_LEN });
+  else {
+    const toRender = {
+      pwMinLen: config.PASSWORD_MIN_LEN,
+      formUrl: '/register',
+      loginUrl: '/login',
+    };
+
+    res.render('register', { toRender });
+  }
 };
 
 // POST "/register"
@@ -27,6 +35,7 @@ exports.postRegister = function (req, res) {
 
       passport.authenticate('local')(req, res, () => {
         utils.sendEmail(email, config.welcomeSubject, config.welcomeContent);
+
         res.redirect(`/user/${utils.emailToUsername(req.user.username)}/home`);
       });
     }

@@ -1,9 +1,9 @@
 const https = require('https');
 const { config } = require('../../../config/config.js');
 
-// GET & POST "user/current-stat/weather-forecast"
+// GET & POST "user/current-status/weather-forecast"
 
-exports.getWF = function (req, res) {
+exports.weatherForecast = function (req, res) {
   // check if there exist inputs, if yes then handle requests
   if (req.query.cityName || req.query.latlng) {
     let URL = config.WEATHER_API_URL;
@@ -33,15 +33,21 @@ exports.getWF = function (req, res) {
         };
 
         res.locals.toRender['weatherParams'] = weatherParams;
-        res.render('user/current-stat/weather-forecast-result', {
+
+        res.render('user/currentStatus/weatherForecast', {
           toRender: res.locals.toRender,
         });
       });
     });
 
-    // else render page normally
+    // else render page normally with form
   } else {
-    res.render('user/current-stat/weather-forecast', {
+    const username = res.locals.toRender['username'];
+    res.locals.toRender[
+      'formUrl'
+    ] = `/user/${username}/current-status/weather-forecast`;
+
+    res.render('user/currentStatus/weatherForecast', {
       toRender: res.locals.toRender,
     });
   }

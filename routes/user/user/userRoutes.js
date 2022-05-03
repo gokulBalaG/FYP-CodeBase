@@ -1,8 +1,21 @@
 const { homeProducts } = require('../../../model/data.js');
+const { utils } = require('../../../utils/utils.js');
 
 // GET "user/home"
-const getHome = function (req, res) {
+const home = function (req, res) {
+  const username = res.locals.toRender['username'];
+
   res.locals.toRender['homeProducts'] = homeProducts;
+  res.locals.toRender[
+    'weatherForecastUrl'
+  ] = `/user/${username}/current-status/weather-forecast`;
+  res.locals.toRender[
+    'viewLandUrl'
+  ] = `/user/${username}/current-status/view-land`;
+  res.locals.toRender[
+    'cropDetailsUrl'
+  ] = `/user/${username}/current-status/crop-details`;
+
   res.render('user/user/home', { toRender: res.locals.toRender });
 };
 
@@ -18,7 +31,7 @@ const logout = function (req, res) {
 };
 
 exports.userRoutes = {
-  getHome,
+  home,
   settings,
   logout,
 };

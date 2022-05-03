@@ -1,6 +1,6 @@
 <%- include('partials/header') %>
 
-<link rel="stylesheet" href="/css/current-stat.css" />
+<link rel="stylesheet" href="/css/currentStatus.css" />
 
 <title>Smart Agricare | Get your land stats</title>
 </head>
@@ -17,7 +17,7 @@
         </div>
     
         <div class="tab-content plot-tab">
-            <img src="/images/view-land-plot.png" loading="lazy" alt="plot" />
+            <img src="<%= toRender.imgUrl %> " loading="lazy" alt="plot" />
         </div>
     
         <div class="tab-content hidden table-tab">
