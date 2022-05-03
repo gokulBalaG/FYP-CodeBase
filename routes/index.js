@@ -3,11 +3,15 @@ const { products, featureIcons } = require('../model/data.js');
 // Route functions
 
 // GET "/"
-exports.getIndex = function (req, res) {
-  res.render('index', {
-    products,
-    featureIcons,
-  });
+exports.slash = function (req, res) {
+  const toRender = {
+    products: products,
+    featureIcons: featureIcons,
+    loginUrl: '/login',
+    registerUrl: '/register',
+  };
+
+  res.render('index', { toRender });
 };
 
 // GET "*"

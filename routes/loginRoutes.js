@@ -4,12 +4,15 @@ const { model } = require('../model/model.js');
 const { utils } = require('../utils/utils.js');
 
 // GET "/login"
-exports.getLogin = function (req, res) {
+exports.login = function (req, res) {
   if (req.isAuthenticated())
     res.redirect(`/user/${utils.emailToUsername(req.user.username)}/home`);
   else {
     const toRender = {
       pwMinLen: config.PASSWORD_MIN_LEN,
+      formUrl: '/login',
+      resetPasswordUrl: '/reset-password',
+      registerUrl: '/register',
     };
 
     // check if url consists of ?success=<true|false> (coming from middlewares/verifyLogin -> failure redirect)

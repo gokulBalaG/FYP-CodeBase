@@ -13,11 +13,11 @@
 <div class="main">
 
     <div class="current-stat-link-div">
-        <a href="/user/<%= toRender.username %>/current-stat/weather-forecast" class="current-stat-link">Weather forecast</a>
+        <a href="<%= toRender.weatherForecastUrl %>" class="current-stat-link">Weather forecast</a>
     
-        <a href="/user/<%= toRender.username %>/current-stat/view-land" class="current-stat-link">View land status</a>
+        <a href="<%= toRender.viewLandUrl %>" class="current-stat-link">View land status</a>
     
-        <a href="/user/<%= toRender.username %>/current-stat/crop-details" class="current-stat-link disabled-link">Crop Details</a>
+        <a href="<%= toRender.cropDetailsUrl %>" class="current-stat-link disabled-link">Crop Details</a>
     </div>
 
     <% toRender.homeProducts.forEach((product, i) => { %>

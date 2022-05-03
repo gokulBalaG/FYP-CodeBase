@@ -4,7 +4,7 @@ const { config } = require('../../../config/config.js');
 
 // GET "user/current-stat/view-land"
 
-exports.getViewLand = async function (req, res) {
+exports.viewLand = async function (req, res) {
   const sensorDataDoc = await model.SensorData.findOne({
     email: req.user.username,
   });
@@ -37,5 +37,7 @@ exports.getViewLand = async function (req, res) {
   // for rendering table - labels
   res.locals.toRender['tableHeaders'] = ['Time', 'Rain value', 'Gas value'];
   res.locals.toRender['sensorData'] = sensorDataDoc.sensorData;
+  res.locals.toRender['imgUrl'] = '/images/view-land-plot.png';
+
   res.render('user/current-stat/view-land', { toRender: res.locals.toRender });
 };

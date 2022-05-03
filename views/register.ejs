@@ -14,7 +14,7 @@
       <div class="card">
         <div class="card-body">
 
-          <form action="/register" method="POST" class="register-form">
+          <form action="<%= toRender.formUrl %>" method="POST" class="register-form">
             
             <div class="form-group form-field">
               <label for="email">Email</label>
@@ -37,9 +37,9 @@
               <input type="password" 
               class="form-control password" 
               name="password" 
-              placeholder="Password (minimum <%= pwMinLen %> characters)"
-              minlength="<%= pwMinLen %>"
-              title="Please enter a minimum of <%= pwMinLen %> characters"
+              placeholder="Password (minimum <%= toRender.pwMinLen %> characters)"
+              minlength="<%= toRender.pwMinLen %>"
+              title="Please enter a minimum of <%= toRender.pwMinLen %> characters"
               required >
             </div>
             
@@ -61,7 +61,7 @@
 
             <p class="form-btn-separator-text-p">or</p>
 
-            <a href="/login">
+            <a href="<%= toRender.loginUrl %>">
               <button type="button" class="btn btn-dark">Login</button>
             </a>
 

@@ -102,10 +102,15 @@ const registerNewPassword = async function (req, res) {
   await user.setPassword(req.body.password, function (err, user) {
     if (err) console.log(err);
     else {
+      
+      const content = `${
+        config.passwordResetSuccessContent
+      } <strong>${utils.generateDateString()}</strong>`;
+
       utils.sendEmail(
         user.username,
         config.passwordResetSuccessSubject,
-        config.passwordResetSuccessContent + utils.generateDateString()
+        content
       );
 
       user.save();

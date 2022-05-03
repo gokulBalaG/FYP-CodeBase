@@ -45,11 +45,11 @@
         </ul>
 
         <div class="navbar-btns-right-div">
-          <a class="nav-link navbar-btn-right" href="/login">
+          <a class="nav-link navbar-btn-right" href="<%= toRender.loginUrl %>">
             <button type="button" class="btn btn-dark">Log in</button>
           </a>
   
-          <a class="nav-link navbar-btn-right" href="/register">
+          <a class="nav-link navbar-btn-right" href="<%= toRender.registerUrl %>">
             <button type="button" class="btn btn-dark">Register</button>
           </a>
         </div>
@@ -99,7 +99,7 @@
     <h2 class="section-header">FEATURES</h2>
     <h3 class="section-desc">We provide this bro</h3>
 
-    <% featureIcons.forEach(featureIcon => { %>
+    <% toRender.featureIcons.forEach(featureIcon => { %>
      
       <div class="col-lg-4 feature-card">
         <span class="feature-span-icon">
@@ -130,7 +130,7 @@
 
   <div class="container-fluid row products-row">
 
-    <% products.forEach(product => { %>
+    <% toRender.products.forEach(product => { %>
      
       <div class="col-lg-4 product-card">
 
@@ -158,7 +158,7 @@
   <div class="open-account-div">
     <h3 class="footer-tag">The best way to cultivate is here!</h3>
 
-    <a class="in-btn" href="/register">
+    <a class="in-btn" href="<%= toRender.registerUrl %>">
       <button type="button" class="btn btn-dark btn-footer-banner">Register now!</button>
     </a>
     

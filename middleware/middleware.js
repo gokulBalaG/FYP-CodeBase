@@ -2,6 +2,7 @@ const passport = require('passport');
 const fs = require('fs');
 const { config } = require('../config/config.js');
 const { model } = require('../model/model.js');
+const { utils } = require('../utils/utils.js');
 const logFile = 'routeHits.log';
 
 const logger = function (req, res, next) {
@@ -12,7 +13,7 @@ const logger = function (req, res, next) {
       0,
       25
     )}\n`;
-    
+
     fs.appendFileSync(logFile, toLog, err => {
       if (err) throw err;
     });
@@ -30,15 +31,26 @@ const authCheck = function (req, res, next) {
 
 // "/user/*"
 const addNameToNav = async function (req, res, next) {
-  const foundUserDetails = await model.UserDetails.findOne({
-    email: req.user.username,
+  const foundUser = await model.User.findOne({
+    username: req.user.username,
   });
 
-  if (!foundUserDetails) return;
+  if (!foundUser) return;
 
   // to pass on params to next middlewares use res.local.<anything> = 'something'
-  res.locals.toRender = {};
-  res.locals.toRender['username'] = foundUserDetails.username;
+  // for navbar (navbar.ejs)
+  const username = utils.emailToUsername(foundUser.username);
+  
+  res.locals.toRender = {
+    username: username,
+    navBrandUrl: `/user/${username}/home`,
+    cropSuggestionUrl: `/user/${username}/products/crop-suggestion`,
+    fertilizerSuggestionUrl: `/user/${username}/products/fertilizer-suggestion`,
+    precisionIrrigationUrl: `/user/${username}/products/precision-irrigation`,
+    userSettings: `/user/${username}/settings`,
+    logout: `/user/${username}/logout`,
+  };
+
   next();
 };
 
