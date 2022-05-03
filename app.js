@@ -11,6 +11,8 @@ app.use(mw.logger);
 app.use('/user', mw.authCheck);
 app.use('/user', mw.addNameToNav);
 
+app.use('/reset-password', r.resetPasswordRouter);
+
 // Routes
 
 app.get('/', r.getIndex);
@@ -18,9 +20,6 @@ app.get('/', r.getIndex);
 app.route('/login').get(r.getLogin).post(mw.verifyLogin, r.postLogin);
 
 app.route('/register').get(r.getRegister).post(r.postRegister);
-
-// only requests from client side js
-app.get('/checkIfUsername', r.checkIfUsername);
 
 // Routes after authentication (leading with "/user")
 
@@ -37,6 +36,9 @@ app.get(`/user/:username/current-stat/view-land`, r.getViewLand);
 app.get(`/user/:username/current-stat/crop-details`, r.getCropDetails);
 
 app.get(`/user/:username/logout`, r.logout);
+
+// only requests from client side js
+app.get(`/checkIfUsername`, r.checkIfUsername);
 
 app.all('*', r.all);
 

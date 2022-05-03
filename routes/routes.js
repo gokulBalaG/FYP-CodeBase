@@ -18,6 +18,8 @@ const { getCropDetails } = require('./user/currStat/cropDetails.js');
 // utility - api endpoint for registration/login checks
 const { checkIfUsername } = require('./utils/checkIfUsername.js');
 
+const { resetPasswordRouter } = require('./utils/resetPassword.js');
+
 exports.r = {
   getIndex,
   all,
@@ -37,4 +39,6 @@ exports.r = {
   getCropDetails,
 
   checkIfUsername,
+
+  resetPasswordRouter,
 };

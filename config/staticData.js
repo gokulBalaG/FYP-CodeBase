@@ -20,3 +20,13 @@ exports.welcomeContent = `
 
 exports.newLoginSubject = 'New login identified';
 exports.newLoginContent = `New login identified on `;
+
+// password reset link email
+
+exports.passwordResetSubject = `Here's your password reset link!`;
+exports.passwordResetContent = `Click the link below to reset your password.`;
+
+// password reset success email 
+
+exports.passwordResetSuccessSubject = `Password reset successful`;
+exports.passwordResetSuccessContent = `Your password was successfully reset on `;

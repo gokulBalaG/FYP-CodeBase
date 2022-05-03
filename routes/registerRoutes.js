@@ -26,7 +26,7 @@ exports.postRegister = function (req, res) {
       utils.initUserContent(email, phone);
 
       passport.authenticate('local')(req, res, () => {
-        utils.sendEmail(email, config.welcomeSubject, config.welcomeContent);
+        // utils.sendEmail(email, config.welcomeSubject, config.welcomeContent);
         res.redirect(`/user/${utils.emailToUsername(req.user.username)}/home`);
       });
     }

@@ -33,7 +33,7 @@ exports.getWF = function (req, res) {
         };
 
         res.locals.toRender['weatherParams'] = weatherParams;
-        res.render('user/current-stat/weather-forecast-result', {
+        res.render('user/current-stat/weather-forecast', {
           toRender: res.locals.toRender,
         });
       });

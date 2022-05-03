@@ -8,7 +8,11 @@ const logger = function (req, res, next) {
   let toLog;
 
   if (config.DB_URL.includes('localhost')) {
-    toLog = `hit: "${req.url}" at: ${String(Date()).slice(0, 25)}\n`;
+    toLog = `hit: ${req.method} "${req.url}" at: ${String(Date()).slice(
+      0,
+      25
+    )}\n`;
+    
     fs.appendFileSync(logFile, toLog, err => {
       if (err) throw err;
     });

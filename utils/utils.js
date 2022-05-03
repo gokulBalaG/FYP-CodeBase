@@ -21,13 +21,11 @@ const initUserContent = function (email, phone) {
   sensorData.save();
 };
 
-const generateOnLoginEmail = function () {
+const generateDateString = function () {
   const date = String(Date());
   const datePart = date.slice(0, 15);
   const time = date.slice(16, 24);
-  const dateString = `${datePart} at ${time}`;
-
-  return `${config.newLoginContent} <strong>${dateString}</strong>`;
+  return `${datePart} at ${time}`;
 };
 
 const { sendEmail } = require('./sendEmail.js');
@@ -37,7 +35,7 @@ exports.utils = {
   emailToUsername,
 
   initUserContent,
-  generateOnLoginEmail,
+  generateDateString,
   sendEmail,
 
   createPlotConfig,

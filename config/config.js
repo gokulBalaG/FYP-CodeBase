@@ -1,5 +1,7 @@
 require('dotenv').config();
 
+const BASE_URL = 'localhost:3000';
+
 // WEATHER API
 
 const WEATHER_API_URL = `https://api.openweathermap.org/data/2.5/weather?units=metric&appid=${process.env.WEATHER_API_KEY}`;
@@ -48,9 +50,15 @@ const {
   welcomeContent,
   newLoginSubject,
   newLoginContent,
+  passwordResetSubject,
+  passwordResetContent,
+  passwordResetSuccessSubject,
+  passwordResetSuccessContent,
 } = require('./staticData.js');
 
 exports.config = {
+  BASE_URL,
+
   WEATHER_API_URL,
   WEATHER_API_IMG_URL,
 
@@ -69,4 +77,9 @@ exports.config = {
   welcomeContent,
   newLoginSubject,
   newLoginContent,
+
+  passwordResetSubject,
+  passwordResetContent,
+  passwordResetSuccessSubject,
+  passwordResetSuccessContent,
 };
