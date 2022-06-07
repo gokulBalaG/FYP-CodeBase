@@ -61,8 +61,8 @@ while True:
         print(f"Average air humidity value : {air_hum_avg}")
         print(f"Average rain fall value : {rain_val_avg}")
 
-        db = client.get_database('sensor_data') #db Name
-        record = db.sensor_records  #document name
+        db = client.get_database('smartAgricare') #db Name
+        record = db.sensordatas  #document name
         when = datetime.now().strftime("%d-%m-%y %H:%M")
         new_val = {
             'when' : when,

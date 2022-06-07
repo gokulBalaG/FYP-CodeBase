@@ -1,0 +1,4 @@
+1. Soil humidity - use FC-28 soil moisture sensor
+2. Soil pH - Seems costly, look for alternatives
+3. Air temperature and Humidity - use openweathermap API
+4. Rain value - use rain sensors
