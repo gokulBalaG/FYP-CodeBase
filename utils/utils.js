@@ -1,5 +1,4 @@
 const { model } = require('../model/model.js');
-const { config } = require('../config/config.js');
 
 const emailToUsername = email => email.slice(0, email.indexOf('@'));
 
@@ -28,6 +27,16 @@ const generateDateString = function () {
   return `${datePart} at ${time}`;
 };
 
+const filterIDkey = fieldNames =>
+  Array.from(fieldNames).filter(fieldName => fieldName !== '_id');
+
+const sortAndUnshift = (fieldNames, ...fieldName) => {
+  fieldNames = fieldNames.sort().slice(0, -1);
+  fieldNames.unshift(...fieldName);
+
+  return fieldNames;
+};
+
 const { sendEmail } = require('./sendEmail.js');
 const { createPlotConfig, plotGraph } = require('./plotGraph.js');
 
@@ -36,8 +45,11 @@ exports.utils = {
 
   initUserContent,
   generateDateString,
-  sendEmail,
 
+  filterIDkey,
+  sortAndUnshift,
+
+  sendEmail,
   createPlotConfig,
   plotGraph,
 };
