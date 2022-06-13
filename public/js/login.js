@@ -8,31 +8,31 @@ const inpErrDiv = document.querySelector('.error');
 const errOnSubmit = document.querySelector('.error-on-submit');
 const errCloseBtn = document.querySelector('.span-close-btn');
 
-//
-//
+const emailInputBlurEvent = async function (e) {
+  const url = `/checkIfUsername?email=${emailInput.value}`;
 
-// look for un-focus event of user on password field of the form to trigger this func
+  // send a req to the above route with the username to check if it exists
+  const res = await fetch(url);
+  const resJson = await res.json();
 
-emailInput &&
-  emailInput.addEventListener('blur', async () => {
-    const url = `/checkIfUsername?email=${emailInput.value}`;
+  // if exists then unhide error
+  if (!resJson.userExists) inpErrDiv.classList.remove('hidden');
+  else inpErrDiv.classList.add('hidden');
 
-    // send a req to the above route with the username to check if it exists
-    const res = await fetch(url);
-    const resJson = await res.json();
+  // disable / enable submit btn accordingly
+  if (inpErrDiv.classList.contains('hidden')) btnSubmit.disabled = false;
+  else btnSubmit.disabled = true;
+};
 
-    // if exists then unhide error
-    if (!resJson.userExists) inpErrDiv.classList.remove('hidden');
-    else inpErrDiv.classList.add('hidden');
+const errCloseBtnEvent = function (e) {
+  errOnSubmit.style.display = 'none';
+  errOnSubmit.classList.add('hidden');
+};
 
-    // disable / enable submit btn accordingly
-    if (inpErrDiv.classList.contains('hidden')) btnSubmit.disabled = false;
-    else btnSubmit.disabled = true;
-  });
+// event handlers
+
+// (1) look for un-focus event of user on password field of the form to trigger this func
+emailInput && emailInput.addEventListener('blur', emailInputBlurEvent);
 
 // for (2)
-errCloseBtn &&
-  errCloseBtn.addEventListener('click', e => {
-    errOnSubmit.style.display = 'none';
-    errOnSubmit.classList.add('hidden');
-  });
+errCloseBtn && errCloseBtn.addEventListener('click', errCloseBtnEvent);

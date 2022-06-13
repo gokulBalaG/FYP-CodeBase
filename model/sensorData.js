@@ -25,6 +25,7 @@ const sensorDataEntrySchema = new mongoose.Schema({
   },
   time: {
     type: String,
+    required: true,
   },
 });
 
@@ -37,3 +38,4 @@ const sensorDataSchema = new mongoose.Schema({
 });
 
 exports.SensorData = new mongoose.model('sensorData', sensorDataSchema);
+exports.sensorDataFields = ['rainfall', 'soilHumidity', 'soilPH', 'temperature', 'time'];

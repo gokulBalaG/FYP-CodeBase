@@ -1,5 +1,6 @@
 const { model } = require('../../model/model.js');
 
+// checks if the username exists in the db
 // only accessed by code
 // GET "/checkIfUsername?email=<anything>"
 

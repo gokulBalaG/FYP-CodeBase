@@ -6,7 +6,7 @@ const precisionIrrigation = function (req, res) {
 };
 
 // GET "user/products/fertilizer-suggestion"
-const { fsFeatures } = require('../../../model/data.js');
+const { fsFeatures } = require('../../../config/staticData.js');
 
 const fertilizerSuggestion = function (req, res) {
   res.locals.toRender['fsFeatures'] = fsFeatures;

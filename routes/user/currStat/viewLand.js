@@ -5,6 +5,20 @@ const { config } = require('../../../config/config.js');
 
 const timeField = 'time';
 
+/**
+ * Returns a sorted array with fieldName values appended at the beginning of the given array
+ * @param {Array} fieldNames Array of field names in sensorData
+ * @param  {...any} fieldName Value(s) to be appended at the beginning of the given array
+ * @returns {Array} An array with fieldName value(s) appended at the beginning of sorted fieldName array
+ */
+
+const sortAndUnshift = (fieldNames, ...fieldName) => {
+  fieldNames = fieldNames.sort().slice(0, -1);
+  fieldNames.unshift(...fieldName);
+
+  return fieldNames;
+};
+
 // GET "user/current-status/view-land"
 
 exports.viewLand = async function (req, res) {
@@ -19,7 +33,8 @@ exports.viewLand = async function (req, res) {
     });
 
   // get all field names except _id
-  const fieldNames = utils.filterIDkey(
+  const fieldNames = utils.filterFieldFrom(
+    '_id',
     Object.keys(sensorDataDoc.sensorData[0]['_doc'])
   );
 
@@ -58,7 +73,7 @@ exports.viewLand = async function (req, res) {
   // loop through data from db
   sensorDataDoc.sensorData.forEach(doc => {
     // get field names from each document except _id
-    const fieldNames = utils.filterIDkey(Object.keys(doc['_doc']));
+    const fieldNames = utils.filterFieldFrom('_id', Object.keys(doc['_doc']));
 
     // loop through each field name & push data into values array
     fieldNames.forEach(fieldName => {
@@ -69,8 +84,8 @@ exports.viewLand = async function (req, res) {
   });
 
   // to sort field names and  push 'time' to the beginning
-  tableHeaders = utils.sortAndUnshift(tableHeaders, 'Time');
-  sensorDataFields = utils.sortAndUnshift(sensorDataFields, 'time');
+  tableHeaders = sortAndUnshift(tableHeaders, 'Time');
+  sensorDataFields = sortAndUnshift(sensorDataFields, 'time');
 
   const plotConfig = utils.createPlotConfig(data);
   utils.plotGraph(plotConfig, config.PLOT_IMG);

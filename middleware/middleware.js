@@ -5,8 +5,9 @@ const { model } = require('../model/model.js');
 const { utils } = require('../utils/utils.js');
 const logFile = 'routeHits.log';
 
+// logger middleware to log url hits (locally)
 const logger = function (req, res, next) {
-  const log = `hit: ${req.method} "${req.url}" at: ${String(Date()).slice(
+  const log = `HIT: ${req.method} ${req.url} at ${String(Date()).slice(
     0,
     25
   )}\n`;
@@ -17,16 +18,18 @@ const logger = function (req, res, next) {
     });
   }
 
-  console.log(log.slice(0, -1));
+  console.log(log);
   next();
 };
 
+// check if user is authenticated else redirect to login page
 // "/user/*"
 const authCheck = function (req, res, next) {
   if (req.isAuthenticated()) next();
   else res.redirect('/login');
 };
 
+// check if user exists, if yes then add the username to the navbar, and add other placeholders to be rendered
 // "/user/*"
 const addNameToNav = async function (req, res, next) {
   const foundUser = await model.User.findOne({
@@ -52,6 +55,7 @@ const addNameToNav = async function (req, res, next) {
   next();
 };
 
+// verify login on credentials input, if not auth then redirect to failureRedirect
 // "login" failure redirect to this route to render error on page
 const verifyLogin = passport.authenticate('local', {
   failureRedirect: '/login?success=false',
