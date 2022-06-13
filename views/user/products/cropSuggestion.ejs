@@ -12,6 +12,10 @@
 
 <div class="row container-main">
 
+    <% if (toRender.prediction) { %>
+        <p><%= toRender.prediction %></p>
+    <% } %>
+
     <% toRender.csFeatures.forEach(feature => { %>
         <div class="card col feature-card">
             <div class="card-body">
