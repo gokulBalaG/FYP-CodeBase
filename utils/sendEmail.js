@@ -1,6 +1,13 @@
 const nodemailer = require('nodemailer');
 const { config } = require('../config/config.js');
 
+/**
+ * Send email function
+ * @param {String} toEmail Receiver's email
+ * @param {String} subject Email subject
+ * @param {String} content Email content
+ */
+
 exports.sendEmail = function (toEmail, subject, content) {
   const transporter = nodemailer.createTransport({
     service: config.EMAIL_SERVICE,

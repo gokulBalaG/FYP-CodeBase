@@ -1,5 +1,4 @@
-const { homeProducts } = require('../../../model/data.js');
-const { utils } = require('../../../utils/utils.js');
+const { homeProducts } = require('../../../config/staticData.js');
 
 // GET "user/home"
 const home = function (req, res) {

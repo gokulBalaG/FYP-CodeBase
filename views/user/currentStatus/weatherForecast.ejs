@@ -11,24 +11,37 @@
 <div class="container weather-forecast-main">
 
 <% if (toRender.weatherParams) { %>
+
+    <h3 class="weather-conditions-h1">
+        Weather report
+    </h3>
     
     <div class="weather-condition-div">
-        <h1>Temperature: <span class="highlight"><%= toRender.weatherParams.temp %></span>  degrees Celcius.</h1>
-
-        <p>The weather is currently: <span class="highlight"><%= toRender.weatherParams.desc %></span></p>
-
-        <p>The sky looks like: </p>
-
-        <img src="<%= toRender.weatherParams.imgURL %>" alt="weather-icon">
-        
+        <table class="weather-conditions">
+            <tr>
+                <% toRender.weatherParams.forEach(el => { %>
+                    <th><%= el[0] %></th>
+                <% }); %>
+            </tr>
+            <tr>
+                <% toRender.weatherParams.forEach(el => { %>
+                    <td><%= el[1] %></td>
+                <% }); %>
+            </tr>
+        </table>
     </div>
+
+<% } else if (toRender.data === false) { %>
+ 
+    <h3>No such city found</h3>
+
+    <button class="btn btn-dark btn-goback" onclick="history.back()">Go back</button>
 
 <% } else { %>
 
     <h1>Get weather</h1>
 
     <form action="<%= toRender.formUrl %>" method="get">
-
         <div class="mb-3 col-6">
             <label for="input-city-name" class="form-label">Enter city name: </label>
 

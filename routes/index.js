@@ -1,4 +1,4 @@
-const { products, featureIcons } = require('../model/data.js');
+const { products, featureIcons } = require('../config/staticData.js');
 
 // Route functions
 

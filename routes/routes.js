@@ -9,6 +9,7 @@ const { userRoutes } = require('./user/user/userRoutes.js');
 
 // products
 const { productRoutes } = require('./user/products/productRoutes.js');
+const { cropSuggestion } = require('./user/products/cropSuggestion.js');
 
 // current stat
 const { weatherForecast } = require('./user/currStat/weatherForecast.js');
@@ -31,6 +32,7 @@ exports.r = {
   ...userRoutes,
 
   ...productRoutes,
+  cropSuggestion,
 
   weatherForecast,
   viewLand,
