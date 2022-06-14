@@ -31,7 +31,7 @@
         
                     <% toRender.sensorData.forEach((doc) => { %>
                         <tr>
-                            <% toRender.sensorDataFields.forEach((field) => { %>
+                            <% toRender.fieldNames.forEach((field) => { %>
                                 <td><%= doc[field] %></td>
                             <% }); %>
                         </tr>

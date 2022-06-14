@@ -3,22 +3,22 @@ const mongoose = require('mongoose');
 // SENSOR DATA COLLECTION
 
 const sensorDataEntrySchema = new mongoose.Schema({
-  rainfall: {
-    type: Number,
-    default: 0,
-    required: true,
-  },
-  soilHumidity: {
-    type: Number,
-    default: 0,
-    required: true,
-  },
-  soilPH: {
-    type: Number,
-    default: 0,
-    required: true,
-  },
   temperature: {
+    type: Number,
+    default: 0,
+    required: true,
+  },
+  humidity: {
+    type: Number,
+    default: 0,
+    required: true,
+  },
+  ph: {
+    type: Number,
+    default: 0,
+    required: true,
+  },
+  rainfall: {
     type: Number,
     default: 0,
     required: true,
@@ -38,4 +38,4 @@ const sensorDataSchema = new mongoose.Schema({
 });
 
 exports.SensorData = new mongoose.model('sensorData', sensorDataSchema);
-exports.sensorDataFields = ['rainfall', 'soilHumidity', 'soilPH', 'temperature', 'time'];
+exports.sensorDataFields = ['temperature', 'humidity', 'ph', 'rainfall', 'time'];

@@ -12,9 +12,9 @@ const timeField = 'time';
  * @returns {Array} An array with fieldName value(s) appended at the beginning of sorted fieldName array
  */
 
-const sortAndUnshift = (fieldNames, ...fieldName) => {
+const sortAndUnshift = (fieldNames, fieldName) => {
   fieldNames = fieldNames.sort().slice(0, -1);
-  fieldNames.unshift(...fieldName);
+  fieldNames.unshift(fieldName);
 
   return fieldNames;
 };
@@ -32,23 +32,25 @@ exports.viewLand = async function (req, res) {
       toRender: res.locals.toRender,
     });
 
-  // get all field names except _id
-  const fieldNames = utils.filterFieldFrom(
-    '_id',
-    Object.keys(sensorDataDoc.sensorData[0]['_doc'])
-  );
-
   // entire data with field names
   const data = { X: {}, Y: {} };
 
-  // headers on table (field names converted to sentence case)
-  let tableHeaders = [];
+  // headers on table
+  let tableHeaders = [
+    'Temperature (°C)',
+    'Humidity (%)',
+    'Soil PH',
+    'Rainfall (mm)',
+    'Time',
+  ];
+
   // field names as per stored in db
-  let sensorDataFields = [];
+  // ['temperature', 'humidity', 'ph', 'rainfall', 'time']
+  let fieldNames = model.sensorDataFields;
 
   // init data obj with X & Y fields, X will contain time and rest into Y
-  fieldNames.forEach(fieldName => {
-    const tableHeaderName = _.startCase(fieldName);
+  fieldNames.forEach((fieldName, i) => {
+    const tableHeaderName = tableHeaders[i];
 
     // creates object: eg:
     // soil: {
@@ -65,16 +67,10 @@ exports.viewLand = async function (req, res) {
     // adding to X or Y fields
     if (fieldName === timeField) data['X'][fieldName] = field;
     else data['Y'][fieldName] = field;
-
-    tableHeaders.push(tableHeaderName);
-    sensorDataFields.push(fieldName);
   });
 
-  // loop through data from db
+  // loop through data array from db
   sensorDataDoc.sensorData.forEach(doc => {
-    // get field names from each document except _id
-    const fieldNames = utils.filterFieldFrom('_id', Object.keys(doc['_doc']));
-
     // loop through each field name & push data into values array
     fieldNames.forEach(fieldName => {
       if (fieldName === timeField)
@@ -83,9 +79,9 @@ exports.viewLand = async function (req, res) {
     });
   });
 
-  // to sort field names and  push 'time' to the beginning
+  // to sort field names and  push 'time' from end to the beginning
   tableHeaders = sortAndUnshift(tableHeaders, 'Time');
-  sensorDataFields = sortAndUnshift(sensorDataFields, 'time');
+  fieldNames = sortAndUnshift(fieldNames, 'time');
 
   const plotConfig = utils.createPlotConfig(data);
   utils.plotGraph(plotConfig, config.PLOT_IMG);
@@ -93,7 +89,7 @@ exports.viewLand = async function (req, res) {
   res.locals.toRender['imgUrl'] = '/images/view-land-plot.png';
   res.locals.toRender['tableHeaders'] = tableHeaders;
   res.locals.toRender['sensorData'] = sensorDataDoc.sensorData;
-  res.locals.toRender['sensorDataFields'] = sensorDataFields;
+  res.locals.toRender['fieldNames'] = fieldNames;
 
   res.render('user/currentStatus/viewLand', { toRender: res.locals.toRender });
 };
