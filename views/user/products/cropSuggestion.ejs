@@ -13,7 +13,7 @@
 <div class="row container-main">
 
     <% if (toRender.prediction) { %>
-        <p><%= toRender.prediction %></p>
+        <h3 class="crop-prediction-result">You can grow <span class="highlight"><%= toRender.prediction %></span> on your land.</h3>
     <% } %>
 
     <% toRender.csFeatures.forEach(feature => { %>

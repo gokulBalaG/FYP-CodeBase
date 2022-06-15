@@ -1,4 +1,3 @@
-const _ = require('lodash');
 const { utils } = require('../../../utils/utils.js');
 const { model } = require('../../../model/model.js');
 const { config } = require('../../../config/config.js');
@@ -39,7 +38,7 @@ exports.viewLand = async function (req, res) {
   let tableHeaders = [
     'Temperature (°C)',
     'Humidity (%)',
-    'Soil PH',
+    'Soil pH',
     'Rainfall (mm)',
     'Time',
   ];
@@ -80,7 +79,14 @@ exports.viewLand = async function (req, res) {
   });
 
   // to sort field names and  push 'time' from end to the beginning
-  tableHeaders = sortAndUnshift(tableHeaders, 'Time');
+  tableHeaders = [
+    'Time',
+    'Humidity (%)',
+    'Soil pH',
+    'Rainfall (mm)',
+    'Temperature (°C)',
+  ];
+
   fieldNames = sortAndUnshift(fieldNames, 'time');
 
   const plotConfig = utils.createPlotConfig(data);
