@@ -2,3 +2,8 @@
 2. Soil pH - Seems costly, look for alternatives
 3. Air temperature and Humidity - use openweathermap API
 4. Rain value - use rain sensors
+
+Node at field - 
+1. Find a method the trigger the code in Arduino between cetain interval of time. Put it in deep sleep mode to save power.
+
+2. The data is transmitted through LoRa. The receiever LoRa updates it in the Mongodb
