@@ -18,7 +18,7 @@ const logger = function (req, res, next) {
     });
   }
 
-  console.log(log);
+  console.log(log.slice(0, -1));
   next();
 };
 

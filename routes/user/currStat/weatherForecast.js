@@ -2,7 +2,7 @@ const https = require('https');
 const { config } = require('../../../config/config.js');
 const { utils } = require('../../../utils/utils.js');
 
-// GET & POST "user/current-status/weather-forecast"
+// GET "user/current-status/weather-forecast"
 
 exports.weatherForecast = function (req, res) {
   // check if there exist inputs, if yes then handle requests

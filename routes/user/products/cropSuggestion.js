@@ -4,6 +4,24 @@ const { model } = require('../../../model/model.js');
 const { config } = require('../../../config/config.js');
 const { utils } = require('../../../utils/utils.js');
 
+const formElements = [
+  {
+    id: 'n',
+    upperCaseId: 'N',
+    name: 'Nitrogen',
+  },
+  {
+    id: 'p',
+    upperCaseId: 'P',
+    name: 'Phosphorus',
+  },
+  {
+    id: 'k',
+    upperCaseId: 'K',
+    name: 'Potassium',
+  },
+];
+
 /**
  * Generate a GET request URL
  * @param {String} baseUrl Base URL route to which the request will be made
@@ -52,35 +70,53 @@ const getAvgSensorData = function (sensorData) {
 // GET "user/products/crop-suggestion"
 
 exports.cropSuggestion = async function (req, res) {
-  // fetch the sensor data array from db
-  const sensorData = await model.SensorData.findOne({
-    email: req.user.username,
-  });
+  // get N, P & K values from form and display result
+  if (req.query.n) {
+    // fetch the sensor data array from db
+    const sensorData = await model.SensorData.findOne({
+      email: req.user.username,
+    });
 
-  const avgSensorData = getAvgSensorData(sensorData.sensorData);
+    const avgSensorData = getAvgSensorData(sensorData.sensorData);
 
-  const url = generateRequestURL(
-    config.PREDICTION_URL,
-    utils.filterFieldFrom('time', model.sensorDataFields),
-    avgSensorData
-  );
+    let url = generateRequestURL(
+      config.PREDICTION_URL,
+      utils.filterFieldFrom('time', model.sensorDataFields),
+      avgSensorData
+    );
 
-  res.locals.toRender['csFeatures'] = csFeatures;
+    url += `&n=${req.query.n}&p=${req.query.p}&k=${req.query.k}`;
 
-  http
-    .get(url, response => {
-      response.on('data', data => {
-        const prediction = JSON.parse(data);
+    http
+      .get(url, response => {
+        response.on('data', data => {
+          const prediction = JSON.parse(data);
 
-        res.locals.toRender['prediction'] = prediction;
+          res.locals.toRender['prediction'] = prediction;
+          res.render('user/products/cropSuggestion', {
+            toRender: res.locals.toRender,
+          });
+        });
+      })
+      .on('error', err => {
         res.render('user/products/cropSuggestion', {
           toRender: res.locals.toRender,
         });
       });
-    })
-    .on('error', err => {
-      res.render('user/products/cropSuggestion', {
-        toRender: res.locals.toRender,
-      });
-    });
+
+    return;
+  }
+
+  // res.locals.toRender['csFeatures'] = csFeatures;
+  // if form elements are empty then render the form
+
+  res.locals.toRender['formUrl'] = `/user/${utils.emailToUsername(
+    req.user.username
+  )}/products/crop-suggestion`;
+
+  res.locals.toRender['formEls'] = formElements;
+
+  res.render('user/products/cropSuggestion', {
+    toRender: res.locals.toRender,
+  });
 };
