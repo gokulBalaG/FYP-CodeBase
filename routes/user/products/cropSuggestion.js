@@ -1,5 +1,4 @@
 const http = require('http');
-const { csFeatures } = require('../../../config/staticData.js');
 const { model } = require('../../../model/model.js');
 const { config } = require('../../../config/config.js');
 const { utils } = require('../../../utils/utils.js');
@@ -107,13 +106,12 @@ exports.cropSuggestion = async function (req, res) {
     return;
   }
 
-  // res.locals.toRender['csFeatures'] = csFeatures;
   // if form elements are empty then render the form
 
   res.locals.toRender['formUrl'] = `/user/${utils.emailToUsername(
     req.user.username
   )}/products/crop-suggestion`;
-
+  
   res.locals.toRender['formEls'] = formElements;
 
   res.render('user/products/cropSuggestion', {

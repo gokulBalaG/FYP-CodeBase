@@ -47,8 +47,6 @@ const addNameToNav = async function (req, res, next) {
     navBrandUrl: `/user/${username}/home`,
     cropSuggestionUrl: `/user/${username}/products/crop-suggestion`,
     fertilizerSuggestionUrl: `/user/${username}/products/fertilizer-suggestion`,
-    precisionIrrigationUrl: `/user/${username}/products/precision-irrigation`,
-    userSettings: `/user/${username}/settings`,
     logout: `/user/${username}/logout`,
   };
 
