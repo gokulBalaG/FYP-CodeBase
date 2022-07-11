@@ -21,6 +21,8 @@ const formElements = [
   },
 ];
 
+exports.formElements = formElements;
+
 /**
  * Generate a GET request URL
  * @param {String} baseUrl Base URL route to which the request will be made
@@ -79,7 +81,7 @@ exports.cropSuggestion = async function (req, res) {
     const avgSensorData = getAvgSensorData(sensorData.sensorData);
 
     let url = generateRequestURL(
-      config.PREDICTION_URL,
+      config.CROP_PREDICTION_URL,
       utils.filterFieldFrom('time', model.sensorDataFields),
       avgSensorData
     );

@@ -1,22 +1,12 @@
 .product-header {
   font-family: 'Satisfy', cursive;
-  margin: 3%;
+  margin: 2%;
   text-align: center;
-  font-size: 4rem;
+  font-size: 3rem;
 }
 
 .container-main {
-  margin: 5%;
-}
-
-.feature-card {
-  margin: 2%;
-  transition: transform 0.2s;
-}
-
-.feature-card:hover {
-  cursor: pointer;
-  transform: scale(1.2);
+  margin: 2% 4% 4% 4%;
 }
 
 .crop-prediction-result {
@@ -29,7 +19,11 @@
   width: 40%;
 }
 
-.btn-crop-suggest {
-  margin: 5% auto 0 auto;
+.btn-product-form {
+  margin: 8% auto 0 auto;
   display: block;
+}
+
+.suggestions-div{
+  padding: 0 7% 0 7%;
 }

@@ -1,7 +1,8 @@
 require('dotenv').config();
 
 const BASE_URL = process.env.BASE_URL;
-const PREDICTION_URL = process.env.PREDICTION_URL;
+const CROP_PREDICTION_URL = process.env.CROP_PREDICTION_URL;
+const FERTILIZER_SUGG_URL = process.env.FERTILIZER_SUGG_URL;
 
 // WEATHER API
 
@@ -57,7 +58,8 @@ const {
 
 exports.config = {
   BASE_URL,
-  PREDICTION_URL,
+  CROP_PREDICTION_URL,
+  FERTILIZER_SUGG_URL,
 
   WEATHER_API_URL,
 
