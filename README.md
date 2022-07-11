@@ -4,10 +4,5 @@ The main objective of the project is to provide a technical perspective of the a
 
 * In order to increase yield and maximize profit, the system suggests suitable crops and fertilizers using various parameters.
 
-* Precision irrigation - The farmer will be able to control watering for the specific part of the land.
-
-As of now we have 3 tasks at hand.
-
-- [ ] Frontend development 
-- [ ] Intelligent backend development
-- [ ] Hardware development
+### Link to crop prediction & fertilizer suggestion repo
+[here](https://github.com/gokulBalaG/FYP-CodeBase-ML-deployment)

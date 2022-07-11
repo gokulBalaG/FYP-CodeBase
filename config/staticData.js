@@ -25,19 +25,7 @@ class HomeProduct {
   }
 }
 
-class Feature {
-  constructor(title, subtitle, description) {
-    this.title = title;
-    this.subtitle = subtitle;
-    this.description = description;
-  }
-}
-
 exports.products = [
-  new Product(
-    'Precision Irrigation',
-    'Ooooooo...! A very carefully curated design to irrigate your field with minimum human effort!'
-  ),
   new Product(
     'Crop suggestion',
     "Guess what!? It's an intelligent system that can sugggest you with the type of crops that can be grown on your field to get the best out of your feild."
@@ -68,11 +56,6 @@ exports.featureIcons = [
 
 exports.homeProducts = [
   new HomeProduct(
-    'Precision Irrigation',
-    '+ click here to explore the automated irrigation system.',
-    '/user/$/products/precision-irrigation'
-  ),
-  new HomeProduct(
     'Crop Suggestion',
     '+ click here to find out the best crop to grow on your land.',
     '/user/$/products/crop-suggestion'
@@ -84,42 +67,6 @@ exports.homeProducts = [
   ),
 ];
 // replacing $ with username
-
-exports.fsFeatures = [
-  new Feature(
-    'Pesticide Suggestion',
-    'We got pesticide suggestion for you',
-    'loream ipsum morec tiu huesdi irlim paren tickmae guik latam dij def gre guti'
-  ),
-  new Feature(
-    'Growth enhancement fertilizers',
-    'We got Growth enhancement fertilizer suggestions for you',
-    'loream ipsum morec tiu huesdi irlim paren tickmae guik latam dij def gre guti'
-  ),
-  new Feature(
-    'Topical solutions',
-    'We got topical solutions for you',
-    'loream ipsum morec tiu huesdi irlim paren tickmae guik latam dij def gre guti'
-  ),
-];
-
-exports.csFeatures = [
-  new Feature(
-    'Based on Geographical Location',
-    'Get crops based on geo-location',
-    'loream ipsum morec tiu huesdi irlim paren tickmae guik latam dij def gre guti'
-  ),
-  new Feature(
-    'Explore crops',
-    'Explore crops bro!',
-    'loream ipsum morec tiu huesdi irlim paren tickmae guik latam dij def gre guti'
-  ),
-  new Feature(
-    'Based on Soil condition',
-    'Get crops based on soil condition',
-    'loream ipsum morec tiu huesdi irlim paren tickmae guik latam dij def gre guti'
-  ),
-];
 
 //
 //

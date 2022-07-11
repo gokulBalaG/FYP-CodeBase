@@ -12,15 +12,48 @@
 
 <div class="row container-main">
 
-    <% toRender.fsFeatures.forEach(feature => { %>
-        <div class="card col feature-card">
-            <div class="card-body">
-              <h5 class="card-title"><%= feature.title %> </h5>
-              <h6 class="card-subtitle mb-2 text-muted"><%= feature.subtitle %></h6>
-              <p class="card-text"><%= feature.description %></p>
-            </div>
+    <% if (toRender.suggestions) { %>
+        <div class="container suggestions-div">
+            <p><%= toRender.suggestions.header %></p>
+        
+            <ul>
+            <% toRender.suggestions.content.forEach(point => { %>
+                <li><p><%= point %></p></li>
+            <% }); %>
+            </ul>
         </div>
-    <% }); %>
+        
+    <% } else { %>
+            
+    <div class="form-div">
+
+        <form action="<%= toRender.formUrl %>" method="get">
+            <div class="mb-3 col-12">
+                <label for="crop_name" class="form-label">Enter the crop name:</label>
+                <input type="text" class="form-control"
+                id="crop_name"
+                name="crop_name"
+                placeholder="Crop that you are growing"
+                required>
+            </div>
+
+            <% toRender.formEls.forEach(el => { %>
+                <div class="mb-3 col-12">
+                    <label for="<%= el.id %>" class="form-label">Enter <%= el.upperCaseId %> value:</label>
+                    <input type="number" class="form-control"
+                    id="<%= el.id %>"
+                    name="<%= el.id %>"
+                    placeholder="<%= el.name %> content in soil (Eg: 50)"
+                    required>
+                </div>
+            <% }); %>
+    
+            <button class="btn btn-dark btn-product-form btn-fertilizer-suggest" type="submit">Suggest fertilizer options</button>
+        </form>
+
+    </div>
+        
+    <% } %>
 
 </div>
 

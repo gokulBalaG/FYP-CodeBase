@@ -13,17 +13,14 @@
 <div class="main">
 
     <div class="current-stat-link-div">
-        <a href="<%= toRender.weatherForecastUrl %>" class="current-stat-link">Weather forecast</a>
-    
+        <a href="<%= toRender.weatherForecastUrl %>" class="current-stat-link">Weather forecast</a>    
         <a href="<%= toRender.viewLandUrl %>" class="current-stat-link">View land status</a>
-    
-        <a href="<%= toRender.cropDetailsUrl %>" class="current-stat-link disabled-link">Crop Details</a>
     </div>
 
     <% toRender.homeProducts.forEach((product, i) => { %>
 
     <% if (i % 2 === 0) { %>
-        <div class="product-div product-div-left disabled-link">
+        <div class="product-div product-div-left">
     <% } else { %>
         <div class="product-div product-div-right">
         <% } %>

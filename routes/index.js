@@ -5,8 +5,8 @@ const { products, featureIcons } = require('../config/staticData.js');
 // GET "/"
 exports.slash = function (req, res) {
   const toRender = {
-    products: products,
     featureIcons: featureIcons,
+    products: products,
     loginUrl: '/login',
     registerUrl: '/register',
   };

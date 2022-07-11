@@ -15,6 +15,9 @@ app.use('/user', mw.addNameToNav);
 // "/reset-password" router plugin
 app.use('/reset-password', routers.resetPasswordRouter);
 
+// only requests from client side js
+app.get(`/checkIfUsername`, r.checkIfUsername);
+
 // Routes
 
 app.get('/', r.slash);
@@ -26,21 +29,13 @@ app.route('/register').get(r.register).post(r.postRegister);
 // Routes after authentication (leading with "/user")
 
 app.get(`/user/:username/home`, r.home);
+app.get(`/user/:username/logout`, r.logout);
 
-app.get(`/user/:username/settings`, r.settings);
-
-app.get(`/user/:username/products/precision-irrigation`, r.precisionIrrigation);
 app.get(`/user/:username/products/crop-suggestion`, r.cropSuggestion);
 app.get(`/user/:username/products/fertilizer-suggestion`, r.fertilizerSuggestion);
 
 app.get(`/user/:username/current-status/weather-forecast`, r.weatherForecast);
 app.get(`/user/:username/current-status/view-land`, r.viewLand);
-app.get(`/user/:username/current-status/crop-details`, r.cropDetails);
-
-app.get(`/user/:username/logout`, r.logout);
-
-// only requests from client side js
-app.get(`/checkIfUsername`, r.checkIfUsername);
 
 app.all('*', r.all);
 

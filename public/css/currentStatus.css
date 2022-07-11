@@ -7,6 +7,10 @@
   height: 300px;
 }
 
+.weather-conditions-h1 {
+  margin: 0 0 4% 0;
+}
+
 /* for get view land page - table and image rendering */
 
 table,

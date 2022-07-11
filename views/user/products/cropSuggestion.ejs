@@ -17,7 +17,7 @@
     <% } else { %>
         <div class="form-div">
             
-            <form action="<%= toRender.formUrl %>" method="get" class="cs-form">
+            <form action="<%= toRender.formUrl %>" method="get">
                 <% toRender.formEls.forEach(el => { %>
                     <div class="mb-3 col-12">
                         <label for="<%= el.id %>" class="form-label">Enter <%= el.upperCaseId %> value:</label>
@@ -29,7 +29,7 @@
                     </div>
                 <% }); %>
         
-                <button class="btn btn-dark btn-crop-suggest" type="submit">Suggest crop</button>
+                <button class="btn btn-dark btn-product-form btn-crop-suggest" type="submit">Suggest crop</button>
             </form>
         </div>
     <% } %>
