@@ -20,11 +20,11 @@ The hardware implementation includes 2 parts. The first is the sender node and t
 
 **1. Sender Node**
 
-The sender node consists of Arduino Uno for processing the data gathered from the sensor. There are 2 sensors attached to the sender node. These are rain sensor, to measure the rain value at the field and moisture sensor, to measure the moisture of the land. A servo motor is also interfaced to the sender node. This is to implement an automatic water pump system that waters that part of the land that requires water. The decision is made based on the gathered sensor values.A Lora transmitter module is also interfaced with the Arduino. The sensor values are transmitted using this interfaced module. You can find the arduino code for the sender node [here](/hardwareUpdates/loraArduinoSender/loraArduinoSender) 
+The sender node consists of Arduino Uno for processing the data gathered from the sensor. There are 2 sensors attached to the sender node. These are rain sensor, to measure the rain value at the field and moisture sensor, to measure the moisture of the land. A servo motor is also interfaced to the sender node. This is to implement an automatic water pump system that waters that part of the land that requires water. The decision is made based on the gathered sensor values.A Lora transmitter module is also interfaced with the Arduino. The sensor values are transmitted using this interfaced module. You can find the arduino code for the sender node [here](/hardwareUpdates/loraArduinoSender/loraArduinoSender.ino) 
 
 **2. Receiver Node**
 
-The receiver node consists of an Arduino Uno interfaced with a receiver Lora module. The data from the transmitter end is received by the receiver and is processed by the Arduino. Once the data is received, the an updation script is triggered at the receiver's end. This script is responsible for reading the sensor data at the receiver's end and gathering the data from API. These data are updated to the database. You can find the arduino code for the sender node [here](/hardwareUpdates/loraReceiver/loraReceiver) 
+The receiver node consists of an Arduino Uno interfaced with a receiver Lora module. The data from the transmitter end is received by the receiver and is processed by the Arduino. Once the data is received, the an updation script is triggered at the receiver's end. This script is responsible for reading the sensor data at the receiver's end and gathering the data from API. These data are updated to the database. You can find the arduino code for the sender node [here](/hardwareUpdates/loraReceiver/loraReceiver.ino) 
 
 ### Software Implementation
 
@@ -67,25 +67,25 @@ Link to crop prediction & fertilizer suggestion repo
  To ease the efforts of the farmer for the cultivation by setting up a remotely controlled precision irrigation system. System also provides the knowledge of which crop can be grown after analysing the weather and soil parameters, and suggests to the farmers about which fertiliser should be added for the efficient growth of the plant.
  
  The mode of demonstration is done using a small prototype   field which is fixed with basic sensors and components needed for the automation. For demonstration, the water pump with servo motor is fixed for precision irrigation mechanisms. The plants are grown `on a small scale model for demonstration purposes. The home page of the website is as shown : 
-![homepage](/images/home)
+![homepage](/images/home.png)
 
 All gathered information of the land is presented in the website. The website is built in an easy to use and visually appealing manner. The user has to create an account with the necessary details. When the user logs into the account, the land details visible to the user will be of the specific account. When ever the parameters collected from the land changes, the data will be dynamically updated in the database as well as the website.
 
 The data from the land and API is gathered at the receiver end and is updated in the database.A node is present at the field. This node is a combination of Arduino UNO interfaced with the respective sensors. The data collected from the hardware on field are rainfall value and humidity. This data collected on field is transmitted to the receiver through the Lora module. The data gathered from the API are temperature and pH. This is done at the receiver's end. All the collected values are updated in the MongoDB. Snippet of the database is shown in Figure :
-![db](/iamges/mongodb)
+![db](/iamges/mongodb.png)
 
 The collected data from hardware and API helps the user for crop analysis and also the health of soil. This graphical presentation helps the user to understand the land better. The user will be able to make better decisions base don the values presented. A graphical representation shows how the data is varying over a long time. This is shown in Figure 4.5. The system also presents the data in a tabular form. Thus the user will be able to make precise decision based on these values. 
-![chart](/iamges/view-land-status-chart)
-![table](/iamges/view-land-status-table)
+![chart](/iamges/view-land-status-chart.png)
+![table](/iamges/view-land-status-table.png)
 
 User enters the NPK (Nitrogen, Phosphorous and Potassium) value.The crop suggestion system, which is based on Random forest uses all the collected data from the database and the user entered values, processes these information to predict the suitable crop to grow.  The website takes input from the user of their current location and renders data which are relevant to weather of that particular geographical region as shown in Figure . This data is used for presenting the information on the website and to suggest crops.
-![crop-suggestion-ip](/iamges/crop-suggestion-1-input)
+![crop-suggestion-ip](/iamges/crop-suggestion-1-input.png)
 
 The suggested crop is shown as follows :
-![crop-suggestion-op](/iamges/crop-suggestion-2-output)
+![crop-suggestion-op](/iamges/crop-suggestion-2-output.png)
 
 One of the additional feature is that weatherforecast is also presented to the user. The user will be able to take decisions on the amount of water that needs to be supplied to the field. This feature can be used to desing a smart irrigation system. 
-![weather-forecast](/iamges/weather-forecast-1-input)
-![weather-forecast-table](/iamges/weather-forecast-2-output)
+![weather-forecast](/iamges/weather-forecast-1-input.png)  
+![weather-forecast-table](/iamges/weather-forecast-2-output.png)
 
 
