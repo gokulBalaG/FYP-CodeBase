@@ -67,25 +67,54 @@ Link to crop prediction & fertilizer suggestion repo
  To ease the efforts of the farmer for the cultivation by setting up a remotely controlled precision irrigation system. System also provides the knowledge of which crop can be grown after analysing the weather and soil parameters, and suggests to the farmers about which fertiliser should be added for the efficient growth of the plant.
  
  The mode of demonstration is done using a small prototype   field which is fixed with basic sensors and components needed for the automation. For demonstration, the water pump with servo motor is fixed for precision irrigation mechanisms. The plants are grown `on a small scale model for demonstration purposes. The home page of the website is as shown : 
-![homepage](/images/home.png)
+ <br />
+<p align="center">
+  <img src=/images/home.png>
+</p>
 
 All gathered information of the land is presented in the website. The website is built in an easy to use and visually appealing manner. The user has to create an account with the necessary details. When the user logs into the account, the land details visible to the user will be of the specific account. When ever the parameters collected from the land changes, the data will be dynamically updated in the database as well as the website.
 
 The data from the land and API is gathered at the receiver end and is updated in the database.A node is present at the field. This node is a combination of Arduino UNO interfaced with the respective sensors. The data collected from the hardware on field are rainfall value and humidity. This data collected on field is transmitted to the receiver through the Lora module. The data gathered from the API are temperature and pH. This is done at the receiver's end. All the collected values are updated in the MongoDB. Snippet of the database is shown in Figure :
-![db](/images/mongodb.png)
+<br />
+<p align="center">
+  <img src=/images/mongodb.png>
+</p>
 
 The collected data from hardware and API helps the user for crop analysis and also the health of soil. This graphical presentation helps the user to understand the land better. The user will be able to make better decisions base don the values presented. A graphical representation shows how the data is varying over a long time. This is shown in Figure 4.5. The system also presents the data in a tabular form. Thus the user will be able to make precise decision based on these values. 
-![chart](/images/view-land-status-chart.png)
-![table](/images/view-land-status-table.png)
+<br />
+<p align="center">
+  <img src=/images/view-land-status-chart.png>
+</p>
+
+<br />
+<p align="center">
+  <img src=/images/view-land-status-table.png>
+</p>
 
 User enters the NPK (Nitrogen, Phosphorous and Potassium) value.The crop suggestion system, which is based on Random forest uses all the collected data from the database and the user entered values, processes these information to predict the suitable crop to grow.  The website takes input from the user of their current location and renders data which are relevant to weather of that particular geographical region as shown in Figure . This data is used for presenting the information on the website and to suggest crops.
-![crop-suggestion-ip](/images/crop-suggestion-1-input.png)
+<br />
+<p align="center">
+  <img src=/images/crop-suggestion-1-input.png>
+</p>
 
 The suggested crop is shown as follows :
-![crop-suggestion-op](/images/crop-suggestion-2-output.png)
+
+<br />
+<p align="center">
+  <img src=/images/crop-suggestion-2-output.png>
+</p>
+
 
 One of the additional feature is that weatherforecast is also presented to the user. The user will be able to take decisions on the amount of water that needs to be supplied to the field. This feature can be used to desing a smart irrigation system. 
-![weather-forecast](/images/weather-forecast-1-input.png)  
-![weather-forecast-table](/images/weather-forecast-2-output.png)
+<br />
+<p align="center">
+  <img src=/images/weather-forecast-1-input.png>
+</p>
+
+<br />
+<p align="center">
+  <img src=/images/weather-forecast-2-output.png>
+</p>
+
 
 
