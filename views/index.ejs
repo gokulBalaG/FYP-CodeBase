@@ -73,7 +73,7 @@
       </h1>
       <br>
       
-      <h4 class="welcome-desc-h4">Lol gotta add something here. Tag line</h4>
+      <h4 class="welcome-desc-h4">Caring farming for caring future</h4>
       <br>
       
       <a href="#features">
@@ -97,7 +97,7 @@
   <div class="container-fluid row">
 
     <h2 class="section-header">FEATURES</h2>
-    <h3 class="section-desc">We provide this bro</h3>
+    <h3 class="section-desc">Perks of using our services</h3>
 
     <% toRender.featureIcons.forEach(featureIcon => { %>
      
@@ -105,10 +105,8 @@
         <span class="feature-span-icon">
           <i class="fas <%= featureIcon.iconName %>"></i>
         </span>
-        <h3> <%= featureIcon.header %> </h3>
-        <p>
-          <%= featureIcon.description %> 
-        </p>
+        <h3><%= featureIcon.header %></h3>
+        <p><%= featureIcon.description %></p>
       </div>
 
     <% }); %>
@@ -125,7 +123,7 @@
 <section class="section" id="products">
 
   <h2 class="section-header">PRODUCTS</h2>
-  <h3 class="section-desc">OMG! We provide a lot of services that you can use to make the best use
+  <h3 class="section-desc">We provide a lot of services that you can use to make the best use
   of our resources.</h3>
 
   <div class="container-fluid row products-row">
@@ -141,7 +139,6 @@
           <p class="card-text product-card-text">
             <%= product.description %> 
           </p>
-          <!-- <a href="#" class="btn btn-primary btn-card">Check it out!</a> -->
         </div>
       </div>
 

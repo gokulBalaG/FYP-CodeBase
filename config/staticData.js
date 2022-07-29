@@ -28,23 +28,23 @@ class HomeProduct {
 exports.products = [
   new Product(
     'Crop suggestion',
-    "Guess what!? It's an intelligent system that can sugggest you with the type of crops that can be grown on your field to get the best out of your feild."
+    'We help you to choose the best crops that you can grow for maximum yield hence maximum profit.'
   ),
   new Product(
     'Fertilizer suggestion',
-    "And again guess what!? It's an intelligent system that can suggest you with the type of fertilizers to be used on your field just so you know... to maximize your yield."
+    'Analysing the condition of your field, we suggest apt fertilizers that you can use for better growth of your crops.'
   ),
 ];
 
 exports.featureIcons = [
   new FeatureIcon(
     'Easy to use',
-    'The website is very easy to use.The complicated stuffs are all behind the scenes. Make the best decisions for the land with just few clicks!',
+    'The website is very easy to use. The complicated stuffs are all behind the scenes. Make the best decisions for the land with just few clicks!',
     'fa-check'
   ),
   new FeatureIcon(
     'Water friendly',
-    'The system can save lots of water. The watering to the land can be controlled by the farmer after analyzing the nature of the land and decides which part of the land needs more water.',
+    'The system can save lots of water. The watering to the land can be controlled by the farmer after analyzing the nature of the land and decide which part of the land needs more water.',
     'fa-hand-holding-water'
   ),
   new FeatureIcon(
