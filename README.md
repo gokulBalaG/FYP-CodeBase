@@ -72,20 +72,20 @@ Link to crop prediction & fertilizer suggestion repo
 All gathered information of the land is presented in the website. The website is built in an easy to use and visually appealing manner. The user has to create an account with the necessary details. When the user logs into the account, the land details visible to the user will be of the specific account. When ever the parameters collected from the land changes, the data will be dynamically updated in the database as well as the website.
 
 The data from the land and API is gathered at the receiver end and is updated in the database.A node is present at the field. This node is a combination of Arduino UNO interfaced with the respective sensors. The data collected from the hardware on field are rainfall value and humidity. This data collected on field is transmitted to the receiver through the Lora module. The data gathered from the API are temperature and pH. This is done at the receiver's end. All the collected values are updated in the MongoDB. Snippet of the database is shown in Figure :
-![db](/iamges/mongodb.png)
+![db](/images/mongodb.png)
 
 The collected data from hardware and API helps the user for crop analysis and also the health of soil. This graphical presentation helps the user to understand the land better. The user will be able to make better decisions base don the values presented. A graphical representation shows how the data is varying over a long time. This is shown in Figure 4.5. The system also presents the data in a tabular form. Thus the user will be able to make precise decision based on these values. 
-![chart](/iamges/view-land-status-chart.png)
-![table](/iamges/view-land-status-table.png)
+![chart](/images/view-land-status-chart.png)
+![table](/images/view-land-status-table.png)
 
 User enters the NPK (Nitrogen, Phosphorous and Potassium) value.The crop suggestion system, which is based on Random forest uses all the collected data from the database and the user entered values, processes these information to predict the suitable crop to grow.  The website takes input from the user of their current location and renders data which are relevant to weather of that particular geographical region as shown in Figure . This data is used for presenting the information on the website and to suggest crops.
-![crop-suggestion-ip](/iamges/crop-suggestion-1-input.png)
+![crop-suggestion-ip](/images/crop-suggestion-1-input.png)
 
 The suggested crop is shown as follows :
-![crop-suggestion-op](/iamges/crop-suggestion-2-output.png)
+![crop-suggestion-op](/images/crop-suggestion-2-output.png)
 
 One of the additional feature is that weatherforecast is also presented to the user. The user will be able to take decisions on the amount of water that needs to be supplied to the field. This feature can be used to desing a smart irrigation system. 
-![weather-forecast](/iamges/weather-forecast-1-input.png)  
-![weather-forecast-table](/iamges/weather-forecast-2-output.png)
+![weather-forecast](/images/weather-forecast-1-input.png)  
+![weather-forecast-table](/images/weather-forecast-2-output.png)
 
 
