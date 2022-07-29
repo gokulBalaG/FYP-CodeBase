@@ -3,7 +3,7 @@
 
 ## Motivation
 
-Most of the farmers today decide on the crops that can be grown, fertilizers that needs to be used and the amount of water that needs to be provided in a probability basis. This may not be the most precise way of deciding the conditions that needs to be maintained for the [roper growth of the land.Other systems include implementation of agricultural field monitoring using Bluetooth and WiFi. But these systems have their own pros and cons. The range of Bluetooth is very limited due to which large fields may not be monitored effectively. WiFi implementation requires WiFi to be accessible by all nodes deployed on the land. This may require powerful antennas, due to which the cost of the system may increase. LoRa (Long range) technology proves to overcome the disadvantages of both of these systems by consuming very less power and providing a long range.
+Most of the farmers today decide on the crops that can be grown, fertilizers that needs to be used and the amount of water that needs to be provided in a probability basis. This may not be the most precise way of deciding the conditions that needs to be maintained for the proper growth of the land.Other systems include implementation of agricultural field monitoring using Bluetooth and WiFi. But these systems have their own pros and cons. The range of Bluetooth is very limited due to which large fields may not be monitored effectively. WiFi implementation requires WiFi to be accessible by all nodes deployed on the land. This may require powerful antennas, due to which the cost of the system may increase. LoRa (Long range) technology proves to overcome the disadvantages of both of these systems by consuming very less power and providing a long range.
 
 The motto of our project is to better visualise various conditions of the agricultural land, process and analyse those conditions to suggest crops that can be grown and  fertilisers that can be used for the better growth of the crops. Providing such a technical view of the land allows the farmer to make better decision the crops that can be grown, fertilizers that can be used and the amount of water that needs to be provided to the land. All of these are made available to the farmer through an easy to use user interface.
 
@@ -24,7 +24,7 @@ The sender node consists of Arduino Uno for processing the data gathered from th
 
 **2. Receiver Node**
 
-The receiver node consists of an Arduino Uno interfaced with a receiver Lora module. The data from the transmitter end is received by the receiver and is processed by the Arduino. Once the data is received, the an updation script is triggered at the receiver's end. This script is responsible for reading the sensor data at the receiver's end and gathering the data from API. These data are updated to the database. You can find the arduino code for the sender node [here](/hardwareUpdates/loraReceiver/loraReceiver.ino) 
+The receiver node consists of an Arduino Uno interfaced with a receiver Lora module. The data from the transmitter end is received by the receiver and is processed by the Arduino. Once the data is received, the an updation script is triggered at the receiver's end. This script is responsible for reading the sensor data at the receiver's end and gathering the data from API. These data are updated to the database. You can find the arduino code for the receiver node [here](/hardwareUpdates/loraReceiver/loraReceiver.ino) 
 
 ### Software Implementation
 
